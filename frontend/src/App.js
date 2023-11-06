@@ -1,18 +1,18 @@
 import * as React from "react";
 import "./App.css";
-import FirstDepartment from "./component/Departments";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Kindergarten from "./list/Kindergarten";
-import HolyKids from "./list/HolyKids";
-import PaulCommunity from "./list/PaulCommunity";
-import Joshua from "./list/Joshua";
+import Home from "./page/Home";
+import Kindergarten from "./page/Kindergarten";
+import HolyKids from "./page/HolyKids";
+import PaulCommunity from "./page/PaulCommunity";
+import Joshua from "./page/Joshua";
 
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<FirstDepartment />}></Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/kindergarten" element={<Kindergarten />}></Route>
           <Route path="/holykids" element={<HolyKids />}></Route>
           <Route path="/paul-community" element={<PaulCommunity />}></Route>
