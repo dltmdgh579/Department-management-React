@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import List from "../components/List";
+import SmallGroupList from "../../components/SmallGroupList";
 
-const ListJoshua = () => {
+const SmallGroupPaulCommunity = () => {
   // useState
   const [infoList, setInfoList] = useState([]);
 
@@ -20,10 +20,10 @@ const ListJoshua = () => {
   return (
     <div>
       {infoList.map((info) => (
-        <List key={info.id} info={info} />
+        <SmallGroupList key={info.id} info={info} />
       ))}
     </div>
   );
 };
 
-export default ListJoshua;
+export default SmallGroupPaulCommunity;
