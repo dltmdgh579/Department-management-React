@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import List from "../components/List";
+import PersonnelList from "../../components/PersonnelList";
 
 const ListPaulCommunity = () => {
   // useState
@@ -9,7 +9,7 @@ const ListPaulCommunity = () => {
   // useEffect
   useEffect(() => {
     const infoData = async () => {
-      // const res = await axios.get("http://localhost:8080/kindergarten");
+      // const res = await axios.get("http://localhost:8080/kindergarten/info");
       const res = await axios.get("https://jsonplaceholder.typicode.com/users");
       return res.data;
     };
@@ -20,7 +20,7 @@ const ListPaulCommunity = () => {
   return (
     <div>
       {infoList.map((info) => (
-        <List key={info.id} info={info} />
+        <PersonnelList key={info.id} info={info} />
       ))}
     </div>
   );

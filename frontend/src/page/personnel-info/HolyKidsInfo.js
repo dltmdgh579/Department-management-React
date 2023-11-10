@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import List from "../components/List";
+import PersonnelList from "../../components/PersonnelList";
 
-const ListKindergarten = () => {
+const ListHolyKids = () => {
   // useState
   const [infoList, setInfoList] = useState([]);
 
   // useEffect
   useEffect(() => {
     const infoData = async () => {
-      // const res = await axios.get("http://localhost:8080/kindergarten");
+      // const res = await axios.get("http://localhost:8080/kindergarten/info");
       const res = await axios.get("https://jsonplaceholder.typicode.com/users");
       return res.data;
     };
@@ -20,10 +20,10 @@ const ListKindergarten = () => {
   return (
     <div>
       {infoList.map((info) => (
-        <List key={info.id} info={info} />
+        <PersonnelList key={info.id} info={info} />
       ))}
     </div>
   );
 };
 
-export default ListKindergarten;
+export default ListHolyKids;
