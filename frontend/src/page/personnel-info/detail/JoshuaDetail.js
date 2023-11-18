@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PersonnelDetail from "../../../components/PersonnelDetail";
 
-const ListJoshua = () => {
+const JoshuaDetail = () => {
   // useState
   const [infoList, setInfoList] = useState([]);
 
@@ -24,4 +24,4 @@ const ListJoshua = () => {
   );
 };
 
-export default ListJoshua;
+export default JoshuaDetail;

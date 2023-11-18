@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PersonnelList from "../../components/PersonnelList";
+import PersonnelList from "../../../components/PersonnelList";
 
-const ListJoshua = () => {
+const HolyKidsList = () => {
   // useState
   const [infoList, setInfoList] = useState([]);
 
@@ -26,4 +26,4 @@ const ListJoshua = () => {
   );
 };
 
-export default ListJoshua;
+export default HolyKidsList;

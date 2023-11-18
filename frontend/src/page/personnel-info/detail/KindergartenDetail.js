@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PersonnelDetail from "../../../components/PersonnelDetail";
 
-const ListKindergarten = () => {
+const KindergartenDetail = () => {
   // useState
   const [infoList, setInfoList] = useState([]);
 
@@ -24,4 +24,4 @@ const ListKindergarten = () => {
   );
 };
 
-export default ListKindergarten;
+export default KindergartenDetail;
