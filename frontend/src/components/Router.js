@@ -10,6 +10,7 @@ import HolyKids from "../page/small-group/HolyKids";
 import PaulCommunity from "../page/small-group/PaulCommunity";
 import Joshua from "../page/small-group/Joshua";
 import PersonnelInfoDetail from "../page/personnel-info/detail/PersonnelInfoDetail";
+import GroupInfo from "../page/small-group/info/GroupInfo";
 
 export default () => (
   <BrowserRouter>
@@ -24,7 +25,7 @@ export default () => (
       {/* 인원 상세정보 */}
       <Route path="/detail/:id" element={<PersonnelInfoDetail />}></Route>
 
-      {/* 부서 별 상세 페이지 */}
+      {/* 부서 별 그룹 페이지 */}
       <Route path="/kindergarten/info" element={<KindergartenInfo />}></Route>
       <Route path="/holykids/info" element={<HolyKidsInfo />}></Route>
       <Route
@@ -32,6 +33,9 @@ export default () => (
         element={<PaulCommunityInfo />}
       ></Route>
       <Route path="/joshua/info" element={<JoshuaInfo />}></Route>
+
+      {/* 부서 별 그룹 상세페이지 */}
+      <Route path="/:department/:group" element={<GroupInfo />}></Route>
     </Routes>
   </BrowserRouter>
 );
