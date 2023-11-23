@@ -23,7 +23,7 @@ const FirstDepartment = () => {
   // 전체 인원 리스트
   const navigateToAllList = () => {
     navigate("/list");
-  }
+  };
 
   // 부서 별 인원 리스트
   const navigateToKindergartenInfo = () => {
@@ -42,13 +42,13 @@ const FirstDepartment = () => {
   return (
     <div>
       <div>
-        <button onClick={navigateToAllList}>전체 인원</button>
+        <div onClick={navigateToAllList}>전체 인원</div>
       </div>
       <div>
-        <button onClick={navigateToKindergarten}>영유치부</button>
-        <button onClick={navigateToHolykids}>홀리키즈</button>
-        <button onClick={navigateToPaulCommunity}>바울공동체</button>
-        <button onClick={navigateToJoshua}>여호수아 청년부</button>
+        <div onClick={navigateToKindergarten}>영유치부</div>
+        <div onClick={navigateToHolykids}>홀리키즈</div>
+        <div onClick={navigateToPaulCommunity}>바울공동체</div>
+        <div onClick={navigateToJoshua}>여호수아 청년부</div>
       </div>
       <div>
         <button onClick={navigateToKindergartenInfo}>info</button>
