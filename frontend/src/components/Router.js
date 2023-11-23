@@ -1,15 +1,16 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../page/Home";
-import KindergartenInfo from "../page/personnel-info/KindergartenInfo";
-import HolyKidsInfo from "../page/personnel-info/HolyKidsInfo";
-import PaulCommunityInfo from "../page/personnel-info/PaulCommunityInfo";
-import JoshuaInfo from "../page/personnel-info/JoshuaInfo";
+import KindergartenInfo from "../page/personnel-info/list/KindergartenInfo";
+import HolyKidsInfo from "../page/personnel-info/list/HolyKidsInfo";
+import PaulCommunityInfo from "../page/personnel-info/list/PaulCommunityInfo";
+import JoshuaInfo from "../page/personnel-info/list/JoshuaInfo";
 import Kindergarten from "../page/small-group/Kindergarten";
 import HolyKids from "../page/small-group/HolyKids";
 import PaulCommunity from "../page/small-group/PaulCommunity";
 import Joshua from "../page/small-group/Joshua";
 import AllList from "../page/personnel-info/AllList";
+import PersonnelInfoDetail from "../page/personnel-info/detail/PersonnelInfoDetail";
 
 export default () => (
   <BrowserRouter>
@@ -23,6 +24,10 @@ export default () => (
 
       {/* 전체 인원 리스트 페이지 */}
       <Route path="/list" element={<AllList />}></Route>
+
+      {/* 인원 상세정보 */}
+      <Route path="/detail/:id" element={<PersonnelInfoDetail />}></Route>
+
 
       {/* 부서 별 상세 페이지 */}
       <Route path="/kindergarten/info" element={<KindergartenInfo />}></Route>

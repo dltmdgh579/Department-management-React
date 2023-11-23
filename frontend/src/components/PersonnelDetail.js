@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const PersonnelList = (props) => {
   // const { id, name, dateOfBirth, phone, email, profileImage, address } = props;
@@ -7,9 +6,11 @@ const PersonnelList = (props) => {
   return (
     <div>
       <div>이름 : {props.info.name}</div>
-      {/* <div>주소 : {props.info.address.city}</div>
+      <div>휴대전화 : {props.info.email}</div>
+      <div>집전화 : {props.info.phone}</div>
       <div>이메일 : {props.info.email}</div>
-      <div>전화번호 : {props.info.phone}</div> */}
+      <div>학교/직장 : {props.info.phone}</div>
+      <div>가족관계 : {props.info.email}</div>
       <br />
       <hr />
       <br />
