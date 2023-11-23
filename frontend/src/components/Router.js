@@ -9,6 +9,7 @@ import Kindergarten from "../page/small-group/Kindergarten";
 import HolyKids from "../page/small-group/HolyKids";
 import PaulCommunity from "../page/small-group/PaulCommunity";
 import Joshua from "../page/small-group/Joshua";
+import AllList from "../page/personnel-info/AllList";
 
 export default () => (
   <BrowserRouter>
@@ -19,6 +20,9 @@ export default () => (
       <Route path="/holykids" element={<HolyKids />}></Route>
       <Route path="/paul-community" element={<PaulCommunity />}></Route>
       <Route path="/joshua" element={<Joshua />}></Route>
+
+      {/* 전체 인원 리스트 페이지 */}
+      <Route path="/list" element={<AllList />}></Route>
 
       {/* 부서 별 상세 페이지 */}
       <Route path="/kindergarten/info" element={<KindergartenInfo />}></Route>
