@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import styles from "../css/Home.module.css";
 
 const FirstDepartment = () => {
   // navigate
@@ -42,13 +42,27 @@ const FirstDepartment = () => {
   return (
     <div>
       <div>
-        <div onClick={navigateToAllList}>전체 인원</div>
+        <div className={styles.whole_personnel} onClick={navigateToAllList}>
+          전체 인원
+        </div>
       </div>
-      <div>
-        <div onClick={navigateToKindergarten}>영유치부</div>
-        <div onClick={navigateToHolykids}>홀리키즈</div>
-        <div onClick={navigateToPaulCommunity}>바울공동체</div>
-        <div onClick={navigateToJoshua}>여호수아 청년부</div>
+      <div className={styles.departments_parent}>
+        <div className={styles.departments} onClick={navigateToKindergarten}>
+          <div className={styles.departments_img_kindergarten}></div>
+          <div className={styles.departments_text}>영유치부</div>
+        </div>
+        <div className={styles.departments} onClick={navigateToHolykids}>
+          <div className={styles.departments_img_holykids}></div>
+          <div className={styles.departments_text}>홀리키즈</div>
+        </div>
+        <div className={styles.departments} onClick={navigateToPaulCommunity}>
+          <div className={styles.departments_img_paulcommunity}></div>
+          <div className={styles.departments_text}>바울공동체</div>
+        </div>
+        <div className={styles.departments} onClick={navigateToJoshua}>
+          <div className={styles.departments_img_joshua}></div>
+          <div className={styles.departments_text}>여호수아 청년부</div>
+        </div>
       </div>
       <div>
         <button onClick={navigateToKindergartenInfo}>info</button>
