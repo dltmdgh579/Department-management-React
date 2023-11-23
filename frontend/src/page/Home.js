@@ -6,7 +6,7 @@ const FirstDepartment = () => {
   // navigate
   const navigate = useNavigate();
 
-  // 부서 별 상세 Page
+  // 부서 별 상세
   const navigateToKindergarten = () => {
     navigate("/kindergarten");
   };
@@ -20,7 +20,12 @@ const FirstDepartment = () => {
     navigate("/joshua");
   };
 
-  // 전체 인원 리스트 Page
+  // 전체 인원 리스트
+  const navigateToAllList = () => {
+    navigate("/list");
+  }
+
+  // 부서 별 인원 리스트
   const navigateToKindergartenInfo = () => {
     navigate("/kindergarten/info");
   };
@@ -36,6 +41,9 @@ const FirstDepartment = () => {
 
   return (
     <div>
+      <div>
+        <button onClick={navigateToAllList}>전체 인원</button>
+      </div>
       <div>
         <button onClick={navigateToKindergarten}>영유치부</button>
         <button onClick={navigateToHolykids}>홀리키즈</button>
