@@ -24,7 +24,8 @@ jobs:
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         echo $(ls -a)
-        cd frontend
+        cd .
+        echo $(ls -a)
         docker build --tag ${{ secrets.DOCKER_USERNAME }}/dnch-edu-service-react:1.0 .
         
     - name: Push Docker image
