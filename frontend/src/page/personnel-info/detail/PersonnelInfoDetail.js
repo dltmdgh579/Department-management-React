@@ -12,7 +12,7 @@ const PersonnelInfoDetail = (props) => {
   // useEffect
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get("http://dnch-edu-service:8080/detail/" + id);
+      const res = await axios.get("http://dnch-edu.com:8080/detail/" + id);
       return res.data;
     };
 
