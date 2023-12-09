@@ -1,0 +1,46 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: react cicd
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    # Docker build and push
+    - name: Build Docker image
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker build --tag ${{ secrets.DOCKER_USERNAME }}/dnch-edu-service-react:1.0 .
+        
+    - name: Push Docker image
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/dnch-edu-service-react:1.0
+
+    - name: Docker logout
+      run: docker logout
+
+    # deploy
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+          sudo docker stop dnch-edu-service-react
+          sudo docker rm dnch-edu-service-react
+          sudo docker rmi -f ${{ secrets.DOCKER_USERNAME }}/dnch-edu-service-react:1.0
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/dnch-edu-service-react:1.0
+          sudo docker run --network dnch-network -d --name dnch-edu-service-react ${{ secrets.DOCKER_USERNAME }}/dnch-edu-service-react:1.0
