@@ -9,7 +9,7 @@ const ListAll = () => {
   // useEffect
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get("http://localhost:8080/list");
+      const res = await axios.get("http://dnch-edu-service:8080/list");
       return res.data;
     };
 
