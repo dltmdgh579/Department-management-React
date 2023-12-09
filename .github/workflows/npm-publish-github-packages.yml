@@ -49,4 +49,4 @@ jobs:
           sudo docker rm dnch-edu-service-react
           sudo docker rmi -f ${{ secrets.DOCKER_USERNAME }}/dnch-edu-service-react:1.0
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/dnch-edu-service-react:1.0
-          sudo docker run --network dnch-network -p 3000:3000 -d --name dnch-edu-service-react ${{ secrets.DOCKER_USERNAME }}/dnch-edu-service-react:1.0
+          sudo docker run --network dnch-network -p 80:3000 -d --name dnch-edu-service-react ${{ secrets.DOCKER_USERNAME }}/dnch-edu-service-react:1.0
