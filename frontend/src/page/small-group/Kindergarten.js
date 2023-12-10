@@ -4,24 +4,21 @@ import SmallGroupList from "../../components/SmallGroupList";
 
 const SmallGroupKindergarten = () => {
   // useState
-  const [infoList, setInfoList] = useState([]);
+  const [info, setInfo] = useState([]);
 
   // useEffect
   useEffect(() => {
     const infoData = async () => {
-      // const res = await axios.get("http://localhost:8080/kindergarten");
-      const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+      const res = await axios.get("http://dnch-edu.com:8080/1");
       return res.data;
     };
 
-    infoData().then((res) => setInfoList(res));
+    infoData().then((res) => setInfo(res));
   }, []);
 
   return (
     <div>
-      {infoList.map((info) => (
-        <SmallGroupList key={info.id} info={info} />
-      ))}
+      <SmallGroupList key={info.id} info={info} />
     </div>
   );
 };
