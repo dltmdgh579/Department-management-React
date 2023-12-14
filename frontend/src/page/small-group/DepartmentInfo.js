@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 
 const DepartmentInfo = (props) => {
   const { state } = useLocation();
-  console.log("id : " + state.id);
   const [info, setInfo] = useState([]);
 
   useEffect(() => {
@@ -19,7 +18,7 @@ const DepartmentInfo = (props) => {
 
   return (
     <div>
-      <SmallGroupList key={info.id} info={info} />
+      <SmallGroupList key={info.id} info={info} state={state} />
     </div>
   );
 };
