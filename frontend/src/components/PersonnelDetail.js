@@ -1,16 +1,27 @@
 import React from "react";
+import styles from "../css/Personnel_detail.module.css";
 
-const PersonnelList = (props) => {
-  // const { id, name, dateOfBirth, phone, email, profileImage, address } = props;
+const PersonnelDetail = (props) => {
+  const {
+    id,
+    name,
+    dateOfBirth,
+    phone,
+    email,
+    profileImage,
+    address,
+    departmentType,
+  } = props.info;
 
   return (
-    <div>
-      <div>이름 : {props.info.name}</div>
-      <div>소속 : {props.info.department}</div>
-      <div>생년월일 : {props.info.dateOfBirth}</div>
-      <div>휴대전화 : {props.info.phone}</div>
-      <div>이메일 : {props.info.email}</div>
-      <div>주소 : {props.info.address}</div>
+    <div className={styles.detail}>
+      <div>사진 - profileImage</div>
+      <div>이름 : {name}</div>
+      <div>소속 : {departmentType}</div>
+      <div>생년월일 : {dateOfBirth}</div>
+      <div>휴대전화 : {phone}</div>
+      <div>이메일 : {email}</div>
+      <div>주소 : {address}</div>
       <div>가족관계 : 준비중</div>
       <br />
       <hr />
@@ -19,4 +30,4 @@ const PersonnelList = (props) => {
   );
 };
 
-export default PersonnelList;
+export default PersonnelDetail;

@@ -1,15 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "../css/Personnel_list.module.css";
 
 const PersonnelList = (props) => {
-  // const { id, name, dateOfBirth, phone, email, profileImage, address } = props;
+  const {
+    id,
+    name,
+    dateOfBirth,
+    phone,
+    address,
+    profileImage,
+    departmentType,
+  } = props.info;
 
   return (
     <div>
-      <Link to={"/detail/" + props.info.id}>
-        <div>이름 : {props.info.name}</div>
-        <div>이메일 : {props.info.email}</div>
-        <div>전화번호 : {props.info.phone}</div>
+      <Link to={"/detail/" + id} className={styles.link}>
+        <div>사진 - {profileImage}</div>
+        <div>이름 : {name}</div>
+        <div>생년월일 : {dateOfBirth}</div>
+        <div>휴대전화 : {phone}</div>
+        <div>주소 : {address}</div>
         <br />
         <hr />
         <br />
