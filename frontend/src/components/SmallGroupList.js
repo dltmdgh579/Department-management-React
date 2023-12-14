@@ -9,7 +9,10 @@ const SmallGroupList = (props) => {
         {props.info.smallGroupInfoList ? (
           <div>
             {props.info.smallGroupInfoList.map((smallGroup) => (
-              <Link to={"/" + props.state.id + "/" + smallGroup.id}>
+              <Link
+                to={"/" + props.state.id + "/" + smallGroup.id}
+                className={styles.link}
+              >
                 <div
                   className={styles.group}
                   smallGroup={smallGroup}
