@@ -7,14 +7,14 @@ const GroupInfo = () => {
   const department = useParams().department;
   const group = useParams().group;
 
-  // useState
   const [infoList, setInfoList] = useState([]);
 
-  // useEffect
   useEffect(() => {
     const infoData = async () => {
-      // const res = await axios.get("http://localhost:8080/" + department + "/" + group");
-      const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+      const res = await axios.get(
+        "http://dnch-edu.com:8080/" + department + "/" + group,
+      );
+
       return res.data;
     };
 
