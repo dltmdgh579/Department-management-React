@@ -1,22 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import styles from "../css/Home.module.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const FirstDepartment = () => {
+  const [homeInfo, setHomeInfo] = useState([]);
+
+  useEffect(() => {
+    const infoData = async () => {
+      const res = await axios.get("http://dnch-edu.com:8080/");
+      return res.data;
+    };
+
+    infoData().then((res) => setHomeInfo(res));
+  }, []);
+
   // navigate
   const navigate = useNavigate();
 
   // 부서 별 상세
   const navigateToKindergarten = () => {
-    navigate("/kindergarten");
+    navigate("/kindergarten", { state: homeInfo[0] });
   };
   const navigateToHolykids = () => {
-    navigate("/holykids");
+    navigate("/holykids", { state: homeInfo[1] });
   };
   const navigateToPaulCommunity = () => {
-    navigate("/paul-community");
+    navigate("/paul-community", { state: homeInfo[2] });
   };
   const navigateToJoshua = () => {
-    navigate("/joshua");
+    navigate("/joshua", { state: homeInfo[3] });
   };
 
   // 전체 인원 리스트

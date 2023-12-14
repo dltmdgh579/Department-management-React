@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SmallGroupList from "../../components/SmallGroupList";
+import { useLocation } from "react-router-dom";
 
-const SmallGroupPaulCommunity = () => {
-  // useState
+const DepartmentInfo = (props) => {
+  const { state } = useLocation();
   const [info, setInfo] = useState([]);
 
-  // useEffect
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get("http://dnch-edu.com:8080/3");
+      const res = await axios.get("http://dnch-edu.com:8080/" + state.id);
       return res.data;
     };
 
@@ -18,9 +18,9 @@ const SmallGroupPaulCommunity = () => {
 
   return (
     <div>
-      <SmallGroupList key={info.id} info={info} />
+      <SmallGroupList key={info.id} info={info} state={state} />
     </div>
   );
 };
 
-export default SmallGroupPaulCommunity;
+export default DepartmentInfo;
