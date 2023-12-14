@@ -1,0 +1,8 @@
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link > hr {
+  color: #bed0ef;
+}

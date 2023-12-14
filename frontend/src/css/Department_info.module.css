@@ -26,6 +26,11 @@
   font-size: 1.45rem;
 }
 
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 .attendance {
   margin-top: 50px;
   text-align: center;
