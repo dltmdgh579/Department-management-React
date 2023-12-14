@@ -1,0 +1,32 @@
+.department_info {
+}
+
+.groups {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+  text-align: center;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 370px;
+  height: 95px;
+  box-shadow: 1.5px 1.5px 1.5px 1.5px rgb(219, 219, 219);
+  border-radius: 15px;
+  background-color: #e6ebf4;
+  margin: 15px;
+}
+
+.group_name {
+  font-weight: bolder;
+  padding-right: 15px;
+  font-size: 1.45rem;
+}
+
+.attendance {
+  margin-top: 50px;
+  text-align: center;
+}
