@@ -1,35 +1,36 @@
+.parent_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container {
+  text-align: center;
+  margin: 0 8px;
+}
+
 .link {
   text-decoration: none;
   color: black;
 }
 
-.link > hr {
+.link hr {
   color: #bed0ef;
 }
 
 .info_container {
-  display: flex;
   padding: 30px 0;
 }
 
 .profile_image {
-  width: 150px;
-  height: 150px;
-  margin: 15px;
+  width: 140px;
+  height: 140px;
+  margin: 10px;
   border-radius: 15px;
   background-size: 100% 100%;
 }
 
-.text_container {
-  margin-top: 25px;
-  font-size: 18px;
-}
-
-.text_container > div {
-  padding: 1px 0;
-}
-
 .text_name {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bolder;
 }

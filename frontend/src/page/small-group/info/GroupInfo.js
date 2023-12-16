@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PersonnelList from "../../../components/PersonnelList";
+import GroupInfoList from "../../../components/GroupInfoList";
 import { useParams } from "react-router-dom";
+import styles from "../../../css/Group_info_list.module.css";
 
 const GroupInfo = () => {
   const department = useParams().department;
@@ -22,9 +23,9 @@ const GroupInfo = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.parent_container}>
       {infoList.map((info) => (
-        <PersonnelList key={info.id} info={info} />
+        <GroupInfoList key={info.id} info={info} />
       ))}
     </div>
   );
