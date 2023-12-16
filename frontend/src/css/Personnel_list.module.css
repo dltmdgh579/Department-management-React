@@ -1,3 +1,6 @@
+.container {
+}
+
 .link {
   text-decoration: none;
   color: black;
@@ -5,4 +8,31 @@
 
 .link > hr {
   color: #bed0ef;
+}
+
+.info_container {
+  display: flex;
+  padding: 30px 0;
+}
+
+.profile_image {
+  width: 150px;
+  height: 150px;
+  margin: 15px;
+  border-radius: 15px;
+  background-size: 100% 100%;
+}
+
+.text_container {
+  margin-top: 25px;
+  font-size: 1.3rem;
+}
+
+.text_container > div {
+  padding: 1px 0;
+}
+
+.text_name {
+  font-size: 1.5rem;
+  font-weight: bolder;
 }

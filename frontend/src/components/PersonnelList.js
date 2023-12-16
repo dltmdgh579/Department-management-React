@@ -14,16 +14,21 @@ const PersonnelList = (props) => {
   } = props.info;
 
   return (
-    <div>
+    <div className={styles.container}>
       <Link to={"/detail/" + id} className={styles.link}>
-        <div>사진 - {profileImage}</div>
-        <div>이름 : {name}</div>
-        <div>생년월일 : {dateOfBirth}</div>
-        <div>휴대전화 : {phone}</div>
-        <div>주소 : {address}</div>
-        <br />
+        <div className={styles.info_container}>
+          <img
+            src="https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg"
+            className={styles.profile_image}
+          ></img>
+          <div className={styles.text_container}>
+            <div className={styles.text_name}>{name}</div>
+            <div>{dateOfBirth}</div>
+            <div>{phone}</div>
+            <div>{address}</div>
+          </div>
+        </div>
         <hr />
-        <br />
       </Link>
     </div>
   );
