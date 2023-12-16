@@ -8,6 +8,7 @@ const PersonnelDetail = (props) => {
     dateOfBirth,
     phone,
     email,
+    workSpace,
     profileImage,
     address,
     departmentType,
@@ -29,6 +30,7 @@ const PersonnelDetail = (props) => {
       </div>
       <div className={styles.detail_container}>
         <div>{email}</div>
+        <div>{workSpace}</div>
         <div>{address}</div>
       </div>
       <hr />
