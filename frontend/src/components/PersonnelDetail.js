@@ -15,17 +15,24 @@ const PersonnelDetail = (props) => {
 
   return (
     <div className={styles.detail}>
-      <div>사진 - profileImage</div>
-      <div>이름 : {name}</div>
-      <div>소속 : {departmentType}</div>
-      <div>생년월일 : {dateOfBirth}</div>
-      <div>휴대전화 : {phone}</div>
-      <div>이메일 : {email}</div>
-      <div>주소 : {address}</div>
-      <div>가족관계 : 준비중</div>
-      <br />
+      <div className={styles.info_container}>
+        <img
+          src="https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg"
+          className={styles.profile_image}
+        ></img>
+        <div className={styles.text_container}>
+          <div className={styles.text_name}>{name}</div>
+          <div>{departmentType}</div>
+          <div>{dateOfBirth}</div>
+          <div>{phone}</div>
+        </div>
+      </div>
+      <div className={styles.detail_container}>
+        <div>{email}</div>
+        <div>{address}</div>
+      </div>
       <hr />
-      <br />
+      <div>가족관계 : 준비중</div>
     </div>
   );
 };
