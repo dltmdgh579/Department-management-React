@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../../css/personnel/post/Personnel_post.module.css";
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import ko from "date-fns/locale/ko";
+import { format } from "date-fns";
 
 const PersonnelPost = () => {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState("소속 구분");
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [info, setInfo] = useState({
     name: "",
@@ -27,13 +32,22 @@ const PersonnelPost = () => {
   const handleDepartmentType = (departmentType) => {
     setInfo({
       ...info,
-      [departmentType]: departmentType,
+      ["departmentType"]: departmentType,
     });
   };
 
   const setPlaceHolder = (departmentType) => {
     setSelectedDepartment(departmentType);
     setIsOpen(false);
+  };
+
+  const handleSelectedDate = (date) => {
+    setSelectedDate(date);
+    setInfo({
+      ...info,
+      ["dateOfBirth"]: format(date, "yyyy-MM-dd"),
+    });
+    console.log(format(date, "yyyy-MM-dd"));
   };
 
   const changeValue = (e) => {
@@ -120,12 +134,21 @@ const PersonnelPost = () => {
           )}
         </div>
       </div>
-      <div>생년월일</div>
-      <input
-        placeholder="날짜 선택"
-        onChange={changeValue}
-        name="dateOfBirth"
-      ></input>
+      <div>
+        생년월일
+        <DatePicker
+          showYearDropdown
+          scrollableYearDropdown
+          yearDropdownItemNumber={100}
+          dateFormat="yyyy.MM.dd" // 날짜 형태
+          shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
+          minDate={new Date("1970-01-01")} // minDate 이전 날짜 선택 불가
+          maxDate={new Date()} // maxDate 이후 날짜 선택 불가
+          selected={selectedDate}
+          locale={ko}
+          onChange={(date) => handleSelectedDate(date)}
+        />
+      </div>
       <div>연락처</div>
       <input
         placeholder="01012345678"
