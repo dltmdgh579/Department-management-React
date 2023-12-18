@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PersonnelList from "../../../components/personnel/list/PersonnelList";
+import PersonnelListHeader from "../../../components/personnel/list/PersonnelListHeader";
 
 const ListAll = () => {
   // useState
@@ -18,6 +19,7 @@ const ListAll = () => {
 
   return (
     <div>
+      <PersonnelListHeader />
       {infoList.map((info) => (
         <PersonnelList key={info.id} info={info} />
       ))}
