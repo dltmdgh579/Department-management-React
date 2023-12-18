@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 const PersonnelPost = () => {
   const navigate = useNavigate();
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedDepartment, setSelectedDepartment] = useState("소속 구분");
+
   const [info, setInfo] = useState({
     name: "",
     departmentType: "",
@@ -16,6 +19,22 @@ const PersonnelPost = () => {
     address: "",
     family: "",
   });
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleDepartmentType = (departmentType) => {
+    setInfo({
+      ...info,
+      [departmentType]: departmentType,
+    });
+  };
+
+  const setPlaceHolder = (departmentType) => {
+    setSelectedDepartment(departmentType);
+    setIsOpen(false);
+  };
 
   const changeValue = (e) => {
     setInfo({
@@ -54,12 +73,53 @@ const PersonnelPost = () => {
         onChange={changeValue}
         name="name"
       ></input>
-      <div>소속</div>
-      <input
-        placeholder="소속 구분"
-        onChange={changeValue}
-        name="departmentType"
-      ></input>
+      <div>
+        <div>소속</div>
+        <div className={styles.department_dropdown}>
+          <div
+            onClick={toggleDropdown}
+            className={styles.department_dropdown_button}
+          >
+            {selectedDepartment}
+          </div>
+          {isOpen && (
+            <div className={styles.department_type}>
+              <div
+                onClick={() => {
+                  handleDepartmentType("KINDERGARTEN");
+                  setPlaceHolder("영유치부");
+                }}
+              >
+                영유치부
+              </div>
+              <div
+                onClick={() => {
+                  handleDepartmentType("HOLY_KIDS");
+                  setPlaceHolder("홀리키즈");
+                }}
+              >
+                홀리키즈
+              </div>
+              <div
+                onClick={() => {
+                  handleDepartmentType("PAUL_COMMUNITY");
+                  setPlaceHolder("바울공동체 청소년부");
+                }}
+              >
+                바울공동체 청소년부
+              </div>
+              <div
+                onClick={() => {
+                  handleDepartmentType("JOSHUA");
+                  setPlaceHolder("여호수아 청년부");
+                }}
+              >
+                여호수아 청년부
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
       <div>생년월일</div>
       <input
         placeholder="날짜 선택"

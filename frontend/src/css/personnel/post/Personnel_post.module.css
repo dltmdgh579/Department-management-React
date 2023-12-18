@@ -3,7 +3,7 @@
   margin-left: 30px;
 }
 
-.container div {
+.container > div {
   font-weight: bolder;
   font-size: 18px;
   margin-top: 30px;
@@ -38,4 +38,30 @@
   border-radius: 5px;
   background-color: #dbe5f8;
   margin-bottom: 20px;
+}
+
+.department_dropdown_button {
+  border-radius: 5px;
+  font-size: 16px;
+  color: #bbbfc7;
+  width: 300px;
+  height: 31px;
+  border: solid #bbbfc7 1px;
+  padding-top: 6px;
+  padding-left: 10px;
+  position: relative;
+  background: none;
+  margin-top: 10px;
+}
+
+.department_type > div {
+  font-size: 16px;
+  color: black;
+  width: 300px;
+  height: 31px;
+  border: solid #bbbfc7 1px;
+  padding-top: 6px;
+  padding-left: 10px;
+  position: relative;
+  background: none;
 }
