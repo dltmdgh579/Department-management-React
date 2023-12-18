@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../css/Personnel_detail.module.css";
+import styles from "../../../css/Personnel_detail.module.css";
 
 const PersonnelDetail = (props) => {
   const {

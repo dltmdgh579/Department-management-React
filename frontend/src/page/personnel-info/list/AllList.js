@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PersonnelList from "../../../components/PersonnelList";
+import PersonnelList from "../../../components/personnel/list/PersonnelList";
 
 const ListAll = () => {
   // useState

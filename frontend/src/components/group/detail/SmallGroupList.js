@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../css/Department_info.module.css";
+import styles from "../../../css/Department_info.module.css";
 
 const SmallGroupList = (props) => {
   return (

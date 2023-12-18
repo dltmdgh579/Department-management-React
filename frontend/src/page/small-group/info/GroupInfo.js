@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import GroupInfoList from "../../../components/GroupInfoList";
+import GroupInfoList from "../../../components/group/GroupInfoList";
 import { useParams } from "react-router-dom";
 import styles from "../../../css/Group_info_list.module.css";
 

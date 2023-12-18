@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PersonnelDetail from "../../../components/PersonnelDetail";
+import PersonnelDetail from "../../../components/personnel/detail/PersonnelDetail";
 import { useParams } from "react-router-dom";
 
 const PersonnelInfoDetail = (props) => {
