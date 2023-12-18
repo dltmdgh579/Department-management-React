@@ -1,0 +1,41 @@
+.container {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.container div {
+  font-weight: bolder;
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+.container input {
+  border-radius: 5px;
+  font-size: 16px;
+  color: #bbbfc7;
+  width: 300px;
+  height: 35px;
+  border: solid #bbbfc7 1px;
+  padding-left: 10px;
+  position: relative;
+  background: none;
+  margin-top: 10px;
+}
+
+.profile_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+  background-size: 100% 100%;
+}
+
+.submit {
+  text-align: center;
+  padding-top: 6px;
+  color: white;
+  width: 318px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #dbe5f8;
+  margin-bottom: 20px;
+}

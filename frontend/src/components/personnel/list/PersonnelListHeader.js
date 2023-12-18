@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../css/department/group/Group_info_list.module.css";
+import styles from "../../../css/personnel/list/Personnel_list.module.css";
 
-const GroupInfoList = (props) => {
-  const { id, name } = props.info;
-
+const PersonnelListHeader = (props) => {
   return (
     <div className={styles.container}>
-      <Link to={"/detail/" + id} className={styles.link}>
+      <div>
+        <Link to="/personnel/post">추가</Link>
+      </div>
+      <div>필터</div>
+      <div>검색</div>
+      {/* <Link to="/personnel" className={styles.link}>
         <div className={styles.info_container}>
           <img
             src="https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg"
@@ -15,12 +18,15 @@ const GroupInfoList = (props) => {
           ></img>
           <div className={styles.text_container}>
             <div className={styles.text_name}>{name}</div>
+            <div>{dateOfBirth}</div>
+            <div>{phone}</div>
+            <div>{address}</div>
           </div>
-          <hr />
         </div>
-      </Link>
+        <hr />
+      </Link> */}
     </div>
   );
 };
 
-export default GroupInfoList;
+export default PersonnelListHeader;
