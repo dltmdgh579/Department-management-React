@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PersonnelList from "../../../components/PersonnelList";
 
-const KindergartenList = () => {
+const ListAll = () => {
   // useState
   const [infoList, setInfoList] = useState([]);
 
   // useEffect
   useEffect(() => {
     const infoData = async () => {
-      // const res = await axios.get("http://localhost:8080/kindergarten/info");
-      const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+      const res = await axios.get("http://dnch-edu.com:8080/list");
       return res.data;
     };
 
@@ -26,4 +25,4 @@ const KindergartenList = () => {
   );
 };
 
-export default KindergartenList;
+export default ListAll;

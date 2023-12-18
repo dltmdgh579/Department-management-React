@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../page/Home";
-import AllList from "../page/personnel-info/AllList";
+import AllList from "../page/personnel-info/list/AllList";
 import PersonnelInfoDetail from "../page/personnel-info/detail/PersonnelInfoDetail";
 import GroupInfo from "../page/small-group/info/GroupInfo";
 import DepartmentInfo from "../page/small-group/DepartmentInfo";
