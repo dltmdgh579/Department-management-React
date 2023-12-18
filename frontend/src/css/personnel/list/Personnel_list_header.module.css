@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  justify-content: end;
+  margin-top: 30px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.container div {
+  margin-left: 10px;
+}
+
+.post {
+  font-size: 18px;
+  padding-top: 5px;
+  text-align: center;
+  width: 90px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #e6ebf4;
+}
+
+.post_link {
+  text-decoration: none;
+  color: black;
+}
+
+.filter {
+  font-size: 18px;
+  padding-top: 5px;
+  text-align: center;
+  width: 90px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #e6ebf4;
+}
+
+.search {
+  font-size: 15px;
+  color: #222222;
+  width: 100px;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  position: relative;
+  background: none;
+}
