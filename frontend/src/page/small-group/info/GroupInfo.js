@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GroupInfoList from "../../../components/group/GroupInfoList";
 import { useParams } from "react-router-dom";
-import styles from "../../../css/Group_info_list.module.css";
+import styles from "../../../css/department/group/Group_info_list.module.css";
 
 const GroupInfo = () => {
   const department = useParams().department;
