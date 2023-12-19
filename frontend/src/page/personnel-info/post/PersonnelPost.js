@@ -47,7 +47,6 @@ const PersonnelPost = () => {
       ...info,
       ["dateOfBirth"]: format(date, "yyyy-MM-dd"),
     });
-    console.log(format(date, "yyyy-MM-dd"));
   };
 
   const changeValue = (e) => {
@@ -68,7 +67,6 @@ const PersonnelPost = () => {
       data: JSON.stringify(info),
     }).then((response) => {
       navigate("/list");
-      console.log(response.data);
     });
   };
 
