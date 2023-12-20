@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../../../css/department/group/Group_info_list.module.css";
+import styles from "../../../../css/department/group/Group_info_header.module.css";
 
 const GroupInfoHeader = (props) => {
   return (
     <div className={styles.container}>
-      <div className={styles.filter}>장기 결석자</div>
-      <div className={styles.post}>
+      <div className={styles.long_term_absentee}>장기 결석자</div>
+      <div className={styles.absentee}>
         <Link
           to={`/${props.params[0]}/${props.params[1]}/absent`}
-          className={styles.post_link}
+          className={styles.absentee_link}
         >
           결석인원
         </Link>
