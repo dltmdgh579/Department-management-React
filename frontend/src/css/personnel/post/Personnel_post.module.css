@@ -54,6 +54,11 @@
   margin-top: 10px;
 }
 
+.department_type {
+  position: absolute;
+  z-index: 1;
+}
+
 .department_type > div {
   font-size: 16px;
   color: black;
@@ -63,5 +68,5 @@
   padding-top: 6px;
   padding-left: 10px;
   position: relative;
-  background: none;
+  background-color: #f2f3f5;
 }
