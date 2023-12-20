@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../css/department/group/Group_info_list.module.css";
+import styles from "../../../css/department/group/Group_info_list.module.css";
 
 const GroupInfoList = (props) => {
   const { id, name } = props.info;

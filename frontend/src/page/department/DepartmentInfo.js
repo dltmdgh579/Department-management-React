@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import SmallGroupList from "../../components/group/detail/SmallGroupList";
+import SmallGroupList from "../../components/department/GroupList";
 import { useLocation } from "react-router-dom";
 
 const DepartmentInfo = (props) => {

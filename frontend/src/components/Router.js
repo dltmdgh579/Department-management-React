@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../page/Home";
 import AllList from "../page/personnel-info/list/AllList";
 import PersonnelInfoDetail from "../page/personnel-info/detail/PersonnelInfoDetail";
-import GroupInfo from "../page/small-group/info/GroupInfo";
-import DepartmentInfo from "../page/small-group/DepartmentInfo";
+import GroupInfo from "../page/department/group/GroupInfo";
+import DepartmentInfo from "../page/department/DepartmentInfo";
 import PersonnelPost from "../page/personnel-info/post/PersonnelPost";
 
 export default () => (
