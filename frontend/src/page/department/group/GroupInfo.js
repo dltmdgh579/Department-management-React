@@ -25,7 +25,7 @@ const GroupInfo = () => {
 
   return (
     <div>
-      <GroupInfoHeader />
+      <GroupInfoHeader params={[department, group]} />
       <div className={styles.parent_container}>
         {infoList.map((info) => (
           <GroupInfoList key={info.id} info={info} />
