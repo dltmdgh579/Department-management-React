@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../../css/department/group/Group_info_list.module.css";
+import styles from "../../../css/department/group/Group_absent_info_list.module.css";
 
-const GroupInfoList = (props) => {
-  const { id, name } = props.info;
+const GroupAbsentInfoList = (props) => {
+  const { id, name, phone } = props.info;
 
   return (
     <div className={styles.container}>
@@ -17,10 +17,14 @@ const GroupInfoList = (props) => {
             <div className={styles.text_name}>{name}</div>
           </div>
           <hr />
+          <div>
+            <div className={styles.text_phone}>{phone}</div>
+          </div>
+          <hr />
         </div>
       </Link>
     </div>
   );
 };
 
-export default GroupInfoList;
+export default GroupAbsentInfoList;
