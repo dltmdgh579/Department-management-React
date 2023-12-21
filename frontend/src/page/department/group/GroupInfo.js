@@ -49,7 +49,7 @@ const GroupInfo = () => {
   const sendAbsenteeList = async () => {
     await axios({
       method: "post",
-      url: "http://localhost:8080/" + department + "/" + group + "/absent",
+      url: "http://dnch-edu.com:8080/" + department + "/" + group + "/absent",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
