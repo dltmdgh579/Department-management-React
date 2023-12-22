@@ -7,6 +7,7 @@ import GroupInfo from "../page/department/group/GroupInfo";
 import DepartmentInfo from "../page/department/DepartmentInfo";
 import PersonnelPost from "../page/personnel-info/post/PersonnelPost";
 import AbsentInfo from "../page/department/group/AbsentInfo";
+import AddGroupMember from "../page/department/group/AddGroupMember";
 
 export default () => (
   <BrowserRouter>
@@ -25,6 +26,7 @@ export default () => (
       {/* 부서 별 그룹 상세페이지 */}
       <Route path="/:department/:group" element={<GroupInfo />}></Route>
       <Route path="/:department/:group/absent" element={<AbsentInfo />}></Route>
+      <Route path="/list/add" element={<AddGroupMember />}></Route>
     </Routes>
   </BrowserRouter>
 );
