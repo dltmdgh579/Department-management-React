@@ -12,6 +12,7 @@ const GroupInfoHeader = (props) => {
         <Link
           to="/list/add"
           state={{ departmentId: departmentId, groupId: groupId }}
+          className={styles.add_personnel_link}
         >
           추가
         </Link>

@@ -20,6 +20,11 @@
   background-color: #e6ebf4;
 }
 
+.add_personnel_link {
+  text-decoration: none;
+  color: black;
+}
+
 .long_term_absentee {
   font-size: 18px;
   padding-top: 10px;
