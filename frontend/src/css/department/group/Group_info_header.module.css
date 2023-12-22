@@ -10,22 +10,32 @@
   margin-left: 10px;
 }
 
+.add_personnel {
+  font-size: 18px;
+  padding-top: 10px;
+  text-align: center;
+  width: 80px;
+  height: 35px;
+  border-radius: 10px;
+  background-color: #e6ebf4;
+}
+
 .long_term_absentee {
   font-size: 18px;
-  padding-top: 5px;
+  padding-top: 10px;
   text-align: center;
   width: 120px;
-  height: 30px;
+  height: 35px;
   border-radius: 10px;
   background-color: #e6ebf4;
 }
 
 .absentee {
   font-size: 18px;
-  padding-top: 5px;
+  padding-top: 10px;
   text-align: center;
-  width: 120px;
-  height: 30px;
+  width: 110px;
+  height: 35px;
   border-radius: 10px;
   background-color: #e6ebf4;
 }

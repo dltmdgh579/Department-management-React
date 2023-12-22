@@ -12,6 +12,12 @@
   padding: 10px 0;
 }
 
+.info_container_add {
+  display: flex;
+  padding: 10px 0;
+  background-color: #e6ebf4;
+}
+
 .profile_image {
   width: 150px;
   height: 150px;
