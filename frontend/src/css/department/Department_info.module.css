@@ -17,6 +17,15 @@
   margin: 15px;
 }
 
+.group_modify {
+  background-image: url("../../../public/image/modify.png");
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-size: 100% 100%;
+  z-index: 1;
+}
+
 .group_name {
   font-weight: bolder;
   padding-right: 15px;

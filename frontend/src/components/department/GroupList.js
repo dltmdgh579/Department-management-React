@@ -6,6 +6,12 @@ import Group from "./Group";
 const GroupList = (props) => {
   const smallGroupInfoList = props.info.smallGroupInfoList;
   const { id, name } = props.state;
+  const isModify = props.isModify;
+  const modifyGroupNameSub = props.modifyFunction;
+
+  const clickGroupModify = ([clickGroupModifyCopy, id]) => {
+    modifyGroupNameSub([clickGroupModifyCopy, id]);
+  };
 
   return (
     <div className={styles.department_info}>
@@ -14,7 +20,11 @@ const GroupList = (props) => {
           <div>
             {smallGroupInfoList.map((smallGroup) => (
               <Link to={"/" + id + "/" + smallGroup.id} className={styles.link}>
-                <Group smallGroupName={smallGroup.name} />
+                <Group
+                  smallGroupName={smallGroup}
+                  isModify={isModify}
+                  modifyFunction={clickGroupModify}
+                />
               </Link>
             ))}
           </div>
