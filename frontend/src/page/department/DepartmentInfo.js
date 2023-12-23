@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import DepartmentInfoHeader from "./DepartmentInfoHeader";
 import GroupAttendance from "../../components/department/GroupAttendance";
 import AddGroup from "../../components/department/AddGroup";
+import ModifyGroup from "../../components/department/ModifyGroup";
 
 const DepartmentInfo = (props) => {
   const { state } = useLocation();
@@ -13,6 +14,8 @@ const DepartmentInfo = (props) => {
   const [info, setInfo] = useState([]);
   const [isAddGroup, setAddGroup] = useState(false);
   const [isModifyGroup, setModifyGroup] = useState(false);
+  const [isModifyGroupName, setModifyGroupName] = useState(false);
+  const [groupId, setGroupId] = useState([]);
 
   useEffect(() => {
     const infoData = async () => {
@@ -31,6 +34,12 @@ const DepartmentInfo = (props) => {
     setModifyGroup(isModify);
   };
 
+  const modifyGroupName = ([clickGroupModifyCopy, id]) => {
+    console.log(clickGroupModifyCopy + " " + id);
+    setModifyGroupName(clickGroupModifyCopy);
+    setGroupId(id);
+  };
+
   return (
     <div>
       <DepartmentInfoHeader
@@ -38,7 +47,16 @@ const DepartmentInfo = (props) => {
         modifyFunction={modifyGroup}
       />
       {isAddGroup ? <AddGroup state={state} /> : null}
-      <GroupList key={info.id} info={info} state={state} />
+      {isModifyGroupName ? (
+        <ModifyGroup state={state} groupId={groupId} />
+      ) : null}
+      <GroupList
+        key={info.id}
+        info={info}
+        state={state}
+        isModify={isModifyGroup}
+        modifyFunction={modifyGroupName}
+      />
       <GroupAttendance info={[info.attendance, info.enrollment]} />
     </div>
   );
