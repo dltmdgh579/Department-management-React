@@ -13,7 +13,9 @@ const GroupList = (props) => {
         {smallGroupInfoList ? (
           <div>
             {smallGroupInfoList.map((smallGroup) => (
-              <Group smallGroup={smallGroup} id={id} />
+              <Link to={"/" + id + "/" + smallGroup.id} className={styles.link}>
+                <Group smallGroupName={smallGroup.name} />
+              </Link>
             ))}
           </div>
         ) : null}
