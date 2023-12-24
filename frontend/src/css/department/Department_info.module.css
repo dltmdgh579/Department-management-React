@@ -1,7 +1,7 @@
 .groups {
   display: flex;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 40px;
   text-align: center;
 }
 
@@ -15,6 +15,15 @@
   border-radius: 15px;
   background-color: #e6ebf4;
   margin: 15px;
+}
+
+.group_modify {
+  background-image: url("../../../public/image/modify.png");
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-size: 100% 100%;
+  z-index: 1;
 }
 
 .group_name {

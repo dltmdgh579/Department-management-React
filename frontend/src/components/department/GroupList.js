@@ -1,36 +1,37 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../css/department/Department_info.module.css";
+import Group from "./Group";
 
-const SmallGroupList = (props) => {
+const GroupList = (props) => {
+  const smallGroupInfoList = props.info.smallGroupInfoList;
+  const { id, name } = props.state;
+  const isModify = props.isModify;
+  const modifyGroupNameSub = props.modifyFunction;
+
+  const clickGroupModify = ([clickGroupModifyCopy, id]) => {
+    modifyGroupNameSub([clickGroupModifyCopy, id]);
+  };
+
   return (
     <div className={styles.department_info}>
       <div className={styles.groups}>
-        {props.info.smallGroupInfoList ? (
+        {smallGroupInfoList ? (
           <div>
-            {props.info.smallGroupInfoList.map((smallGroup) => (
-              <Link
-                to={"/" + props.state.id + "/" + smallGroup.id}
-                className={styles.link}
-              >
-                <div
-                  className={styles.group}
-                  smallGroup={smallGroup}
-                  key={smallGroup.name}
-                >
-                  <div className={styles.group_name}>{smallGroup.name}</div>
-                </div>
+            {smallGroupInfoList.map((smallGroup) => (
+              <Link to={"/" + id + "/" + smallGroup.id} className={styles.link}>
+                <Group
+                  smallGroupName={smallGroup}
+                  isModify={isModify}
+                  modifyFunction={clickGroupModify}
+                />
               </Link>
             ))}
           </div>
         ) : null}
       </div>
-      <div className={styles.attendance}>
-        이번 주 출석 : {props.info.attendance}명 (총 재적{" "}
-        {props.info.enrollment}명)
-      </div>
     </div>
   );
 };
 
-export default SmallGroupList;
+export default GroupList;
