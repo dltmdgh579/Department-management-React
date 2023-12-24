@@ -14,8 +14,9 @@ const AddGroup = (props) => {
 
   const modifyGroup = async () => {
     await axios({
-      method: "patch",
-      url: "http://dnch-edu.com:8080/" + departmentId + "/" + groupId,
+      method: "post",
+      url:
+        "http://dnch-edu.com:8080/" + departmentId + "/" + groupId + "/modify",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
