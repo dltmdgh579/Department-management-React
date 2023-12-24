@@ -35,7 +35,6 @@ const DepartmentInfo = (props) => {
   };
 
   const modifyGroupName = ([clickGroupModifyCopy, id]) => {
-    console.log(clickGroupModifyCopy + " " + id);
     setModifyGroupName(clickGroupModifyCopy);
     setGroupId(id);
   };
