@@ -41,3 +41,8 @@
   margin-top: 50px;
   text-align: center;
 }
+
+.attendance_link {
+  text-decoration: none;
+  color: black;
+}
