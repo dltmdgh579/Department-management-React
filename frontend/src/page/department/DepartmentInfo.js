@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GroupList from "../../components/department/GroupList";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import DepartmentInfoHeader from "./DepartmentInfoHeader";
 import GroupAttendance from "../../components/department/GroupAttendance";
 import AddGroup from "../../components/department/AddGroup";
 import ModifyGroup from "../../components/department/ModifyGroup";
+import styles from "../../css/department/Department_info.module.css";
 
 const DepartmentInfo = (props) => {
   const { state } = useLocation();
@@ -56,7 +57,13 @@ const DepartmentInfo = (props) => {
         isModify={isModifyGroup}
         modifyFunction={modifyGroupName}
       />
-      <GroupAttendance info={[info.attendance, info.enrollment]} />
+      <Link
+        to={`/${departmentName}/list`}
+        state={{ departmentId: departmentId }}
+        className={styles.attendance_link}
+      >
+        <GroupAttendance info={[info.attendance, info.enrollment]} />
+      </Link>
     </div>
   );
 };
