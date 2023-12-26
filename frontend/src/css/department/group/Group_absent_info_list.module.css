@@ -9,6 +9,20 @@
   margin: 0 8px;
 }
 
+.date_picker input {
+  border-width: 0;
+  font-weight: bolder;
+  font-size: 16px;
+  flex-wrap: wrap;
+  text-align: center;
+  border-radius: 10px;
+  width: 200px;
+  height: 35px;
+  margin: 0 50px;
+  margin-top: 50px;
+  background-color: #dbe4f5;
+}
+
 .link {
   text-decoration: none;
   color: black;
