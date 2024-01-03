@@ -20,7 +20,7 @@ const DepartmentInfo = (props) => {
 
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get("https://dnch-edu.com/api" + departmentId);
+      const res = await axios.get("https://dnch-edu.com/api/" + departmentId);
       return res.data;
     };
 

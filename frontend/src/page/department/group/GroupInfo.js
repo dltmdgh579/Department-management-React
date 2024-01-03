@@ -17,7 +17,7 @@ const GroupInfo = () => {
   useEffect(() => {
     const infoData = async () => {
       const res = await axios.get(
-        "https://dnch-edu.com/api" + department + "/" + group,
+        "https://dnch-edu.com/api/" + department + "/" + group,
       );
 
       return res.data;

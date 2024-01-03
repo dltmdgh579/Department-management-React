@@ -40,7 +40,7 @@ const AddGroupMember = (props) => {
   const sendAddMemberList = async () => {
     await axios({
       method: "post",
-      url: "https://dnch-edu.com/api" + departmentId + "/" + groupId + "/add",
+      url: "https://dnch-edu.com/api/" + departmentId + "/" + groupId + "/add",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

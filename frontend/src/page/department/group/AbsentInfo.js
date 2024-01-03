@@ -33,7 +33,7 @@ const AbsentInfo = () => {
     const absentDate = format(date, "yyyy-MM-dd");
     await axios
       .get(
-        "https://dnch-edu.com/api" +
+        "https://dnch-edu.com/api/" +
           departmentId +
           "/" +
           groupId +
