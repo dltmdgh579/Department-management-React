@@ -14,7 +14,7 @@ const AddGroup = (props) => {
   const addNewGroup = async () => {
     await axios({
       method: "post",
-      url: "http://dnch-edu.com:8080/" + departmentId,
+      url: "http://dnch-edu.com:8080/api/" + departmentId,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

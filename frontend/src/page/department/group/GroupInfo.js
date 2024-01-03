@@ -17,7 +17,7 @@ const GroupInfo = () => {
   useEffect(() => {
     const infoData = async () => {
       const res = await axios.get(
-        "http://dnch-edu.com:8080/" + department + "/" + group,
+        "http://dnch-edu.com:8080/api/" + department + "/" + group,
       );
 
       return res.data;
@@ -49,7 +49,8 @@ const GroupInfo = () => {
   const sendAbsenteeList = async () => {
     await axios({
       method: "post",
-      url: "http://dnch-edu.com:8080/" + department + "/" + group + "/absent",
+      url:
+        "http://dnch-edu.com:8080/api/" + department + "/" + group + "/absent",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

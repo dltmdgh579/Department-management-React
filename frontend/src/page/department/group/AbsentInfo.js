@@ -18,7 +18,7 @@ const AbsentInfo = () => {
     const infoData = async () => {
       const absentDate = format(selectedDate, "yyyy-MM-dd");
       const res = await axios.get(
-        "http://dnch-edu.com:8080/" + departmentId + "/" + groupId,
+        "http://dnch-edu.com:8080/api/" + departmentId + "/" + groupId,
         +"/absent/" + absentDate,
       );
 
@@ -33,7 +33,7 @@ const AbsentInfo = () => {
     const absentDate = format(date, "yyyy-MM-dd");
     await axios
       .get(
-        "http://dnch-edu.com:8080/" +
+        "http://dnch-edu.com:8080/api/" +
           departmentId +
           "/" +
           groupId +
