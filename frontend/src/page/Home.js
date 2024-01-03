@@ -8,7 +8,7 @@ const FirstDepartment = () => {
 
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get("http://dnch-edu.com:8080/api/");
+      const res = await axios.get("https://dnch-edu.com/api");
       return res.data;
     };
 

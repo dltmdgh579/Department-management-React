@@ -59,7 +59,7 @@ const PersonnelPost = () => {
   const postRequest = async (e) => {
     await axios({
       method: "post",
-      url: "http://dnch-edu.com:8080/api/personnel/post",
+      url: "https://dnch-edu.com/api/personnel/post",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

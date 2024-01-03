@@ -18,7 +18,7 @@ const AddGroupMember = (props) => {
 
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get("http://dnch-edu.com:8080/api/list");
+      const res = await axios.get("https://dnch-edu.com/api/list");
       return res.data;
     };
 
@@ -40,8 +40,7 @@ const AddGroupMember = (props) => {
   const sendAddMemberList = async () => {
     await axios({
       method: "post",
-      url:
-        "http://dnch-edu.com:8080/api/" + departmentId + "/" + groupId + "/add",
+      url: "https://dnch-edu.com/api" + departmentId + "/" + groupId + "/add",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

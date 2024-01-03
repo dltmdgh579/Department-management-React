@@ -10,7 +10,7 @@ const ListAll = () => {
   // useEffect
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get("http://dnch-edu.com:8080/api/list");
+      const res = await axios.get("https://dnch-edu.com/api/list");
       return res.data;
     };
 
