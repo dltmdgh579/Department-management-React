@@ -10,7 +10,7 @@ const Personnel = (props) => {
       <img
         src={
           profileImage
-            ? "https://dnch-edu.com/api/profile-image/" + profileImage
+            ? "https://dnch-edu.com/profile-image/" + profileImage
             : "https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg"
         }
         className={styles.profile_image}
