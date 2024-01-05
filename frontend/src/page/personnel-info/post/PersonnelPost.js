@@ -10,6 +10,12 @@ import { format } from "date-fns";
 const PersonnelPost = () => {
   const navigate = useNavigate();
 
+  const [uploadImageUrl, setUploadImageUrl] = useState(
+    "https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg",
+  );
+  const [screenUploadImageUrl, setScreenUploadImageUrl] = useState(
+    "https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg",
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState("소속 구분");
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -56,28 +62,44 @@ const PersonnelPost = () => {
     });
   };
 
-  const postRequest = async (e) => {
+  const postRequest = async () => {
+    const formData = new FormData();
+    console.log(uploadImageUrl);
+    formData.append("profileImage", uploadImageUrl);
+    formData.append(
+      "requestDto",
+      new Blob([JSON.stringify(info)], { type: "application/json" }),
+    );
+
     await axios({
       method: "post",
       url: "https://dnch-edu.com/api/personnel/post",
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
       },
-      data: JSON.stringify(info),
+      data: formData,
     }).then((response) => {
       navigate("/list");
     });
   };
 
+  const onChangeImageUpload = (e) => {
+    const uploadFile = e.target.files[0];
+    setUploadImageUrl(uploadFile);
+    setScreenUploadImageUrl(uploadFile);
+    const reader = new FileReader();
+    console.log(uploadFile);
+    reader.readAsDataURL(uploadFile);
+    reader.onloadend = () => {
+      setScreenUploadImageUrl(reader.result);
+    };
+  };
+
   return (
     <div className={styles.container}>
       <div>
-        <img
-          src="https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg"
-          className={styles.profile_image}
-        ></img>
-        사진을 업로드 해주세요
+        <img src={screenUploadImageUrl} className={styles.profile_image}></img>
+        <input type="file" accept="image/*" onChange={onChangeImageUpload} />
       </div>
       <div>이름</div>
       <input
