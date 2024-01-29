@@ -18,8 +18,12 @@ const AbsentInfo = () => {
     const infoData = async () => {
       const absentDate = format(selectedDate, "yyyy-MM-dd");
       const res = await axios.get(
-        "https://dnch-edu.com/api/" + departmentId + "/" + groupId,
-        +"/absent/" + absentDate,
+        "https://dnch-edu.com/api/" +
+          departmentId +
+          "/" +
+          groupId +
+          "/absent/" +
+          absentDate,
       );
 
       return res.data;
