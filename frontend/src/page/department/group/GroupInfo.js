@@ -72,7 +72,7 @@ const GroupInfo = () => {
           ></input>
           <span className={styles.slider_round}></span>
         </label>
-        <div>출결관리</div>
+        <div>결석체크</div>
       </div>
       <div className={styles.group_info_container}>
         {infoList.map((info) => (
