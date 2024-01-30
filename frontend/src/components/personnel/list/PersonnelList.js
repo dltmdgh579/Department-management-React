@@ -15,9 +15,12 @@ const PersonnelList = (props) => {
   } = props.info;
 
   const isAddPage = props.add;
+  const isAbsentCheckPage = props.check;
   const checkAddMemberInfo = props.checkFunction;
+  const checkAbsentMemberInfo = props.absentCheckFunction;
 
   const [added, setAdded] = useState(false);
+  const [absent, setAbsent] = useState(false);
 
   const checkAddMember = () => {
     const isAddMember = !added;
@@ -25,21 +28,38 @@ const PersonnelList = (props) => {
     checkAddMemberInfo({ id, name, isAddMember });
   };
 
-  return (
-    <div className={styles.container}>
-      {isAddPage ? (
-        <div onClick={checkAddMember}>
-          <Personnel info={props.info} isAdd={added} />
-          <hr />
-        </div>
-      ) : (
-        <Link to={"/detail/" + id} className={styles.link}>
-          <Personnel info={props.info} />
-          <hr />
-        </Link>
-      )}
-    </div>
+  const checkAbsentMember = () => {
+    const isAbsentMember = !absent;
+    setAbsent(isAbsentMember);
+    checkAbsentMemberInfo({ id, name, isAbsentMember });
+  };
+
+  let personnel = (
+    <Link to={"/detail/" + id} className={styles.link}>
+      <Personnel info={props.info} />
+      <hr />
+    </Link>
   );
+
+  if (isAddPage) {
+    personnel = (
+      <div onClick={checkAddMember}>
+        <Personnel info={props.info} isAdd={added} />
+        <hr />
+      </div>
+    );
+  }
+
+  if (isAbsentCheckPage) {
+    personnel = (
+      <div onClick={checkAbsentMember}>
+        <Personnel info={props.info} isAbsent={absent} />
+        <hr />
+      </div>
+    );
+  }
+
+  return <div className={styles.container}>{personnel}</div>;
 };
 
 export default PersonnelList;

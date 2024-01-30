@@ -59,7 +59,7 @@ const DepartmentInfo = (props) => {
       />
       <Link
         to={`/${departmentName}/list`}
-        state={{ departmentId: departmentId }}
+        state={{ departmentId: departmentId, departmentName: departmentName }}
         className={styles.attendance_link}
       >
         <GroupAttendance info={[info.attendance, info.enrollment]} />
