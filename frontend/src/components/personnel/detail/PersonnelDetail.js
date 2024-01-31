@@ -18,7 +18,11 @@ const PersonnelDetail = (props) => {
     <div className={styles.detail}>
       <div className={styles.info_container}>
         <img
-          src="https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg"
+          src={
+            profileImage
+              ? "https://dnch-edu.com/profile-image/" + profileImage
+              : "https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg"
+          }
           className={styles.profile_image}
         ></img>
         <div className={styles.text_container}>
