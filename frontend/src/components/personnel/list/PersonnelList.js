@@ -15,12 +15,12 @@ const PersonnelList = (props) => {
   } = props.info;
 
   const isAddPage = props.add;
-  const isAbsentCheckPage = props.check;
+  const isAttendanceCheckPage = props.attendance;
   const checkAddMemberInfo = props.checkFunction;
-  const checkAbsentMemberInfo = props.absentCheckFunction;
+  const checkAttendanceMemberInfo = props.absentCheckFunction;
 
   const [added, setAdded] = useState(false);
-  const [absent, setAbsent] = useState(false);
+  const [attendance, setAttendance] = useState(false);
 
   const checkAddMember = () => {
     const isAddMember = !added;
@@ -28,10 +28,10 @@ const PersonnelList = (props) => {
     checkAddMemberInfo({ id, name, isAddMember });
   };
 
-  const checkAbsentMember = () => {
-    const isAbsentMember = !absent;
-    setAbsent(isAbsentMember);
-    checkAbsentMemberInfo({ id, name, isAbsentMember });
+  const checkAttendanceMember = () => {
+    const isAttendanceMember = !attendance;
+    setAttendance(isAttendanceMember);
+    checkAttendanceMemberInfo({ id, name, isAttendanceMember });
   };
 
   let personnel = (
@@ -50,10 +50,10 @@ const PersonnelList = (props) => {
     );
   }
 
-  if (isAbsentCheckPage) {
+  if (isAttendanceCheckPage) {
     personnel = (
-      <div onClick={checkAbsentMember}>
-        <Personnel info={props.info} isAbsent={absent} />
+      <div onClick={checkAttendanceMember}>
+        <Personnel info={props.info} isAttendance={attendance} />
         <hr />
       </div>
     );

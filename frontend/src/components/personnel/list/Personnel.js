@@ -4,12 +4,14 @@ import styles from "../../../css/personnel/list/Personnel_list.module.css";
 const Personnel = (props) => {
   const { name, dateOfBirth, phone, address, profileImage } = props.info;
   const isAdd = props.isAdd;
-  const isAbsent = props.isAbsent;
+  const isAttendance = props.isAttendance;
 
   return (
     <div
       className={
-        isAdd || isAbsent ? styles.info_container_add : styles.info_container
+        isAdd || isAttendance
+          ? styles.info_container_add
+          : styles.info_container
       }
     >
       <img

@@ -12,7 +12,7 @@ const DepartmentInfo = (props) => {
 
   const [infoList, setInfoList] = useState([]);
   const [selectedDate, setSelectedDate] = useState([]);
-  const [absentMemberList, setAbsentMemberList] = useState([]);
+  const [attendanceMemberList, setAttendanceMemberList] = useState([]);
 
   // setSelectedDate(moment().format("yyyy-MM-DD"));
   const date = moment().format("yyyy-MM-DD");
@@ -29,19 +29,24 @@ const DepartmentInfo = (props) => {
     infoData().then((res) => setInfoList(res));
   }, []);
 
-  const checkAbsentMemberInfo = (absentMemberInfo) => {
-    const id = absentMemberInfo.id;
-    const name = absentMemberInfo.name;
+  const checkAttendanceMemberInfo = (attendanceMemberInfo) => {
+    const id = attendanceMemberInfo.id;
+    const name = attendanceMemberInfo.name;
     const attendanceDate = moment().format("YYYY-MM-DD");
-    const isAbsentMember = absentMemberInfo.isAbsentMember;
-    if (isAbsentMember === true) {
-      setAbsentMemberList([...absentMemberList, { id, name, attendanceDate }]);
-    } else if (isAbsentMember === false) {
-      setAbsentMemberList(absentMemberList.filter((member) => member.id != id));
+    const isAttendanceMember = attendanceMemberInfo.isAttendanceMember;
+    if (isAttendanceMember === true) {
+      setAttendanceMemberList([
+        ...attendanceMemberList,
+        { id, name, attendanceDate },
+      ]);
+    } else if (isAttendanceMember === false) {
+      setAttendanceMemberList(
+        attendanceMemberList.filter((member) => member.id != id),
+      );
     }
   };
 
-  const sendAbsentMemberList = async () => {
+  const sendAttendanceMemberList = async () => {
     await axios({
       method: "post",
       url: "https://dnch-edu.com/api/" + departmentId + "/attendance",
@@ -49,7 +54,7 @@ const DepartmentInfo = (props) => {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      data: JSON.stringify({ absentMemberList: absentMemberList }),
+      data: JSON.stringify({ attendanceMemberList: attendanceMemberList }),
     }).then((response) => {
       navigate(`/${departmentId}`, {
         state: { id: departmentId, name: departmentName },
@@ -64,12 +69,12 @@ const DepartmentInfo = (props) => {
           <PersonnelList
             key={info.id}
             info={info}
-            check={true}
-            absentCheckFunction={checkAbsentMemberInfo}
+            attendance={true}
+            absentCheckFunction={checkAttendanceMemberInfo}
           />
         ))}
 
-      <div className={styles.done_check} onClick={sendAbsentMemberList}>
+      <div className={styles.done_check} onClick={sendAttendanceMemberList}>
         ✔
       </div>
     </div>
