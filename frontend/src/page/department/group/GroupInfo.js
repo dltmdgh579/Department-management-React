@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import styles from "../../../css/department/group/Group_info_list.module.css";
 import moment from "moment";
 
+const API_ROOT = process.env.REACT_APP_API_ROOT;
+
 const GroupInfo = () => {
   const department = useParams().department;
   const group = useParams().group;
@@ -17,7 +19,7 @@ const GroupInfo = () => {
   useEffect(() => {
     const infoData = async () => {
       const res = await axios.get(
-        "https://dnch-edu.com/api/" + department + "/" + group,
+        `${API_ROOT}/${department}/${group}`,
       );
 
       return res.data;
@@ -49,7 +51,7 @@ const GroupInfo = () => {
   const sendAbsenteeList = async () => {
     await axios({
       method: "post",
-      url: "https://dnch-edu.com/api/" + department + "/" + group + "/absent",
+      url: `${API_ROOT}/${department}/${group}/absent`,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

@@ -7,6 +7,8 @@ import styles from "../../../css/department/group/Group_absent_info_list.module.
 import { ko } from "date-fns/locale";
 import { format } from "date-fns";
 
+const API_ROOT = process.env.REACT_APP_API_ROOT;
+
 const AbsentInfo = () => {
   const departmentId = useParams().department;
   const groupId = useParams().group;
@@ -18,12 +20,7 @@ const AbsentInfo = () => {
     const infoData = async () => {
       const absentDate = format(selectedDate, "yyyy-MM-dd");
       const res = await axios.get(
-        "https://dnch-edu.com/api/" +
-          departmentId +
-          "/" +
-          groupId +
-          "/absent/" +
-          absentDate,
+        `${API_ROOT}/${departmentId}/${groupId}/absent/${absentDate}`,
       );
 
       return res.data;
@@ -37,12 +34,7 @@ const AbsentInfo = () => {
     const absentDate = format(date, "yyyy-MM-dd");
     await axios
       .get(
-        "https://dnch-edu.com/api/" +
-          departmentId +
-          "/" +
-          groupId +
-          "/absent/" +
-          absentDate,
+        `${API_ROOT}/${departmentId}/${groupId}/absent/${absentDate}`,
       )
       .then((res) => setInfoList(res.data));
   };

@@ -8,6 +8,8 @@ import AddGroup from "../../components/department/AddGroup";
 import ModifyGroup from "../../components/department/ModifyGroup";
 import styles from "../../css/department/Department_info.module.css";
 
+const API_ROOT = process.env.REACT_APP_API_ROOT;
+
 const DepartmentInfo = (props) => {
   const { state } = useLocation();
   const departmentId = state?.id;
@@ -20,7 +22,7 @@ const DepartmentInfo = (props) => {
 
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get("https://dnch-edu.com/api/" + departmentId);
+      const res = await axios.get(`${API_ROOT}/${departmentId}`);
       return res.data;
     };
 

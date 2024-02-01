@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../../../css/department/group/Group_add_member.module.css";
 import moment from "moment";
 
+const API_ROOT = process.env.REACT_APP_API_ROOT;
+
 const AddGroupMember = (props) => {
   const location = useLocation();
   const departmentId = location.state?.departmentId;
@@ -18,7 +20,7 @@ const AddGroupMember = (props) => {
 
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get("https://dnch-edu.com/api/list");
+      const res = await axios.get(`${API_ROOT}/list`);
       return res.data;
     };
 
@@ -40,7 +42,7 @@ const AddGroupMember = (props) => {
   const sendAddMemberList = async () => {
     await axios({
       method: "post",
-      url: "https://dnch-edu.com/api/" + departmentId + "/" + groupId + "/add",
+      url: `${API_ROOT}/${departmentId}/${groupId}/add`,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

@@ -5,6 +5,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import PersonnelList from "../../components/personnel/list/PersonnelList";
 import moment from "moment";
 
+const API_ROOT = process.env.REACT_APP_API_ROOT;
+
 const DepartmentInfo = (props) => {
   const location = useLocation();
   const departmentId = location.state?.departmentId;
@@ -21,7 +23,7 @@ const DepartmentInfo = (props) => {
   useEffect(() => {
     const infoData = async () => {
       const res = await axios.get(
-        "https://dnch-edu.com/api/" + departmentId + "/list/" + date,
+        `${API_ROOT}/${departmentId}/list/${date}`,
       );
       return res.data;
     };
@@ -49,7 +51,7 @@ const DepartmentInfo = (props) => {
   const sendAttendanceMemberList = async () => {
     await axios({
       method: "post",
-      url: "https://dnch-edu.com/api/" + departmentId + "/attendance",
+      url: `${API_ROOT}/${departmentId}/attendance`,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

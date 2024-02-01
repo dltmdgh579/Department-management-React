@@ -3,12 +3,16 @@ import styles from "../css/Home.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+const API_ROOT = process.env.REACT_APP_API_ROOT;
+
 const FirstDepartment = () => {
   const [homeInfo, setHomeInfo] = useState([]);
 
+  console.log(API_ROOT);
+
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get("https://dnch-edu.com/api");
+      const res = await axios.get(`${API_ROOT}`);
       return res.data;
     };
 

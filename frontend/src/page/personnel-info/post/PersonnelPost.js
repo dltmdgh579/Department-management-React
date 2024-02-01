@@ -7,6 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import ko from "date-fns/locale/ko";
 import { format } from "date-fns";
 
+const API_ROOT = process.env.REACT_APP_API_ROOT;
+
 const PersonnelPost = () => {
   const navigate = useNavigate();
 
@@ -73,7 +75,7 @@ const PersonnelPost = () => {
 
     await axios({
       method: "post",
-      url: "https://dnch-edu.com/api/personnel/post",
+      url: `${API_ROOT}/personnel/post`,
       headers: {
         "Content-Type": "multipart/form-data",
       },

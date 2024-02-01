@@ -3,6 +3,8 @@ import styles from "../../css/department/Add_group.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API_ROOT = process.env.REACT_APP_API_ROOT;
+
 const AddGroup = (props) => {
   const departmentId = props.state.id;
   const departmentName = props.state.name;
@@ -16,7 +18,7 @@ const AddGroup = (props) => {
     await axios({
       method: "post",
       url:
-        "https://dnch-edu.com/api/" + departmentId + "/" + groupId + "/modify",
+        `${API_ROOT}/${departmentId}/${groupId}/modify`,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
