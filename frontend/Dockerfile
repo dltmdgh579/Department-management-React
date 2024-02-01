@@ -13,5 +13,11 @@ COPY . .
 # 3000번 포트 노출
 EXPOSE 3000
 
-# npm start 스크립트 실행
-CMD ["npm", "start"]
+# React App 빌드
+RUN npm run build
+
+# serve 설치
+RUN npm install -g serve
+
+# serve -s build 스크립트 실행
+CMD ["serve", "-s", "build"]
