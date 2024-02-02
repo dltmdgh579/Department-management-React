@@ -8,8 +8,6 @@ const API_ROOT = process.env.REACT_APP_API_ROOT;
 const FirstDepartment = () => {
   const [homeInfo, setHomeInfo] = useState([]);
 
-  console.log(API_ROOT);
-
   useEffect(() => {
     const infoData = async () => {
       const res = await axios.get(`${API_ROOT}`);
