@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../../css/personnel/list/Personnel_list_header.module.css";
 
@@ -8,12 +8,34 @@ const PersonnelListHeader = (props) => {
   const departmentList = props.department;
   const filterFunction = props.filterFunction;
 
+  const [selectedDepartment, setSelectedDepartment] = useState([]);
   const [isCheck, setCheck] = useState(false);
 
+  useEffect(() => {
+    filterFunction(selectedDepartment);
+  }, [selectedDepartment]);
+
+  const findAndSetDepartment = (department) => {
+    for (let i = 0; i < selectedDepartment.length; i++) {
+      if (selectedDepartment[i].name === department.name) {
+        let copy = [...selectedDepartment];
+        copy[i].isCheck = !copy[i].isCheck;
+        setSelectedDepartment(copy);
+        return;
+      }
+    }
+
+    const newDepartment = {
+      name: department.name,
+      isCheck: !department.isCheck,
+    };
+
+    setSelectedDepartment(selectedDepartment.concat(newDepartment));
+  };
+
   const checkFilter = (department) => {
-    const isCheckCopy = !isCheck;
     setCheck((isCheck) => !isCheck);
-    filterFunction({ department, isCheckCopy });
+    findAndSetDepartment(department);
   };
 
   return (
@@ -26,7 +48,7 @@ const PersonnelListHeader = (props) => {
             </Link>
           </div>
         )}
-        <div className={styles.filter}>필터</div>
+        <div className={styles.filter}>정렬</div>
         <div className={styles.search_container}>
           <input className={styles.search}></input>
         </div>
@@ -42,6 +64,8 @@ const PersonnelListHeader = (props) => {
                 {department.name}
               </div>
             ))}
+            <div className={styles.department}>남자</div>
+            <div className={styles.department}>여자</div>
           </div>
         )}
       </div>

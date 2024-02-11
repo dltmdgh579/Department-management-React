@@ -3,8 +3,13 @@ import axios from "axios";
 import PersonnelList from "../../../components/personnel/list/PersonnelList";
 import PersonnelListHeader from "../../../components/personnel/list/PersonnelListHeader";
 import { useLocation } from "react-router-dom";
+import qs from "qs";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
+
+axios.defaults.paramsSerializer = (params) => {
+  return qs.stringify(params, { arrayFormat: "repeat" });
+};
 
 const ListAll = (props) => {
   const { state } = useLocation();
@@ -23,35 +28,36 @@ const ListAll = (props) => {
     infoData().then((res) => setInfoList(res));
   }, []);
 
-  const setDepartmentFunction = (department, isCheck) => {
-    isCheck
-      ? setDepartmentList([...departmentList, department])
-      : setDepartmentList(
-          departmentList.filter((remainDpt) => remainDpt !== department),
-        );
+  const setDepartmentFunction = (selectedDepartment) => {
+    const updated = selectedDepartment.filter((item) => item.isCheck !== false);
+    const departmentName = updated.map((item) => {
+      return item.name;
+    });
+    return departmentName;
   };
 
-  const checkFilter = async (filter) => {
-    const department = filter.department.name;
-    const isCheck = filter.isCheckCopy;
-
-    setDepartmentFunction(department, isCheck);
+  const checkFilter = async (selectedDepartment) => {
+    const departmentName = setDepartmentFunction(selectedDepartment);
 
     await axios
-      .get(`${API_ROOT}/list2`, {
-        params: { condition: departmentList.join(",") },
+      .get(`${API_ROOT}/list`, {
+        params: {
+          departmentFilter: departmentName,
+          genderFilter: "M",
+          order: "AGE",
+        },
       })
       .then((res) => {
-        // setInfoList(res.data);
+        setInfoList(res.data);
       });
   };
 
   return (
     <div>
       <PersonnelListHeader department={state} filterFunction={checkFilter} />
-      {infoList.map((info) => (
-        <PersonnelList key={info.id} info={info} />
-      ))}
+      {infoList
+        ? infoList.map((info) => <PersonnelList key={info.id} info={info} />)
+        : null}
     </div>
   );
 };
