@@ -7,12 +7,21 @@ const PersonnelListHeader = (props) => {
 
   const departmentList = props.department;
   const departmentFilterFunction = props.departmentFilterFunction;
+  const genderFilterFunction = props.genderFilterFunction;
 
   const [selectedDepartment, setSelectedDepartment] = useState([]);
+  const [selectedGender, setSelectedGender] = useState([
+    { gender: "M", isCheck: false },
+    { gender: "W", isCheck: false },
+  ]);
 
   useEffect(() => {
     departmentFilterFunction(selectedDepartment);
   }, [selectedDepartment]);
+
+  useEffect(() => {
+    genderFilterFunction(selectedGender);
+  }, [selectedGender]);
 
   const findAndSetDepartment = (department) => {
     for (let i = 0; i < selectedDepartment.length; i++) {
@@ -36,8 +45,44 @@ const PersonnelListHeader = (props) => {
     findAndSetDepartment(department);
   };
 
+  const findAndSetGender = (gender) => {
+    let copy = [...selectedGender];
+    if (gender === "M") {
+      if (
+        selectedGender[0].isCheck === false &&
+        selectedGender[1].isCheck === true
+      ) {
+        copy[0].isCheck = true;
+        copy[1].isCheck = false;
+      } else if (
+        selectedGender[0].isCheck === true &&
+        selectedGender[1].isCheck === false
+      ) {
+        copy[0].isCheck = false;
+      } else {
+        copy[0].isCheck = true;
+      }
+    } else {
+      if (
+        selectedGender[1].isCheck === false &&
+        selectedGender[0].isCheck === true
+      ) {
+        copy[1].isCheck = true;
+        copy[0].isCheck = false;
+      } else if (
+        selectedGender[1].isCheck === true &&
+        selectedGender[0].isCheck === false
+      ) {
+        copy[1].isCheck = false;
+      } else {
+        copy[1].isCheck = true;
+      }
+    }
+    setSelectedGender(copy);
+  };
+
   const checkGenderFilter = (gender) => {
-    findAndSetDepartment(gender);
+    findAndSetGender(gender);
   };
 
   return (
