@@ -6,13 +6,12 @@ const PersonnelListHeader = (props) => {
   const isAddPage = props.add;
 
   const departmentList = props.department;
-  const filterFunction = props.filterFunction;
+  const departmentFilterFunction = props.departmentFilterFunction;
 
   const [selectedDepartment, setSelectedDepartment] = useState([]);
-  const [isCheck, setCheck] = useState(false);
 
   useEffect(() => {
-    filterFunction(selectedDepartment);
+    departmentFilterFunction(selectedDepartment);
   }, [selectedDepartment]);
 
   const findAndSetDepartment = (department) => {
@@ -27,15 +26,18 @@ const PersonnelListHeader = (props) => {
 
     const newDepartment = {
       name: department.name,
-      isCheck: !department.isCheck,
+      isCheck: true,
     };
 
     setSelectedDepartment(selectedDepartment.concat(newDepartment));
   };
 
-  const checkFilter = (department) => {
-    setCheck((isCheck) => !isCheck);
+  const checkDepartmentFilter = (department) => {
     findAndSetDepartment(department);
+  };
+
+  const checkGenderFilter = (gender) => {
+    findAndSetDepartment(gender);
   };
 
   return (
@@ -55,17 +57,27 @@ const PersonnelListHeader = (props) => {
       </div>
       <div>
         {isAddPage ? null : (
-          <div className={styles.department_container}>
+          <div className={styles.filter_container}>
             {departmentList.map((department) => (
               <div
-                className={styles.department}
-                onClick={() => checkFilter(department)}
+                className={styles.filter}
+                onClick={() => checkDepartmentFilter(department)}
               >
                 {department.name}
               </div>
             ))}
-            <div className={styles.department}>남자</div>
-            <div className={styles.department}>여자</div>
+            <div
+              className={styles.filter}
+              onClick={() => checkGenderFilter("M")}
+            >
+              남자
+            </div>
+            <div
+              className={styles.filter}
+              onClick={() => checkGenderFilter("W")}
+            >
+              여자
+            </div>
           </div>
         )}
       </div>

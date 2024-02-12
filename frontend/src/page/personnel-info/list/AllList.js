@@ -17,6 +17,7 @@ const ListAll = (props) => {
   // useState
   const [infoList, setInfoList] = useState([]);
   const [departmentList, setDepartmentList] = useState([]);
+  const [gender, setGender] = useState([]);
 
   // useEffect
   useEffect(() => {
@@ -28,6 +29,21 @@ const ListAll = (props) => {
     infoData().then((res) => setInfoList(res));
   }, []);
 
+  useEffect(() => {
+    const infoData = async () => {
+      const res = await axios.get(`${API_ROOT}/list`, {
+        params: {
+          departmentFilter: departmentList,
+          genderFilter: "M",
+          order: "AGE",
+        },
+      });
+      return res.data;
+    };
+
+    infoData().then((res) => setInfoList(res));
+  }, [departmentList]);
+
   const setDepartmentFunction = (selectedDepartment) => {
     const updated = selectedDepartment.filter((item) => item.isCheck !== false);
     const departmentName = updated.map((item) => {
@@ -36,25 +52,18 @@ const ListAll = (props) => {
     return departmentName;
   };
 
-  const checkFilter = async (selectedDepartment) => {
+  const departmentCheckFilter = async (selectedDepartment) => {
     const departmentName = setDepartmentFunction(selectedDepartment);
-
-    await axios
-      .get(`${API_ROOT}/list`, {
-        params: {
-          departmentFilter: departmentName,
-          genderFilter: "M",
-          order: "AGE",
-        },
-      })
-      .then((res) => {
-        setInfoList(res.data);
-      });
+    setDepartmentList(departmentName);
   };
 
   return (
     <div>
-      <PersonnelListHeader department={state} filterFunction={checkFilter} />
+      <PersonnelListHeader
+        department={state}
+        departmentFilterFunction={departmentCheckFilter}
+        // genderFilterFunction={genderCheckFilter}
+      />
       {infoList
         ? infoList.map((info) => <PersonnelList key={info.id} info={info} />)
         : null}
