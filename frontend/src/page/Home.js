@@ -36,7 +36,7 @@ const FirstDepartment = () => {
 
   // 전체 인원 리스트
   const navigateToAllList = () => {
-    navigate("/list");
+    navigate("/list", { state: homeInfo });
   };
 
   return (

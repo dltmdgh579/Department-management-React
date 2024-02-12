@@ -46,3 +46,49 @@
   position: relative;
   background: none;
 }
+
+.filter_container {
+  display: flex;
+  margin-top: 30px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  overflow: scroll;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.filter_container::-webkit-scrollbar {
+  display: none;
+}
+
+.filter {
+  clear: both;
+  float: left;
+  font-size: 15px;
+  font-weight: bolder;
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-align: center;
+  width: auto;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #e6ebf4;
+  margin: 0 5px;
+}
+
+.check_filter {
+  clear: both;
+  float: left;
+  font-size: 15px;
+  font-weight: bolder;
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-align: center;
+  width: auto;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #769feb;
+  margin: 0 5px;
+}
