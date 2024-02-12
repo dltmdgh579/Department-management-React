@@ -8,7 +8,10 @@ const PersonnelListHeader = (props) => {
   const departmentList = props.department;
   const departmentFilterFunction = props.departmentFilterFunction;
   const genderFilterFunction = props.genderFilterFunction;
+  const orderFunction = props.orderFunction;
 
+  const [selectedOrder, setSelectedOrder] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState([]);
   const [selectedGender, setSelectedGender] = useState([
     { gender: "M", isCheck: false },
@@ -22,6 +25,10 @@ const PersonnelListHeader = (props) => {
   useEffect(() => {
     genderFilterFunction(selectedGender);
   }, [selectedGender]);
+
+  useEffect(() => {
+    orderFunction(selectedOrder);
+  }, [selectedOrder]);
 
   const findAndSetDepartment = (department) => {
     for (let i = 0; i < selectedDepartment.length; i++) {
@@ -106,6 +113,20 @@ const PersonnelListHeader = (props) => {
     return false;
   };
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const setPlaceHolder = (orderType) => {
+    setSelectedOrder(orderType);
+    setIsOpen(false);
+  };
+
+  const orderDisplay = () => {
+    if (selectedOrder === "NAME") return "이름순";
+    else if (selectedOrder === "AGE") return "나이순";
+  };
+
   return (
     <div>
       <div className={styles.container}>
@@ -116,7 +137,32 @@ const PersonnelListHeader = (props) => {
             </Link>
           </div>
         )}
-        <div className={styles.filter}>정렬</div>
+        <div>
+          <div
+            onClick={toggleDropdown}
+            className={styles.order_dropdown_button}
+          >
+            {selectedOrder ? orderDisplay() : "정렬"}
+          </div>
+          {isOpen && (
+            <div className={styles.order_type}>
+              <div
+                onClick={() => {
+                  setPlaceHolder("NAME");
+                }}
+              >
+                이름순
+              </div>
+              <div
+                onClick={() => {
+                  setPlaceHolder("AGE");
+                }}
+              >
+                나이순
+              </div>
+            </div>
+          )}
+        </div>
         <div className={styles.search_container}>
           <input className={styles.search}></input>
         </div>

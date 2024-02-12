@@ -18,6 +18,7 @@ const ListAll = (props) => {
   const [infoList, setInfoList] = useState([]);
   const [departmentList, setDepartmentList] = useState([]);
   const [gender, setGender] = useState("");
+  const [order, setOrder] = useState("");
 
   // useEffect
   useEffect(() => {
@@ -35,14 +36,14 @@ const ListAll = (props) => {
         params: {
           departmentFilter: departmentList,
           genderFilter: gender,
-          order: "AGE",
+          order: order,
         },
       });
       return res.data;
     };
 
     infoData().then((res) => setInfoList(res));
-  }, [departmentList, gender]);
+  }, [departmentList, gender, order]);
 
   const setDepartmentFunction = (selectedDepartment) => {
     const updated = selectedDepartment.filter((item) => item.isCheck !== false);
@@ -70,12 +71,17 @@ const ListAll = (props) => {
     setGender(gender);
   };
 
+  const checkOrder = (selectedOrder) => {
+    setOrder(selectedOrder);
+  };
+
   return (
     <div>
       <PersonnelListHeader
         department={state}
         departmentFilterFunction={departmentCheckFilter}
         genderFilterFunction={genderCheckFilter}
+        orderFunction={checkOrder}
       />
       {infoList
         ? infoList.map((info) => <PersonnelList key={info.id} info={info} />)
