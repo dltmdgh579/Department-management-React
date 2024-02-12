@@ -47,7 +47,7 @@
   background: none;
 }
 
-.department_container {
+.filter_container {
   display: flex;
   margin-top: 30px;
   margin-right: 10px;
@@ -57,11 +57,11 @@
   white-space: nowrap;
 }
 
-.department_container::-webkit-scrollbar {
+.filter_container::-webkit-scrollbar {
   display: none;
 }
 
-.department {
+.filter {
   clear: both;
   float: left;
   font-size: 15px;
