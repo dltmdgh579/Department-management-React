@@ -85,6 +85,27 @@ const PersonnelListHeader = (props) => {
     findAndSetGender(gender);
   };
 
+  const isDepartmentCheckFilter = (department) => {
+    for (let i = 0; i < selectedDepartment.length; i++) {
+      if (
+        selectedDepartment[i].name === department.name &&
+        selectedDepartment[i].isCheck
+      ) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const isGenderCheckFilter = (gender) => {
+    for (let i = 0; i < selectedGender.length; i++) {
+      if (selectedGender[i].gender === gender && selectedGender[i].isCheck) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   return (
     <div>
       <div className={styles.container}>
@@ -105,20 +126,28 @@ const PersonnelListHeader = (props) => {
           <div className={styles.filter_container}>
             {departmentList.map((department) => (
               <div
-                className={styles.filter}
+                className={
+                  isDepartmentCheckFilter(department)
+                    ? styles.check_filter
+                    : styles.filter
+                }
                 onClick={() => checkDepartmentFilter(department)}
               >
                 {department.name}
               </div>
             ))}
             <div
-              className={styles.filter}
+              className={
+                isGenderCheckFilter("M") ? styles.check_filter : styles.filter
+              }
               onClick={() => checkGenderFilter("M")}
             >
               남자
             </div>
             <div
-              className={styles.filter}
+              className={
+                isGenderCheckFilter("W") ? styles.check_filter : styles.filter
+              }
               onClick={() => checkGenderFilter("W")}
             >
               여자
