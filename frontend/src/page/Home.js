@@ -22,16 +22,36 @@ const FirstDepartment = () => {
 
   // 부서 별 상세
   const navigateToKindergarten = () => {
-    navigate("/kindergarten", { state: homeInfo[0] });
+    navigate("/kindergarten", {
+      state: {
+        currentDepartment: homeInfo[0],
+        departmentList: homeInfo,
+      },
+    });
   };
   const navigateToHolykids = () => {
-    navigate("/holykids", { state: homeInfo[1] });
+    navigate("/holykids", {
+      state: {
+        currentDepartment: homeInfo[1],
+        departmentList: homeInfo,
+      },
+    });
   };
   const navigateToPaulCommunity = () => {
-    navigate("/paul-community", { state: homeInfo[2] });
+    navigate("/paul-community", {
+      state: {
+        currentDepartment: homeInfo[2],
+        departmentList: homeInfo,
+      },
+    });
   };
   const navigateToJoshua = () => {
-    navigate("/joshua", { state: homeInfo[3] });
+    navigate("/joshua", {
+      state: {
+        currentDepartment: homeInfo[3],
+        departmentList: homeInfo,
+      },
+    });
   };
 
   // 전체 인원 리스트

@@ -7,13 +7,16 @@ import GroupAttendance from "../../components/department/GroupAttendance";
 import AddGroup from "../../components/department/AddGroup";
 import ModifyGroup from "../../components/department/ModifyGroup";
 import styles from "../../css/department/Department_info.module.css";
+import OtherGroupHeader from "./group/header/OtherGroupHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
 const DepartmentInfo = (props) => {
-  const { state } = useLocation();
-  const departmentId = state?.id;
-  const departmentName = state?.name;
+  const location = useLocation();
+  const state = location.state;
+  const departmentId = state?.currentDepartment.id;
+  const departmentName = state?.currentDepartment.name;
+
   const [info, setInfo] = useState([]);
   const [isAddGroup, setAddGroup] = useState(false);
   const [isModifyGroup, setModifyGroup] = useState(false);
@@ -27,7 +30,17 @@ const DepartmentInfo = (props) => {
     };
 
     infoData().then((res) => setInfo(res));
-  }, []);
+  }, [location]);
+
+  // useEffect(() => {
+  //   console.log(state?.currentDepartment);
+  //   const infoData = async () => {
+  //     const res = await axios.get(`${API_ROOT}/${departmentId}`);
+  //     return res.data;
+  //   };
+
+  //   infoData().then((res) => setInfo(res));
+  // }, []);
 
   const addGroup = (isAdd) => {
     setAddGroup(isAdd);
@@ -44,6 +57,7 @@ const DepartmentInfo = (props) => {
 
   return (
     <div>
+      <OtherGroupHeader state={state} />
       <DepartmentInfoHeader
         addFunction={addGroup}
         modifyFunction={modifyGroup}
