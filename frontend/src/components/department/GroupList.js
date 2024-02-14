@@ -4,8 +4,9 @@ import styles from "../../css/department/Department_info.module.css";
 import Group from "./Group";
 
 const GroupList = (props) => {
+  console.log(props);
   const smallGroupInfoList = props.info.smallGroupInfoList;
-  const { id, name } = props.state;
+  const { id, name } = props.state.currentDepartment;
   const isModify = props.isModify;
   const modifyGroupNameSub = props.modifyFunction;
 
