@@ -32,16 +32,6 @@ const DepartmentInfo = (props) => {
     infoData().then((res) => setInfo(res));
   }, [location]);
 
-  // useEffect(() => {
-  //   console.log(state?.currentDepartment);
-  //   const infoData = async () => {
-  //     const res = await axios.get(`${API_ROOT}/${departmentId}`);
-  //     return res.data;
-  //   };
-
-  //   infoData().then((res) => setInfo(res));
-  // }, []);
-
   const addGroup = (isAdd) => {
     setAddGroup(isAdd);
   };
