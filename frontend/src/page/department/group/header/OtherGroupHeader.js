@@ -12,7 +12,7 @@ const OtherGroupHeader = (props) => {
   const navigate = useNavigate();
 
   const navigateToOtherDepartment = (currentDepartment) => {
-    navigate("/joshua", {
+    navigate(`/${currentDepartment.name}`, {
       state: {
         currentDepartment: currentDepartment,
         departmentList: props.state?.departmentList,
