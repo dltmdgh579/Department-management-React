@@ -41,27 +41,36 @@ const FirstDepartment = () => {
 
   return (
     <div>
-      <div>
-        <div className={styles.whole_personnel} onClick={navigateToAllList}>
-          전체 인원
-        </div>
-      </div>
       <div className={styles.departments_parent}>
-        <div className={styles.departments} onClick={navigateToKindergarten}>
+        <div
+          className={styles.departments_kindergarten}
+          onClick={navigateToKindergarten}
+        >
           <div className={styles.departments_img_kindergarten}></div>
           <div className={styles.departments_text}>영유치부</div>
         </div>
-        <div className={styles.departments} onClick={navigateToHolykids}>
+        <div
+          className={styles.departments_holykids}
+          onClick={navigateToHolykids}
+        >
           <div className={styles.departments_img_holykids}></div>
           <div className={styles.departments_text}>홀리키즈</div>
         </div>
-        <div className={styles.departments} onClick={navigateToPaulCommunity}>
+        <div
+          className={styles.departments_paulcommunity}
+          onClick={navigateToPaulCommunity}
+        >
           <div className={styles.departments_img_paulcommunity}></div>
           <div className={styles.departments_text}>바울공동체</div>
         </div>
-        <div className={styles.departments} onClick={navigateToJoshua}>
+        <div className={styles.departments_joshua} onClick={navigateToJoshua}>
           <div className={styles.departments_img_joshua}></div>
           <div className={styles.departments_text}>여호수아 청년부</div>
+        </div>
+      </div>
+      <div>
+        <div className={styles.whole_list} onClick={navigateToAllList}>
+          전체 인원
         </div>
       </div>
     </div>
