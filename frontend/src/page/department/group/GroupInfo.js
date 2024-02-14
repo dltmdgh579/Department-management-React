@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GroupInfoList from "../../../components/department/group/GroupInfoList";
 import GroupInfoHeader from "./header/GroupInfoHeader";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import styles from "../../../css/department/group/Group_info_list.module.css";
 import moment from "moment";
+import OtherGroupHeader from "./header/OtherGroupHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
 const GroupInfo = () => {
+  const location = useLocation();
+  const state = location.state;
+
   const department = useParams().department;
   const group = useParams().group;
 
@@ -26,7 +30,7 @@ const GroupInfo = () => {
     };
 
     infoData().then((res) => setInfoList(res));
-  }, []);
+  }, [location]);
 
   const handleAbsent = (e) => {
     if (e.target.checked === false) {
@@ -64,6 +68,7 @@ const GroupInfo = () => {
 
   return (
     <div className={styles.parent_container}>
+      <OtherGroupHeader currentDepartmentId={department} state={state} />
       <GroupInfoHeader params={[department, group]} />
       <div className={styles.toggle_switch_container}>
         <label className={styles.toggle_switch}>
