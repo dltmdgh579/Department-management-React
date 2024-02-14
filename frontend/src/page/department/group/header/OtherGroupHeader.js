@@ -20,6 +20,13 @@ const OtherGroupHeader = (props) => {
     });
   };
 
+  const checkDepartmentColor = (selectedDepartment) => {
+    if (selectedDepartment === "KINDERGARTEN") return styles.other_department_kindergarten;
+    else if (selectedDepartment === "HOLYKIDS") return styles.other_department_holykids;
+    else if (selectedDepartment === "PAULCOMMUNITY") return styles.other_department_paulcommunity;
+    else if (selectedDepartment === "JOSHUA") return styles.other_department_joshua;
+  }
+
   const otherDepartmentDisplay = (selectedDepartment) => {
     if (selectedDepartment === "KINDERGARTEN") return "영유치부";
     else if (selectedDepartment === "HOLYKIDS") return "홀리키즈";
@@ -31,7 +38,7 @@ const OtherGroupHeader = (props) => {
     <div className={styles.container}>
       {departmentList.map((department) => (
         <div
-          className={styles.other_department}
+          className={checkDepartmentColor(department.name)}
           onClick={() => navigateToOtherDepartment(department)}
         >
           {otherDepartmentDisplay(department.name)}

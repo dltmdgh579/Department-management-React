@@ -16,7 +16,7 @@
   display: none;
 }
 
-.other_department {
+.other_department_kindergarten {
   clear: both;
   float: left;
   font-size: 15px;
@@ -28,5 +28,50 @@
   width: auto;
   height: 30px;
   border-radius: 15px;
-  background-color: #e6ebf4;
+  background-color: #FDD052;
+}
+
+.other_department_holykids {
+  clear: both;
+  float: left;
+  font-size: 15px;
+  font-weight: bolder;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-align: center;
+  width: auto;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #BED532;
+}
+
+.other_department_paulcommunity {
+  clear: both;
+  float: left;
+  font-size: 15px;
+  font-weight: bolder;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-align: center;
+  width: auto;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #FD8F87;
+}
+
+.other_department_joshua {
+  clear: both;
+  float: left;
+  font-size: 15px;
+  font-weight: bolder;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-align: center;
+  width: auto;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #769EFF;
 }

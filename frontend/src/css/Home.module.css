@@ -8,7 +8,7 @@
 
 .departments_kindergarten {
   position: relative;
-  background-color: #ffc82f;
+  background-color: #FDD052;
   box-shadow: 1.5px 1.5px 1.5px 1.5px rgb(219, 219, 219);
   border-radius: 5px;
   width: 150px;
@@ -18,7 +18,7 @@
 
 .departments_holykids {
   position: relative;
-  background-color: #b6ce1f;
+  background-color: #BED532;
   box-shadow: 1.5px 1.5px 1.5px 1.5px rgb(219, 219, 219);
   border-radius: 5px;
   width: 150px;
@@ -28,7 +28,7 @@
 
 .departments_paulcommunity {
   position: relative;
-  background-color: #f3766d;
+  background-color: #FD8F87;
   box-shadow: 1.5px 1.5px 1.5px 1.5px rgb(219, 219, 219);
   border-radius: 5px;
   width: 150px;
@@ -38,7 +38,7 @@
 
 .departments_joshua {
   position: relative;
-  background-color: #769eff;
+  background-color: #769EFF;
   box-shadow: 1.5px 1.5px 1.5px 1.5px rgb(219, 219, 219);
   border-radius: 5px;
   width: 150px;
