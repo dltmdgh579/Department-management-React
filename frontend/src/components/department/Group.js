@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../css/department/Department_info.module.css";
 
-const GroupList = (props) => {
+const Group = (props) => {
   const id = props.smallGroupName.id;
   const name = props.smallGroupName.name;
   const isModify = props.isModify;
@@ -27,4 +27,4 @@ const GroupList = (props) => {
   );
 };
 
-export default GroupList;
+export default Group;
