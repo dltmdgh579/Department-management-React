@@ -1,8 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "../../../../css/department/group/Other_department_header.module.css";
 
-const OtherGroupHeader = (props) => {
+const OtherDepartmentHeader = (props) => {
   const departmentId = props.state?.currentDepartment.id;
   const departmentList = props.state?.departmentList.filter(
     (item) => item.id !== departmentId,
@@ -48,4 +48,4 @@ const OtherGroupHeader = (props) => {
   );
 };
 
-export default OtherGroupHeader;
+export default OtherDepartmentHeader;

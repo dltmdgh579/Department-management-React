@@ -7,7 +7,7 @@ import GroupAttendance from "../../components/department/GroupAttendance";
 import AddGroup from "../../components/department/AddGroup";
 import ModifyGroup from "../../components/department/ModifyGroup";
 import styles from "../../css/department/Department_info.module.css";
-import OtherGroupHeader from "./group/header/OtherGroupHeader";
+import OtherGroupHeader from "./group/header/OtherDepartmentHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
