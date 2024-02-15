@@ -4,6 +4,7 @@ import PersonnelList from "../../../components/personnel/list/PersonnelList";
 import PersonnelListHeader from "../../../components/personnel/list/PersonnelListHeader";
 import { useLocation } from "react-router-dom";
 import qs from "qs";
+import NameHeader from "../../../components/NameHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -77,6 +78,7 @@ const ListAll = (props) => {
 
   return (
     <div>
+      <NameHeader pageName={"전체 인원"} />
       <PersonnelListHeader
         department={state}
         departmentFilterFunction={departmentCheckFilter}
