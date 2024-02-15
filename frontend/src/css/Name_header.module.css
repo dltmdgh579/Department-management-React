@@ -1,0 +1,30 @@
+.container {
+  position: relative;
+  height: 40px;
+}
+
+.go_back_img {
+  position: absolute;
+  width: 15px;
+  height: 25px;
+  margin: 10px;
+  background-image: url("../../public/image/go_back.png");
+  background-size: 100% 100%;
+}
+
+.page_name {
+  position: absolute;
+  font-size: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container > hr {
+  position: absolute;
+  width: 100%;
+  margin-top: 45px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
