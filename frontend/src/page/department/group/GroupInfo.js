@@ -70,7 +70,7 @@ const GroupInfo = () => {
     <div className={styles.parent_container}>
       <NameHeader pageName={state?.currentGroup.name} />
       <OtherGroupHeader currentDepartmentId={department} state={state} />
-      <GroupInfoHeader params={[department, group]} />
+      <GroupInfoHeader params={[department, group]} state={state} />
       <div className={styles.toggle_switch_container}>
         <label className={styles.toggle_switch}>
           <input

@@ -5,13 +5,18 @@ import styles from "../../../../css/department/group/Group_info_header.module.cs
 const GroupInfoHeader = (props) => {
   const departmentId = props.params[0];
   const groupId = props.params[1];
+  const groupState = props.state;
 
   return (
     <div className={styles.container}>
       <div className={styles.add_personnel}>
         <Link
           to="/list/add"
-          state={{ departmentId: departmentId, groupId: groupId }}
+          state={{
+            departmentId: departmentId,
+            groupId: groupId,
+            groupState: props.state,
+          }}
           className={styles.add_personnel_link}
         >
           추가
