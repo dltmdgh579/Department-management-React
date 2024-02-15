@@ -4,6 +4,8 @@ import styles from "../../css/department/Department_attendance.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import PersonnelList from "../../components/personnel/list/PersonnelList";
 import moment from "moment";
+import NameHeader from "../../components/NameHeader";
+import FooterNav from "../../components/FooterNav";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -22,9 +24,7 @@ const DepartmentInfo = (props) => {
 
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get(
-        `${API_ROOT}/${departmentId}/list/${date}`,
-      );
+      const res = await axios.get(`${API_ROOT}/${departmentId}/list/${date}`);
       return res.data;
     };
 
@@ -43,7 +43,7 @@ const DepartmentInfo = (props) => {
       ]);
     } else if (isAttendanceMember === false) {
       setAttendanceMemberList(
-        attendanceMemberList.filter((member) => member.id != id),
+        attendanceMemberList.filter((member) => member.id != id)
       );
     }
   };
@@ -65,20 +65,24 @@ const DepartmentInfo = (props) => {
   };
 
   return (
-    <div className={styles.parent_container}>
-      {infoList &&
-        infoList.map((info) => (
-          <PersonnelList
-            key={info.id}
-            info={info}
-            attendance={true}
-            absentCheckFunction={checkAttendanceMemberInfo}
-          />
-        ))}
+    <div>
+      <NameHeader pageName={"전체 출석 확인"} />
+      <div className={styles.parent_container}>
+        {infoList &&
+          infoList.map((info) => (
+            <PersonnelList
+              key={info.id}
+              info={info}
+              attendance={true}
+              absentCheckFunction={checkAttendanceMemberInfo}
+            />
+          ))}
 
-      <div className={styles.done_check} onClick={sendAttendanceMemberList}>
-        ✔
+        <div className={styles.done_check} onClick={sendAttendanceMemberList}>
+          ✔
+        </div>
       </div>
+      <FooterNav />
     </div>
   );
 };

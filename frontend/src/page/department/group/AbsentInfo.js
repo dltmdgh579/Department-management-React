@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import styles from "../../../css/department/group/Group_absent_info_list.module.css";
 import { ko } from "date-fns/locale";
 import { format } from "date-fns";
+import NameHeader from "../../../components/NameHeader";
+import FooterNav from "../../../components/FooterNav";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -20,7 +22,7 @@ const AbsentInfo = () => {
     const infoData = async () => {
       const absentDate = format(selectedDate, "yyyy-MM-dd");
       const res = await axios.get(
-        `${API_ROOT}/${departmentId}/${groupId}/absent/${absentDate}`,
+        `${API_ROOT}/${departmentId}/${groupId}/absent/${absentDate}`
       );
 
       return res.data;
@@ -33,30 +35,32 @@ const AbsentInfo = () => {
     setSelectedDate(date);
     const absentDate = format(date, "yyyy-MM-dd");
     await axios
-      .get(
-        `${API_ROOT}/${departmentId}/${groupId}/absent/${absentDate}`,
-      )
+      .get(`${API_ROOT}/${departmentId}/${groupId}/absent/${absentDate}`)
       .then((res) => setInfoList(res.data));
   };
 
   return (
-    <div className={styles.parent_container}>
-      <div className={styles.date_picker}>
-        <DatePicker
-          showYearDropdown
-          scrollableYearDropdown
-          yearDropdownItemNumber={100}
-          dateFormat="yyyy.MM.dd" // 날짜 형태
-          shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
-          minDate={new Date("1970-01-01")} // minDate 이전 날짜 선택 불가
-          maxDate={new Date()} // maxDate 이후 날짜 선택 불가
-          selected={selectedDate}
-          locale={ko}
-          onChange={(date) => handleSelectedDate(date)}
-        />
+    <div>
+      <NameHeader pageName={"결석 인원"} />
+      <div className={styles.parent_container}>
+        <div className={styles.date_picker}>
+          <DatePicker
+            showYearDropdown
+            scrollableYearDropdown
+            yearDropdownItemNumber={100}
+            dateFormat="yyyy.MM.dd" // 날짜 형태
+            shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
+            minDate={new Date("1970-01-01")} // minDate 이전 날짜 선택 불가
+            maxDate={new Date()} // maxDate 이후 날짜 선택 불가
+            selected={selectedDate}
+            locale={ko}
+            onChange={(date) => handleSelectedDate(date)}
+          />
+        </div>
+        {infoList &&
+          infoList.map((info) => <AbsentInfoList key={info.id} info={info} />)}
       </div>
-      {infoList &&
-        infoList.map((info) => <AbsentInfoList key={info.id} info={info} />)}
+      <FooterNav />
     </div>
   );
 };

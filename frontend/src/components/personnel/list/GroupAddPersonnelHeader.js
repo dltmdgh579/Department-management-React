@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../../css/personnel/list/Personnel_list_header.module.css";
+import FooterNav from "../../FooterNav";
+import NameHeader from "../../NameHeader";
 
 const GroupAddPersonnelHeader = (props) => {
   const isAddPage = props.add;
@@ -88,6 +90,7 @@ const GroupAddPersonnelHeader = (props) => {
 
   return (
     <div>
+      <NameHeader pageName={"그룹 인원 추가"} />
       <div className={styles.container}>
         {isAddPage ? null : (
           <div className={styles.post}>
@@ -146,6 +149,7 @@ const GroupAddPersonnelHeader = (props) => {
           </div>
         </div>
       </div>
+      <FooterNav />
     </div>
   );
 };
