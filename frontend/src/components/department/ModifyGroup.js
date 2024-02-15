@@ -25,7 +25,6 @@ const AddGroup = (props) => {
       data: JSON.stringify({ name: modifiedGroupName }),
     }).then(() => {
       navigate("/" + departmentName, { state: props.state });
-      window.location.reload();
     });
   };
 
