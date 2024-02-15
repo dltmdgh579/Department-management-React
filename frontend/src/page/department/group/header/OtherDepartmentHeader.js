@@ -5,9 +5,8 @@ import styles from "../../../../css/department/group/Other_department_header.mod
 const OtherDepartmentHeader = (props) => {
   const departmentId = props.state?.currentDepartment.id;
   const departmentList = props.state?.departmentList.filter(
-    (item) => item.id !== departmentId,
+    (item) => item.id !== departmentId
   );
-  console.log(departmentList);
 
   const navigate = useNavigate();
 
@@ -21,11 +20,15 @@ const OtherDepartmentHeader = (props) => {
   };
 
   const checkDepartmentColor = (selectedDepartment) => {
-    if (selectedDepartment === "KINDERGARTEN") return styles.other_department_kindergarten;
-    else if (selectedDepartment === "HOLYKIDS") return styles.other_department_holykids;
-    else if (selectedDepartment === "PAULCOMMUNITY") return styles.other_department_paulcommunity;
-    else if (selectedDepartment === "JOSHUA") return styles.other_department_joshua;
-  }
+    if (selectedDepartment === "KINDERGARTEN")
+      return styles.other_department_kindergarten;
+    else if (selectedDepartment === "HOLYKIDS")
+      return styles.other_department_holykids;
+    else if (selectedDepartment === "PAULCOMMUNITY")
+      return styles.other_department_paulcommunity;
+    else if (selectedDepartment === "JOSHUA")
+      return styles.other_department_joshua;
+  };
 
   const otherDepartmentDisplay = (selectedDepartment) => {
     if (selectedDepartment === "KINDERGARTEN") return "영유치부";
