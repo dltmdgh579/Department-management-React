@@ -4,17 +4,17 @@ import styles from "../../../../css/department/group/Other_group_header.module.c
 
 const OtherGroupHeader = (props) => {
   const currentDepartmentId = props.currentDepartmentId;
-  const currentGroupId = props.state?.currentGroupId;
+  const currentGroupId = props.state?.currentGroup.id;
   const smallGroupList = props.state?.smallGroupList.filter(
-    (item) => item.id !== currentGroupId,
+    (item) => item.id !== currentGroupId
   );
 
   const navigate = useNavigate();
 
-  const navigateToOtherGroup = (currentGroupId) => {
-    navigate(`/${currentDepartmentId}/${currentGroupId}`, {
+  const navigateToOtherGroup = (currentGroup) => {
+    navigate(`/${currentDepartmentId}/${currentGroup.id}`, {
       state: {
-        currentGroupId: currentGroupId,
+        currentGroup: currentGroup,
         smallGroupList: props.state?.smallGroupList,
       },
     });
@@ -25,7 +25,7 @@ const OtherGroupHeader = (props) => {
       {smallGroupList.map((group) => (
         <div
           className={styles.other_group}
-          onClick={() => navigateToOtherGroup(group.id)}
+          onClick={() => navigateToOtherGroup(group)}
         >
           {group.name}
         </div>

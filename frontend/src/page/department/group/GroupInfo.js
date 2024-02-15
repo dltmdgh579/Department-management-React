@@ -6,6 +6,7 @@ import { useLocation, useParams } from "react-router-dom";
 import styles from "../../../css/department/group/Group_info_list.module.css";
 import moment from "moment";
 import OtherGroupHeader from "./header/OtherGroupHeader";
+import NameHeader from "../../../components/NameHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -22,9 +23,7 @@ const GroupInfo = () => {
 
   useEffect(() => {
     const infoData = async () => {
-      const res = await axios.get(
-        `${API_ROOT}/${department}/${group}`,
-      );
+      const res = await axios.get(`${API_ROOT}/${department}/${group}`);
 
       return res.data;
     };
@@ -68,6 +67,7 @@ const GroupInfo = () => {
 
   return (
     <div className={styles.parent_container}>
+      <NameHeader pageName={state?.currentGroup.name} />
       <OtherGroupHeader currentDepartmentId={department} state={state} />
       <GroupInfoHeader params={[department, group]} />
       <div className={styles.toggle_switch_container}>

@@ -21,7 +21,7 @@ const GroupList = (props) => {
               <Link
                 to={"/" + id + "/" + smallGroup.id}
                 state={{
-                  currentGroupId: smallGroup.id,
+                  currentGroup: smallGroup,
                   smallGroupList: smallGroupInfoList,
                 }}
                 className={styles.link}
