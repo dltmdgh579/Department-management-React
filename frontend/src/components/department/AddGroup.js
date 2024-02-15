@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
 const AddGroup = (props) => {
-  const departmentId = props.state.id;
-  const departmentName = props.state.name;
+  const departmentId = props.state.currentDepartment.id;
+  const departmentName = props.state.currentDepartment.name;
 
   const [newGroup, setNewGroup] = useState([]);
 
@@ -24,7 +24,6 @@ const AddGroup = (props) => {
       data: JSON.stringify({ name: newGroup }),
     }).then(() => {
       navigate("/" + departmentName, { state: props.state });
-      window.location.reload();
     });
   };
 

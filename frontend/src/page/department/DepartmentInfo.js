@@ -32,6 +32,7 @@ const DepartmentInfo = (props) => {
     };
 
     infoData().then((res) => setInfo(res));
+    setAddGroup(false);
   }, [location]);
 
   const addGroup = (isAdd) => {

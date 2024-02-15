@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
 const AddGroup = (props) => {
-  const departmentId = props.state.id;
-  const departmentName = props.state.name;
+  const departmentId = props.state.currentDepartment.id;
+  const departmentName = props.state.currentDepartment.name;
   const groupId = props.groupId;
 
   const [modifiedGroupName, setModifiedGroupName] = useState([]);
@@ -17,8 +17,7 @@ const AddGroup = (props) => {
   const modifyGroup = async () => {
     await axios({
       method: "post",
-      url:
-        `${API_ROOT}/${departmentId}/${groupId}/modify`,
+      url: `${API_ROOT}/${departmentId}/${groupId}/modify`,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
