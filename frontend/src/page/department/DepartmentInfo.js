@@ -9,6 +9,7 @@ import ModifyGroup from "../../components/department/ModifyGroup";
 import styles from "../../css/department/Department_info.module.css";
 import OtherGroupHeader from "./group/header/OtherDepartmentHeader";
 import NameHeader from "../../components/NameHeader";
+import FooterNav from "../../components/FooterNav";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -72,6 +73,7 @@ const DepartmentInfo = (props) => {
       >
         <GroupAttendance info={[info.attendance, info.enrollment]} />
       </Link>
+      <FooterNav />
     </div>
   );
 };

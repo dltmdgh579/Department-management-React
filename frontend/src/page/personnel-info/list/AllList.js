@@ -5,6 +5,7 @@ import PersonnelListHeader from "../../../components/personnel/list/PersonnelLis
 import { useLocation } from "react-router-dom";
 import qs from "qs";
 import NameHeader from "../../../components/NameHeader";
+import FooterNav from "../../../components/FooterNav";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -88,6 +89,7 @@ const ListAll = (props) => {
       {infoList
         ? infoList.map((info) => <PersonnelList key={info.id} info={info} />)
         : null}
+      <FooterNav />
     </div>
   );
 };

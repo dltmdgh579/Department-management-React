@@ -7,6 +7,7 @@ import styles from "../../../css/department/group/Group_info_list.module.css";
 import moment from "moment";
 import OtherGroupHeader from "./header/OtherGroupHeader";
 import NameHeader from "../../../components/NameHeader";
+import FooterNav from "../../../components/FooterNav";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -96,6 +97,7 @@ const GroupInfo = () => {
           ✔
         </div>
       ) : null}
+      <FooterNav />
     </div>
   );
 };

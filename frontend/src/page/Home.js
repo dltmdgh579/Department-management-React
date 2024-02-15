@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../css/Home.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import FooterNav from "../components/FooterNav";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -93,6 +94,7 @@ const FirstDepartment = () => {
           전체 인원
         </div>
       </div>
+      <FooterNav />
     </div>
   );
 };
