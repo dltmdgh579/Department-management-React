@@ -3,6 +3,10 @@
   height: 90vh;
 }
 
+.content {
+  margin-bottom: 60px;
+}
+
 .group_info_container {
   display: flex;
   flex-wrap: wrap;

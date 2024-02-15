@@ -55,24 +55,26 @@ const DepartmentInfo = (props) => {
         addFunction={addGroup}
         modifyFunction={modifyGroup}
       />
-      {isAddGroup ? <AddGroup state={state} /> : null}
-      {isModifyGroupName ? (
-        <ModifyGroup state={state} groupId={groupId} />
-      ) : null}
-      <GroupList
-        key={info.id}
-        info={info}
-        state={state}
-        isModify={isModifyGroup}
-        modifyFunction={modifyGroupName}
-      />
-      <Link
-        to={`/${departmentName}/list`}
-        state={{ departmentId: departmentId, departmentName: departmentName }}
-        className={styles.attendance_link}
-      >
-        <GroupAttendance info={[info.attendance, info.enrollment]} />
-      </Link>
+      <div className={styles.content}>
+        {isAddGroup ? <AddGroup state={state} /> : null}
+        {isModifyGroupName ? (
+          <ModifyGroup state={state} groupId={groupId} />
+        ) : null}
+        <GroupList
+          key={info.id}
+          info={info}
+          state={state}
+          isModify={isModifyGroup}
+          modifyFunction={modifyGroupName}
+        />
+        <Link
+          to={`/${departmentName}/list`}
+          state={{ departmentId: departmentId, departmentName: departmentName }}
+          className={styles.attendance_link}
+        >
+          <GroupAttendance info={[info.attendance, info.enrollment]} />
+        </Link>
+      </div>
       <FooterNav />
     </div>
   );

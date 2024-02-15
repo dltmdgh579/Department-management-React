@@ -43,22 +43,26 @@ const AbsentInfo = () => {
     <div>
       <NameHeader pageName={"결석 인원"} />
       <div className={styles.parent_container}>
-        <div className={styles.date_picker}>
-          <DatePicker
-            showYearDropdown
-            scrollableYearDropdown
-            yearDropdownItemNumber={100}
-            dateFormat="yyyy.MM.dd" // 날짜 형태
-            shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
-            minDate={new Date("1970-01-01")} // minDate 이전 날짜 선택 불가
-            maxDate={new Date()} // maxDate 이후 날짜 선택 불가
-            selected={selectedDate}
-            locale={ko}
-            onChange={(date) => handleSelectedDate(date)}
-          />
+        <div className={styles.content}>
+          <div className={styles.date_picker}>
+            <DatePicker
+              showYearDropdown
+              scrollableYearDropdown
+              yearDropdownItemNumber={100}
+              dateFormat="yyyy.MM.dd" // 날짜 형태
+              shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
+              minDate={new Date("1970-01-01")} // minDate 이전 날짜 선택 불가
+              maxDate={new Date()} // maxDate 이후 날짜 선택 불가
+              selected={selectedDate}
+              locale={ko}
+              onChange={(date) => handleSelectedDate(date)}
+            />
+          </div>
+          {infoList &&
+            infoList.map((info) => (
+              <AbsentInfoList key={info.id} info={info} />
+            ))}
         </div>
-        {infoList &&
-          infoList.map((info) => <AbsentInfoList key={info.id} info={info} />)}
       </div>
       <FooterNav />
     </div>

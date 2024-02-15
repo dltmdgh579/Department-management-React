@@ -90,7 +90,6 @@ const GroupAddPersonnelHeader = (props) => {
 
   return (
     <div>
-      <NameHeader pageName={"그룹 인원 추가"} />
       <div className={styles.container}>
         {isAddPage ? null : (
           <div className={styles.post}>
@@ -149,7 +148,6 @@ const GroupAddPersonnelHeader = (props) => {
           </div>
         </div>
       </div>
-      <FooterNav />
     </div>
   );
 };

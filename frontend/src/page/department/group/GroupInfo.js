@@ -71,32 +71,34 @@ const GroupInfo = () => {
       <NameHeader pageName={state?.currentGroup.name} />
       <OtherGroupHeader currentDepartmentId={department} state={state} />
       <GroupInfoHeader params={[department, group]} state={state} />
-      <div className={styles.toggle_switch_container}>
-        <label className={styles.toggle_switch}>
-          <input
-            type="checkbox"
-            checked={isCheck}
-            onChange={(e) => handleAbsent(e)}
-          ></input>
-          <span className={styles.slider_round}></span>
-        </label>
-        <div>결석체크</div>
-      </div>
-      <div className={styles.group_info_container}>
-        {infoList.map((info) => (
-          <GroupInfoList
-            key={info.id}
-            info={info}
-            check={isCheck}
-            checkFunction={checkAbsentee}
-          />
-        ))}
-      </div>
-      {isCheck ? (
-        <div className={styles.done_check} onClick={sendAbsenteeList}>
-          ✔
+      <div className={styles.content}>
+        <div className={styles.toggle_switch_container}>
+          <label className={styles.toggle_switch}>
+            <input
+              type="checkbox"
+              checked={isCheck}
+              onChange={(e) => handleAbsent(e)}
+            ></input>
+            <span className={styles.slider_round}></span>
+          </label>
+          <div>결석체크</div>
         </div>
-      ) : null}
+        <div className={styles.group_info_container}>
+          {infoList.map((info) => (
+            <GroupInfoList
+              key={info.id}
+              info={info}
+              check={isCheck}
+              checkFunction={checkAbsentee}
+            />
+          ))}
+        </div>
+        {isCheck ? (
+          <div className={styles.done_check} onClick={sendAbsenteeList}>
+            ✔
+          </div>
+        ) : null}
+      </div>
       <FooterNav />
     </div>
   );

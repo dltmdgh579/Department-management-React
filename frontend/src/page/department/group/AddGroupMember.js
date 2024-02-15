@@ -5,6 +5,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../../../css/department/group/Group_add_member.module.css";
 import moment from "moment";
 import GroupAddPersonnelHeader from "../../../components/personnel/list/GroupAddPersonnelHeader";
+import FooterNav from "../../../components/FooterNav";
+import NameHeader from "../../../components/NameHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -85,23 +87,27 @@ const AddGroupMember = (props) => {
   };
 
   return (
-    <div className={styles.parent_container}>
+    <div>
+      <NameHeader pageName={"그룹 인원 추가"} />
       <GroupAddPersonnelHeader
         add={true}
         genderFilterFunction={genderCheckFilter}
         orderFunction={checkOrder}
       />
-      {infoList.map((info) => (
-        <PersonnelList
-          key={info.id}
-          info={info}
-          add={true}
-          checkFunction={checkAddMemberInfo}
-        />
-      ))}
-      <div className={styles.done_check} onClick={sendAddMemberList}>
-        ✔
+      <div className={styles.content}>
+        {infoList.map((info) => (
+          <PersonnelList
+            key={info.id}
+            info={info}
+            add={true}
+            checkFunction={checkAddMemberInfo}
+          />
+        ))}
+        <div className={styles.done_check} onClick={sendAddMemberList}>
+          ✔
+        </div>
       </div>
+      <FooterNav />
     </div>
   );
 };

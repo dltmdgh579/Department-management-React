@@ -9,6 +9,10 @@
   margin: 0 8px;
 }
 
+.content {
+  margin-bottom: 60px;
+}
+
 .date_picker input {
   border-width: 0;
   font-weight: bolder;

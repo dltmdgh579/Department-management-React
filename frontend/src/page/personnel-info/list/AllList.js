@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import qs from "qs";
 import NameHeader from "../../../components/NameHeader";
 import FooterNav from "../../../components/FooterNav";
+import styles from "../../../css/personnel/list/All_list.module.css";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -86,9 +87,11 @@ const ListAll = (props) => {
         genderFilterFunction={genderCheckFilter}
         orderFunction={checkOrder}
       />
-      {infoList
-        ? infoList.map((info) => <PersonnelList key={info.id} info={info} />)
-        : null}
+      <div className={styles.content}>
+        {infoList
+          ? infoList.map((info) => <PersonnelList key={info.id} info={info} />)
+          : null}
+      </div>
       <FooterNav />
     </div>
   );
