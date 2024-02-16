@@ -43,7 +43,6 @@
   border-bottom: solid #aaaaaa 1px;
   padding-bottom: 10px;
   padding-left: 10px;
-  position: relative;
   background: none;
 }
 
@@ -94,7 +93,6 @@
 }
 
 .order_dropdown_button {
-  position: relative;
   clear: both;
   float: left;
   font-size: 15px;

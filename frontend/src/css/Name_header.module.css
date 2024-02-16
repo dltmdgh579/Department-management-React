@@ -1,6 +1,8 @@
 .container {
-  position: relative;
-  height: 40px;
+  position: sticky;
+  background: white;
+  top: 0px;
+  height: 45px;
 }
 
 .go_back_img {
