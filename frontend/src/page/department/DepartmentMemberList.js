@@ -15,10 +15,8 @@ const DepartmentInfo = (props) => {
   const departmentName = location.state?.departmentName;
 
   const [infoList, setInfoList] = useState([]);
-  const [selectedDate, setSelectedDate] = useState([]);
   const [attendanceMemberList, setAttendanceMemberList] = useState([]);
 
-  // setSelectedDate(moment().format("yyyy-MM-DD"));
   const date = moment().format("yyyy-MM-DD");
   const navigate = useNavigate();
 
@@ -43,7 +41,7 @@ const DepartmentInfo = (props) => {
       ]);
     } else if (isAttendanceMember === false) {
       setAttendanceMemberList(
-        attendanceMemberList.filter((member) => member.id != id)
+        attendanceMemberList.filter((member) => member.id != id),
       );
     }
   };
@@ -67,19 +65,21 @@ const DepartmentInfo = (props) => {
   return (
     <div>
       <NameHeader pageName={"전체 출석 확인"} />
-      <div className={styles.parent_container}>
-        {infoList &&
-          infoList.map((info) => (
-            <PersonnelList
-              key={info.id}
-              info={info}
-              attendance={true}
-              absentCheckFunction={checkAttendanceMemberInfo}
-            />
-          ))}
+      <div className={styles.content}>
+        <div className={styles.parent_container}>
+          {infoList &&
+            infoList.map((info) => (
+              <PersonnelList
+                key={info.id}
+                info={info}
+                attendance={true}
+                absentCheckFunction={checkAttendanceMemberInfo}
+              />
+            ))}
 
-        <div className={styles.done_check} onClick={sendAttendanceMemberList}>
-          ✔
+          <div className={styles.done_check} onClick={sendAttendanceMemberList}>
+            ✔
+          </div>
         </div>
       </div>
       <FooterNav />

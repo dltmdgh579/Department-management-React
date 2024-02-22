@@ -3,6 +3,7 @@
   background: white;
   top: 0px;
   height: 45px;
+  z-index: 1;
 }
 
 .go_back_img {

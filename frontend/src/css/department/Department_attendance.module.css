@@ -1,6 +1,9 @@
+.content {
+  margin-bottom: 60px;
+}
+
 .parent_container {
   position: relative;
-  height: 90vh;
 }
 
 .done_check {
