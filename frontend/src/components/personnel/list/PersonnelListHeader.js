@@ -9,6 +9,7 @@ const PersonnelListHeader = (props) => {
   const departmentFilterFunction = props.departmentFilterFunction;
   const genderFilterFunction = props.genderFilterFunction;
   const orderFunction = props.orderFunction;
+  const searchFunction = props.searchFunction;
 
   const [selectedOrder, setSelectedOrder] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -127,6 +128,10 @@ const PersonnelListHeader = (props) => {
     else if (selectedOrder === "AGE") return "나이순";
   };
 
+  const sendSearchWord = (e) => {
+    searchFunction(e.target.value);
+  };
+
   return (
     <div>
       <div className={styles.container}>
@@ -164,7 +169,7 @@ const PersonnelListHeader = (props) => {
           )}
         </div>
         <div className={styles.search_container}>
-          <input className={styles.search}></input>
+          <input className={styles.search} onChange={sendSearchWord}></input>
         </div>
       </div>
       <div>

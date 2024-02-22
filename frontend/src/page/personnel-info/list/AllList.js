@@ -22,6 +22,7 @@ const ListAll = (props) => {
   const [departmentList, setDepartmentList] = useState([]);
   const [gender, setGender] = useState("");
   const [order, setOrder] = useState("");
+  const [searchWord, setSearchWord] = useState("");
 
   // useEffect
   useEffect(() => {
@@ -37,8 +38,8 @@ const ListAll = (props) => {
     const infoData = async () => {
       const res = await axios.get(`${API_ROOT}/list`, {
         params: {
-          departmentFilter: departmentList,
-          genderFilter: gender,
+          department: departmentList,
+          gender: gender,
           order: order,
         },
       });
@@ -47,6 +48,22 @@ const ListAll = (props) => {
 
     infoData().then((res) => setInfoList(res));
   }, [departmentList, gender, order]);
+
+  useEffect(() => {
+    const infoData = async () => {
+      const res = await axios.get(`${API_ROOT}/list/search`, {
+        params: {
+          department: departmentList,
+          gender: gender,
+          order: order,
+          search: searchWord,
+        },
+      });
+      return res.data;
+    };
+
+    infoData().then((res) => setInfoList(res));
+  }, [searchWord]);
 
   const setDepartmentFunction = (selectedDepartment) => {
     const updated = selectedDepartment.filter((item) => item.isCheck !== false);
@@ -78,6 +95,10 @@ const ListAll = (props) => {
     setOrder(selectedOrder);
   };
 
+  const setSearchWordFunction = (searchWord) => {
+    setSearchWord(searchWord);
+  };
+
   return (
     <div>
       <NameHeader pageName={"전체 인원"} />
@@ -86,6 +107,7 @@ const ListAll = (props) => {
         departmentFilterFunction={departmentCheckFilter}
         genderFilterFunction={genderCheckFilter}
         orderFunction={checkOrder}
+        searchFunction={setSearchWordFunction}
       />
       <div className={styles.content}>
         {infoList
