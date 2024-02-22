@@ -11,8 +11,8 @@ const API_ROOT = process.env.REACT_APP_API_ROOT;
 
 const DepartmentInfo = (props) => {
   const location = useLocation();
-  const departmentId = location.state?.departmentId;
-  const departmentName = location.state?.departmentName;
+  const departmentId = location.state?.state.currentDepartment.id;
+  const departmentName = location.state?.state.currentDepartment.name;
 
   const [infoList, setInfoList] = useState([]);
   const [attendanceMemberList, setAttendanceMemberList] = useState([]);
@@ -57,7 +57,10 @@ const DepartmentInfo = (props) => {
       data: JSON.stringify({ attendanceMemberList: attendanceMemberList }),
     }).then((response) => {
       navigate(`/${departmentId}`, {
-        state: { id: departmentId, name: departmentName },
+        state: {
+          currentDepartment: location.state?.state.currentDepartment,
+          departmentList: location.state?.state.departmentList,
+        },
       });
     });
   };
