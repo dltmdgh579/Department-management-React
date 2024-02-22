@@ -137,7 +137,11 @@ const PersonnelListHeader = (props) => {
       <div className={styles.container}>
         {isAddPage ? null : (
           <div className={styles.post}>
-            <Link to="/personnel/post" className={styles.post_link}>
+            <Link
+              to="/personnel/post"
+              className={styles.post_link}
+              state={{ departmentList }}
+            >
               추가
             </Link>
           </div>

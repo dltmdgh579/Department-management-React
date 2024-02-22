@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../../css/personnel/post/Personnel_post.module.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ko from "date-fns/locale/ko";
@@ -10,6 +10,9 @@ import { format } from "date-fns";
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
 const PersonnelPost = () => {
+  const location = useLocation();
+  const departmentList = location.state?.departmentList;
+
   const navigate = useNavigate();
 
   const [uploadImageUrl, setUploadImageUrl] = useState(
@@ -66,7 +69,6 @@ const PersonnelPost = () => {
 
   const postRequest = async () => {
     const formData = new FormData();
-    console.log(uploadImageUrl);
     formData.append("profileImage", uploadImageUrl);
     formData.append(
       "requestDto",
@@ -81,7 +83,7 @@ const PersonnelPost = () => {
       },
       data: formData,
     }).then((response) => {
-      navigate("/list");
+      navigate("/list", { state: departmentList });
     });
   };
 
