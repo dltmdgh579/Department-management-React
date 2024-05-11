@@ -14,6 +14,8 @@ const PersonnelDetail = (props) => {
     departmentType,
   } = props.info;
 
+  const telLink = "tel:" + phone;
+
   return (
     <div className={styles.detail}>
       <div className={styles.info_container}>
@@ -29,7 +31,9 @@ const PersonnelDetail = (props) => {
           <div className={styles.text_name}>{name}</div>
           <div>{departmentType}</div>
           <div>{dateOfBirth}</div>
-          <div>{phone}</div>
+          <div>
+            <a href={telLink}>{phone}</a>
+          </div>
         </div>
       </div>
       <div className={styles.detail_container}>

@@ -5,6 +5,7 @@ const Personnel = (props) => {
   const { name, dateOfBirth, phone, address, profileImage } = props.info;
   const isAdd = props.isAdd;
   const isAttendance = props.isAttendance;
+  const telLink = "tel:" + phone;
 
   return (
     <div
@@ -25,7 +26,9 @@ const Personnel = (props) => {
       <div className={styles.text_container}>
         <div className={styles.text_name}>{name}</div>
         <div>{dateOfBirth}</div>
-        <div>{phone}</div>
+        <div>
+          <a href={telLink}>{phone}</a>
+        </div>
         <div>{address}</div>
       </div>
     </div>

@@ -5,6 +5,12 @@ import styles from "../../../css/department/group/Group_absent_info_list.module.
 const GroupAbsentInfoList = (props) => {
   const { id, name, phone } = props.info;
 
+  const telLink = "tel:" + { phone };
+
+  const eventPrevent = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <div className={styles.container}>
       <Link to={"/detail/" + id} className={styles.link}>
@@ -18,7 +24,9 @@ const GroupAbsentInfoList = (props) => {
           </div>
           <hr />
           <div>
-            <div className={styles.text_phone}>{phone}</div>
+            <div className={styles.text_phone} onClick={eventPrevent}>
+              <a href={telLink}>{phone}</a>
+            </div>
           </div>
           <hr />
         </div>
