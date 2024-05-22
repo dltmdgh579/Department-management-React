@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../../css/personnel/list/Personnel_list.module.css";
 import Personnel from "./Personnel";
@@ -15,12 +15,17 @@ const PersonnelList = (props) => {
   } = props.info;
 
   const isAddPage = props.add;
-  const isAttendanceCheckPage = props.attendance;
+  const isAttendanceCheckPage = props.attendanceCheckPage;
   const checkAddMemberInfo = props.checkFunction;
-  const checkAttendanceMemberInfo = props.absentCheckFunction;
+  const checkAttendanceMemberInfo = props.attendanceCheckFunction;
+  const attendanceCheck = props.attendanceCheck;
 
   const [added, setAdded] = useState(false);
   const [attendance, setAttendance] = useState(false);
+
+  useEffect(() => {
+    setAttendance(attendanceCheck);
+  }, [attendanceCheck]);
 
   const checkAddMember = () => {
     const isAddMember = !added;
@@ -29,9 +34,9 @@ const PersonnelList = (props) => {
   };
 
   const checkAttendanceMember = () => {
-    const isAttendanceMember = !attendance;
-    setAttendance(isAttendanceMember);
-    checkAttendanceMemberInfo({ id, name, isAttendanceMember });
+    const attendanceStatus = !attendance === true ? "ATTENDANCE" : "ABSENT";
+    setAttendance(!attendance);
+    checkAttendanceMemberInfo({ id, name, attendanceStatus });
   };
 
   let personnel = (

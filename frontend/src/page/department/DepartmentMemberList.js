@@ -6,6 +6,9 @@ import PersonnelList from "../../components/personnel/list/PersonnelList";
 import moment from "moment";
 import NameHeader from "../../components/NameHeader";
 import FooterNav from "../../components/FooterNav";
+import DatePicker from "react-datepicker";
+import { ko } from "date-fns/locale";
+import { format } from "date-fns";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -16,40 +19,46 @@ const DepartmentInfo = (props) => {
 
   const [infoList, setInfoList] = useState([]);
   const [attendanceMemberList, setAttendanceMemberList] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const date = moment().format("yyyy-MM-DD");
   const navigate = useNavigate();
 
   useEffect(() => {
+    const searchDate = format(selectedDate, "yyyy-MM-dd");
     const infoData = async () => {
-      const res = await axios.get(`${API_ROOT}/${departmentId}/list/${date}`);
+      const res = await axios.get(
+        `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
+      );
       return res.data;
     };
 
     infoData().then((res) => setInfoList(res));
-  }, []);
+  }, [selectedDate]);
 
   const checkAttendanceMemberInfo = (attendanceMemberInfo) => {
     const id = attendanceMemberInfo.id;
     const name = attendanceMemberInfo.name;
-    const attendanceDate = moment().format("YYYY-MM-DD");
-    const isAttendanceMember = attendanceMemberInfo.isAttendanceMember;
-    if (isAttendanceMember === true) {
-      setAttendanceMemberList([
-        ...attendanceMemberList,
-        { id, name, attendanceDate },
-      ]);
-    } else if (isAttendanceMember === false) {
-      setAttendanceMemberList(
-        attendanceMemberList.filter((member) => member.id != id),
-      );
-    }
+    const attendanceStatus = attendanceMemberInfo.attendanceStatus;
+    setAttendanceMemberList((prevList) => {
+      const memberIndex = prevList.findIndex((member) => member.id == id);
+      if (memberIndex != -1) {
+        const updatedList = [...prevList];
+        updatedList[memberIndex] = {
+          ...updatedList[memberIndex],
+          attendanceStatus: attendanceStatus,
+        };
+        return updatedList;
+      } else {
+        return [...prevList, { id, name, attendanceStatus }];
+      }
+    });
   };
 
   const sendAttendanceMemberList = async () => {
+    const searchDate = format(selectedDate, "yyyy-MM-dd");
     await axios({
       method: "post",
-      url: `${API_ROOT}/${departmentId}/attendance`,
+      url: `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -65,23 +74,49 @@ const DepartmentInfo = (props) => {
     });
   };
 
+  const handleSelectedDate = async (date) => {
+    setSelectedDate(date);
+  };
+
   return (
     <div>
       <NameHeader pageName={"전체 출석 확인"} />
       <div className={styles.content}>
         <div className={styles.parent_container}>
-          {infoList &&
-            infoList.map((info) => (
-              <PersonnelList
-                key={info.id}
-                info={info}
-                attendance={true}
-                absentCheckFunction={checkAttendanceMemberInfo}
-              />
-            ))}
-
-          <div className={styles.done_check} onClick={sendAttendanceMemberList}>
-            ✔
+          <div className={styles.date_picker}>
+            <DatePicker
+              showYearDropdown
+              scrollableYearDropdown
+              yearDropdownItemNumber={100}
+              dateFormat="yyyy.MM.dd" // 날짜 형태
+              shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
+              minDate={new Date("1970-01-01")} // minDate 이전 날짜 선택 불가
+              maxDate={new Date()} // maxDate 이후 날짜 선택 불가
+              selected={selectedDate}
+              locale={ko}
+              onChange={(date) => handleSelectedDate(date)}
+            />
+          </div>
+          <div className={styles.personnel_list}>
+            {infoList &&
+              infoList.map((info) => (
+                <PersonnelList
+                  key={info.id}
+                  info={info}
+                  attendanceCheck={
+                    info.attendanceStatus === "ATTENDANCE" ? true : false
+                  }
+                  attendanceCheckPage={true}
+                  attendanceCheckFunction={checkAttendanceMemberInfo}
+                />
+              ))}
+            {infoList.length === 0 ? <div>출석 인원이 없습니다.</div> : null}
+          </div>
+          <div
+            className={styles.attendance_check}
+            onClick={sendAttendanceMemberList}
+          >
+            <span className={styles.attendance_check_text}>출석체크</span>
           </div>
         </div>
       </div>
