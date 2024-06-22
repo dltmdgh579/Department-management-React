@@ -22,7 +22,11 @@ const Login = () => {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      data: JSON.stringify({ userId: userId, password: password }),
+      data: JSON.stringify({
+        userId: userId,
+        password: password,
+        rememberMe: "1",
+      }),
     })
       .then((res) => {
         if (res.status === 200) sessionStorage.setItem("Authorized", "OK");
