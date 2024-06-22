@@ -34,33 +34,35 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.login_container}>
-      {error && <p className={styles.error}>{error}</p>}
-      <div className={styles.login_form}>
-        <div className={styles.form_group}>
-          <label htmlFor="userId">ID:</label>
-          <input
-            type="text"
-            id="userId"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
-            required
-          />
-        </div>
-        <div className={styles.form_group}>
-          <label htmlFor="password">PW:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className={styles.form_group}>
-          <button type="button" onClick={postLogin}>
-            로그인
-          </button>
+    <div className={styles.container}>
+      <div className={styles.login_container}>
+        {error && <p className={styles.error}>{error}</p>}
+        <div className={styles.login_form}>
+          <div className={styles.form_group}>
+            <label htmlFor="userId">ID:</label>
+            <input
+              type="text"
+              id="userId"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.form_group}>
+            <label htmlFor="password">PW:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.form_group}>
+            <button type="button" onClick={postLogin}>
+              로그인
+            </button>
+          </div>
         </div>
       </div>
     </div>
