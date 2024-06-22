@@ -5,7 +5,7 @@ const AuthLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("Authorized") !== "OK") {
+    if (sessionStorage.getItem("Authorized") !== "OK") {
       navigate("/login");
     }
   }, []);

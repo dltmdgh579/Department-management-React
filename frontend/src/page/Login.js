@@ -25,7 +25,7 @@ const Login = () => {
       data: JSON.stringify({ userId: userId, password: password }),
     })
       .then((res) => {
-        if (res.status === 200) localStorage.setItem("Authorized", "OK");
+        if (res.status === 200) sessionStorage.setItem("Authorized", "OK");
         navigate("/");
       })
       .catch(() => {
