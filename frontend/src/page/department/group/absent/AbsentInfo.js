@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
-import AbsentInfoList from "../../../components/department/group/AbsentInfoList";
+import AbsentInfoList from "./AbsentInfoList";
 import { useParams } from "react-router-dom";
-import styles from "../../../css/department/group/Group_absent_info_list.module.css";
+import styles from "../../../../css/department/group/absent/Group_absent_info_list.module.css";
 import { ko } from "date-fns/locale";
 import { format } from "date-fns";
-import NameHeader from "../../../components/NameHeader";
-import FooterNav from "../../../components/FooterNav";
+import NameHeader from "../../../../components/NameHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -22,7 +21,7 @@ const AbsentInfo = () => {
     const infoData = async () => {
       const absentDate = format(selectedDate, "yyyy-MM-dd");
       const res = await axios.get(
-        `${API_ROOT}/${departmentId}/${groupId}/absent/${absentDate}`
+        `${API_ROOT}/${departmentId}/${groupId}/absent/${absentDate}`,
       );
 
       return res.data;
@@ -64,7 +63,6 @@ const AbsentInfo = () => {
             ))}
         </div>
       </div>
-      <FooterNav />
     </div>
   );
 };

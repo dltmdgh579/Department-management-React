@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "../../css/department/Department_attendance.module.css";
+import styles from "../../../css/department/attendance/Department_attendance.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import PersonnelList from "../../components/personnel/list/PersonnelList";
-import moment from "moment";
-import NameHeader from "../../components/NameHeader";
-import FooterNav from "../../components/FooterNav";
+import NameHeader from "../../../components/NameHeader";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
 import { format } from "date-fns";
+import PersonnelAttendance from "./PersonnelAttendance";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -100,13 +98,21 @@ const DepartmentInfo = (props) => {
           <div className={styles.personnel_list}>
             {infoList &&
               infoList.map((info) => (
-                <PersonnelList
+                // <PersonnelList
+                //   key={info.id}
+                //   info={info}
+                //   attendanceCheck={
+                //     info.attendanceStatus === "ATTENDANCE" ? true : false
+                //   }
+                //   attendanceCheckPage={true}
+                //   attendanceCheckFunction={checkAttendanceMemberInfo}
+                // />
+                <PersonnelAttendance
                   key={info.id}
                   info={info}
                   attendanceCheck={
                     info.attendanceStatus === "ATTENDANCE" ? true : false
                   }
-                  attendanceCheckPage={true}
                   attendanceCheckFunction={checkAttendanceMemberInfo}
                 />
               ))}
@@ -120,7 +126,6 @@ const DepartmentInfo = (props) => {
           </div>
         </div>
       </div>
-      <FooterNav />
     </div>
   );
 };

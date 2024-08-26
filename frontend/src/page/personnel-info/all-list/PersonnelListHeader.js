@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../../../css/personnel/list/Personnel_list_header.module.css";
-import FooterNav from "../../FooterNav";
-import NameHeader from "../../NameHeader";
+import styles from "../../../css/personnel/all-list/Personnel_list_header.module.css";
 
-const GroupAddPersonnelHeader = (props) => {
+const PersonnelListHeader = (props) => {
   const isAddPage = props.add;
 
+  const departmentList = props.department;
+  const departmentFilterFunction = props.departmentFilterFunction;
   const genderFilterFunction = props.genderFilterFunction;
   const orderFunction = props.orderFunction;
+  const searchFunction = props.searchFunction;
 
   const [selectedOrder, setSelectedOrder] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedDepartment, setSelectedDepartment] = useState([]);
   const [selectedGender, setSelectedGender] = useState([
     { gender: "M", isCheck: false },
     { gender: "W", isCheck: false },
   ]);
+
+  useEffect(() => {
+    departmentFilterFunction(selectedDepartment);
+  }, [selectedDepartment]);
 
   useEffect(() => {
     genderFilterFunction(selectedGender);
@@ -24,6 +30,28 @@ const GroupAddPersonnelHeader = (props) => {
   useEffect(() => {
     orderFunction(selectedOrder);
   }, [selectedOrder]);
+
+  const findAndSetDepartment = (department) => {
+    for (let i = 0; i < selectedDepartment.length; i++) {
+      if (selectedDepartment[i].name === department.name) {
+        let copy = [...selectedDepartment];
+        copy[i].isCheck = !copy[i].isCheck;
+        setSelectedDepartment(copy);
+        return;
+      }
+    }
+
+    const newDepartment = {
+      name: department.name,
+      isCheck: true,
+    };
+
+    setSelectedDepartment(selectedDepartment.concat(newDepartment));
+  };
+
+  const checkDepartmentFilter = (department) => {
+    findAndSetDepartment(department);
+  };
 
   const findAndSetGender = (gender) => {
     let copy = [...selectedGender];
@@ -65,6 +93,18 @@ const GroupAddPersonnelHeader = (props) => {
     findAndSetGender(gender);
   };
 
+  const isDepartmentCheckFilter = (department) => {
+    for (let i = 0; i < selectedDepartment.length; i++) {
+      if (
+        selectedDepartment[i].name === department.name &&
+        selectedDepartment[i].isCheck
+      ) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const isGenderCheckFilter = (gender) => {
     for (let i = 0; i < selectedGender.length; i++) {
       if (selectedGender[i].gender === gender && selectedGender[i].isCheck) {
@@ -88,12 +128,20 @@ const GroupAddPersonnelHeader = (props) => {
     else if (selectedOrder === "AGE") return "나이순";
   };
 
+  const sendSearchWord = (e) => {
+    searchFunction(e.target.value);
+  };
+
   return (
     <div>
       <div className={styles.container}>
         {isAddPage ? null : (
           <div className={styles.post}>
-            <Link to="/personnel/post" className={styles.post_link}>
+            <Link
+              to="/personnel/post"
+              className={styles.post_link}
+              state={{ departmentList }}
+            >
               추가
             </Link>
           </div>
@@ -125,31 +173,45 @@ const GroupAddPersonnelHeader = (props) => {
           )}
         </div>
         <div className={styles.search_container}>
-          <input className={styles.search}></input>
+          <input className={styles.search} onChange={sendSearchWord}></input>
         </div>
       </div>
       <div>
-        <div className={styles.filter_container}>
-          <div
-            className={
-              isGenderCheckFilter("M") ? styles.check_filter : styles.filter
-            }
-            onClick={() => checkGenderFilter("M")}
-          >
-            남자
+        {isAddPage ? null : (
+          <div className={styles.filter_container}>
+            {departmentList.map((department) => (
+              <div
+                className={
+                  isDepartmentCheckFilter(department)
+                    ? styles.check_filter
+                    : styles.filter
+                }
+                onClick={() => checkDepartmentFilter(department)}
+              >
+                {department.name}
+              </div>
+            ))}
+            <div
+              className={
+                isGenderCheckFilter("M") ? styles.check_filter : styles.filter
+              }
+              onClick={() => checkGenderFilter("M")}
+            >
+              남자
+            </div>
+            <div
+              className={
+                isGenderCheckFilter("W") ? styles.check_filter : styles.filter
+              }
+              onClick={() => checkGenderFilter("W")}
+            >
+              여자
+            </div>
           </div>
-          <div
-            className={
-              isGenderCheckFilter("W") ? styles.check_filter : styles.filter
-            }
-            onClick={() => checkGenderFilter("W")}
-          >
-            여자
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default GroupAddPersonnelHeader;
+export default PersonnelListHeader;

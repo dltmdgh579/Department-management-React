@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import GroupInfoList from "../../../components/department/group/GroupInfoList";
-import GroupInfoHeader from "./header/GroupInfoHeader";
+import GroupInfoList from "./GroupInfoList";
+import GroupInfoHeader from "./GroupInfoHeader";
 import { useLocation, useParams } from "react-router-dom";
 import styles from "../../../css/department/group/Group_info_list.module.css";
 import moment from "moment";
-import OtherGroupHeader from "./header/OtherGroupHeader";
+import OtherGroupHeader from "./OtherGroupHeader";
 import NameHeader from "../../../components/NameHeader";
-import FooterNav from "../../../components/FooterNav";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -99,7 +98,6 @@ const GroupInfo = () => {
           </div>
         ) : null}
       </div>
-      <FooterNav />
     </div>
   );
 };

@@ -1,22 +1,11 @@
 import React from "react";
-import styles from "../../../css/personnel/list/Personnel_list.module.css";
+import styles from "../../../css/personnel/all-list/Personnel_list.module.css";
 
 const Personnel = (props) => {
-  const { name, dateOfBirth, phone, address, profileImage, attendanceCheck } =
-    props.info;
-  const isAdd = props.isAdd;
-  const isAttendance = props.isAttendance;
-  const telLink = "tel:" + phone;
-
-  const overlay = (
-    <div className={styles.overlay}>
-      <span className={styles.overlay_text}>{isAdd ? "추가" : "출석"}</span>
-    </div>
-  );
+  const { name, dateOfBirth, phone, address, profileImage } = props.info;
 
   return (
     <div className={styles.attendance_container}>
-      {isAttendance || isAdd ? <div>{overlay}</div> : null}
       <div className={styles.info_container}>
         <img
           src={
@@ -29,13 +18,7 @@ const Personnel = (props) => {
         <div className={styles.text_container}>
           <div className={styles.text_name}>{name}</div>
           <div>{dateOfBirth}</div>
-          <div>
-            {isAdd || isAttendance ? (
-              <a href={telLink}>{phone}</a>
-            ) : (
-              <div>{phone}</div>
-            )}
-          </div>
+          <div>{phone}</div>
           <div>{address}</div>
         </div>
       </div>

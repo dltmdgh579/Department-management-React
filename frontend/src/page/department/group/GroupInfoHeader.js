@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../../../css/department/group/Group_info_header.module.css";
+import styles from "../../../css/department/group/Group_info_header.module.css";
 
 const GroupInfoHeader = (props) => {
   const departmentId = props.params[0];
   const groupId = props.params[1];
-  const groupState = props.state;
 
   return (
     <div className={styles.container}>

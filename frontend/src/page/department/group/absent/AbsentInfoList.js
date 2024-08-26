@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../../css/department/group/Group_absent_info_list.module.css";
+import styles from "../../../../css/department/group/absent/Group_absent_info_list.module.css";
 
 const GroupAbsentInfoList = (props) => {
   const { id, name, phone } = props.info;

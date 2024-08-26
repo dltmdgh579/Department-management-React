@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import GroupList from "../../components/department/GroupList";
-import { Link, useLocation } from "react-router-dom";
-import DepartmentInfoHeader from "./DepartmentInfoHeader";
-import GroupAttendance from "../../components/department/GroupAttendance";
-import AddGroup from "../../components/department/AddGroup";
-import ModifyGroup from "../../components/department/ModifyGroup";
+import GroupList from "./GroupList";
+import { useLocation } from "react-router-dom";
+import GroupUpdate from "./GroupUpdate";
+import GroupAttendance from "./GroupAttendance";
+import AddGroup from "./AddGroup";
+import ModifyGroup from "./ModifyGroup";
 import styles from "../../css/department/Department_info.module.css";
-import OtherGroupHeader from "./group/header/OtherDepartmentHeader";
+import OtherGroupHeader from "./OtherDepartmentHeader";
 import NameHeader from "../../components/NameHeader";
-import FooterNav from "../../components/FooterNav";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -53,10 +52,7 @@ const DepartmentInfo = (props) => {
     <div>
       <NameHeader pageName={departmentName} />
       <OtherGroupHeader state={state} />
-      <DepartmentInfoHeader
-        addFunction={addGroup}
-        modifyFunction={modifyGroup}
-      />
+      <GroupUpdate addFunction={addGroup} modifyFunction={modifyGroup} />
       <div className={styles.content}>
         {isAddGroup ? <AddGroup state={state} /> : null}
         {isModifyGroupName ? (
@@ -69,15 +65,11 @@ const DepartmentInfo = (props) => {
           isModify={isModifyGroup}
           modifyFunction={modifyGroupName}
         />
-        <Link
-          to={`/${departmentName}/list`}
-          state={{ state }}
-          className={styles.attendance_link}
-        >
-          <GroupAttendance info={[info.attendance, info.enrollment]} />
-        </Link>
+        <GroupAttendance
+          info={[info.attendance, info.enrollment]}
+          state={state}
+        />
       </div>
-      <FooterNav />
     </div>
   );
 };

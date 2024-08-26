@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PersonnelList from "../../../components/personnel/list/PersonnelList";
-import PersonnelListHeader from "../../../components/personnel/list/PersonnelListHeader";
+import PersonnelList from "./PersonnelList";
+import PersonnelListHeader from "./PersonnelListHeader";
 import { useLocation } from "react-router-dom";
 import qs from "qs";
 import NameHeader from "../../../components/NameHeader";
-import FooterNav from "../../../components/FooterNav";
-import styles from "../../../css/personnel/list/All_list.module.css";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -109,12 +107,7 @@ const ListAll = (props) => {
         orderFunction={checkOrder}
         searchFunction={setSearchWordFunction}
       />
-      <div className={styles.content}>
-        {infoList
-          ? infoList.map((info) => <PersonnelList key={info.id} info={info} />)
-          : null}
-      </div>
-      <FooterNav />
+      <PersonnelList infoList={infoList} />
     </div>
   );
 };

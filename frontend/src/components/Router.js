@@ -2,15 +2,16 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../page/Home";
 import Login from "../page/Login";
-import AllList from "../page/personnel-info/list/AllList";
-import PersonnelInfoDetail from "../page/personnel-info/detail/PersonnelInfoDetail";
+import AllList from "../page/personnel-info/all-list/AllList";
+import PersonnelInfoDetail from "../page/personnel-info/all-list/detail/PersonnelInfoDetail";
 import GroupInfo from "../page/department/group/GroupInfo";
 import DepartmentInfo from "../page/department/DepartmentInfo";
-import PersonnelPost from "../page/personnel-info/post/PersonnelPost";
-import AbsentInfo from "../page/department/group/AbsentInfo";
-import AddGroupMember from "../page/department/group/AddGroupMember";
-import DepartmentMemberList from "../page/department/DepartmentMemberList";
+import PersonnelPost from "../page/personnel-info/all-list/post/PersonnelPost";
+import AbsentInfo from "../page/department/group/absent/AbsentInfo";
+import AddGroupMember from "../page/department/group/add/AddGroupMember";
+import DepartmentMemberList from "../page/department/attendance/DepartmentMemberList";
 import AuthLayout from "../components/AuthLayout";
+import FooterNav from "../components/FooterNav";
 
 export default () => (
   <BrowserRouter>
@@ -43,5 +44,6 @@ export default () => (
         <Route path="/list/add" element={<AddGroupMember />}></Route>
       </Route>
     </Routes>
+    <FooterNav />
   </BrowserRouter>
 );

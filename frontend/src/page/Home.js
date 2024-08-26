@@ -94,7 +94,6 @@ const FirstDepartment = () => {
           전체 인원
         </div>
       </div>
-      <FooterNav />
     </div>
   );
 };

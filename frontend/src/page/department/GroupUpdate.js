@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import styles from "../../css/department/group/Group_info_header.module.css";
 
-const GroupInfoHeader = (props) => {
+const GroupUpdate = (props) => {
   const addGroup = props.addFunction;
   const modifyGroup = props.modifyFunction;
 
@@ -33,4 +32,4 @@ const GroupInfoHeader = (props) => {
   );
 };
 
-export default GroupInfoHeader;
+export default GroupUpdate;

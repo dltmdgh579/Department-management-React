@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PersonnelList from "../../../components/personnel/list/PersonnelList";
+import PersonnelList from "./PersonnelList";
 import { useLocation, useNavigate } from "react-router-dom";
-import styles from "../../../css/department/group/Group_add_member.module.css";
+import styles from "../../../../css/department/group/add/Group_add_member.module.css";
 import moment from "moment";
-import GroupAddPersonnelHeader from "../../../components/personnel/list/GroupAddPersonnelHeader";
-import FooterNav from "../../../components/FooterNav";
-import NameHeader from "../../../components/NameHeader";
+import GroupAddPersonnelHeader from "./GroupAddPersonnelHeader";
+import NameHeader from "../../../../components/NameHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -90,7 +89,6 @@ const AddGroupMember = (props) => {
     <div>
       <NameHeader pageName={"그룹 인원 추가"} />
       <GroupAddPersonnelHeader
-        add={true}
         genderFilterFunction={genderCheckFilter}
         orderFunction={checkOrder}
       />
@@ -99,7 +97,6 @@ const AddGroupMember = (props) => {
           <PersonnelList
             key={info.id}
             info={info}
-            add={true}
             checkFunction={checkAddMemberInfo}
           />
         ))}
@@ -107,7 +104,6 @@ const AddGroupMember = (props) => {
           ✔
         </div>
       </div>
-      <FooterNav />
     </div>
   );
 };
