@@ -3,22 +3,18 @@ import styles from "../../../css/personnel/all-list/Personnel_Attendance.module.
 
 const PersonnelAttendance = (props) => {
   const { id, name } = props.info;
-  const isAttendance = props.isAttendance;
-  let attendanceCheck = props.attendanceCheck;
+  let attendanceCheckInit = props.attendanceCheck;
   const checkAttendanceMemberInfo = props.attendanceCheckFunction;
 
-  const [attendance, setAttendance] = useState(false);
+  const [attendance, setAttendance] = useState(attendanceCheckInit);
 
   useEffect(() => {
-    setAttendance(attendanceCheck);
-  }, [attendanceCheck]);
+    const attendanceStatus = attendance === true ? "ATTENDANCE" : "ABSENT";
+    checkAttendanceMemberInfo({ id, name, attendanceStatus });
+  }, [attendance]);
 
   const checkAttendanceMember = () => {
-    attendanceCheck = !attendanceCheck;
-    const attendanceStatus = attendanceCheck === true ? "ATTENDANCE" : "ABSENT";
-
-    setAttendance(attendanceCheck);
-    checkAttendanceMemberInfo({ id, name, attendanceStatus });
+    setAttendance(!attendance);
   };
 
   const overlay = (
@@ -28,9 +24,9 @@ const PersonnelAttendance = (props) => {
   );
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={checkAttendanceMember}>
       {attendance ? <div>{overlay}</div> : null}
-      <div className={styles.info_container} onClick={checkAttendanceMember}>
+      <div className={styles.info_container}>
         <img
           src="https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg"
           className={styles.profile_image}

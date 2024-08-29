@@ -67,6 +67,7 @@ const DepartmentInfo = (props) => {
         />
         <GroupAttendance
           info={[info.attendance, info.enrollment]}
+          departmentName={departmentName}
           state={state}
         />
       </div>
