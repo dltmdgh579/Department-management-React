@@ -80,50 +80,39 @@ const DepartmentInfo = (props) => {
     <div>
       <NameHeader pageName={"전체 출석 확인"} />
       <div className={styles.content}>
-        <div className={styles.parent_container}>
-          <div className={styles.date_picker}>
-            <DatePicker
-              showYearDropdown
-              scrollableYearDropdown
-              yearDropdownItemNumber={100}
-              dateFormat="yyyy.MM.dd" // 날짜 형태
-              shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
-              minDate={new Date("1970-01-01")} // minDate 이전 날짜 선택 불가
-              maxDate={new Date()} // maxDate 이후 날짜 선택 불가
-              selected={selectedDate}
-              locale={ko}
-              onChange={(date) => handleSelectedDate(date)}
-            />
-          </div>
-          <div className={styles.personnel_list}>
-            {infoList &&
-              infoList.map((info) => (
-                // <PersonnelList
-                //   key={info.id}
-                //   info={info}
-                //   attendanceCheck={
-                //     info.attendanceStatus === "ATTENDANCE" ? true : false
-                //   }
-                //   attendanceCheckPage={true}
-                //   attendanceCheckFunction={checkAttendanceMemberInfo}
-                // />
-                <PersonnelAttendance
-                  key={info.id}
-                  info={info}
-                  attendanceCheck={
-                    info.attendanceStatus === "ATTENDANCE" ? true : false
-                  }
-                  attendanceCheckFunction={checkAttendanceMemberInfo}
-                />
-              ))}
-            {infoList.length === 0 ? <div>출석 인원이 없습니다.</div> : null}
-          </div>
-          <div
-            className={styles.attendance_check}
-            onClick={sendAttendanceMemberList}
-          >
-            <span className={styles.attendance_check_text}>출석체크</span>
-          </div>
+        <div className={styles.date_picker}>
+          <DatePicker
+            showYearDropdown
+            scrollableYearDropdown
+            yearDropdownItemNumber={100}
+            dateFormat="yyyy.MM.dd" // 날짜 형태
+            shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
+            minDate={new Date("1970-01-01")} // minDate 이전 날짜 선택 불가
+            maxDate={new Date()} // maxDate 이후 날짜 선택 불가
+            selected={selectedDate}
+            locale={ko}
+            onChange={(date) => handleSelectedDate(date)}
+          />
+        </div>
+        <div className={styles.personnel_list}>
+          {infoList &&
+            infoList.map((info) => (
+              <PersonnelAttendance
+                key={info.id}
+                info={info}
+                attendanceCheck={
+                  info.attendanceStatus === "ATTENDANCE" ? true : false
+                }
+                attendanceCheckFunction={checkAttendanceMemberInfo}
+              />
+            ))}
+          {infoList.length === 0 ? <div>출석 인원이 없습니다.</div> : null}
+        </div>
+        <div
+          className={styles.attendance_check}
+          onClick={sendAttendanceMemberList}
+        >
+          <span className={styles.attendance_check_text}>출석체크</span>
         </div>
       </div>
     </div>

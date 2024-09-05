@@ -1,11 +1,8 @@
 .content {
-  margin-bottom: 60px;
-}
-
-.parent_container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
 }
 
 .attendance_check {
@@ -43,5 +40,8 @@
 }
 
 .personnel_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 15px;
 }

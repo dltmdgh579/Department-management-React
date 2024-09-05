@@ -25,12 +25,12 @@ const PersonnelAttendance = (props) => {
 
   return (
     <div className={styles.container} onClick={checkAttendanceMember}>
-      {attendance ? <div>{overlay}</div> : null}
       <div className={styles.info_container}>
+        {attendance ? <div>{overlay}</div> : null}
         <img
           src="https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg"
           className={styles.profile_image}
-        ></img>
+        />
         <div className={styles.text_container}>
           <div className={styles.text_name}>{name}</div>
         </div>
