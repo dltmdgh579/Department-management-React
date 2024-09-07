@@ -23,7 +23,7 @@ const PersonnelAttendance = (props) => {
 
   const overlay = (
     <div className={styles.overlay}>
-      <span className={styles.overlay_text}>출석</span>
+      <span className={styles.overlay_text}>✔</span>
     </div>
   );
 
