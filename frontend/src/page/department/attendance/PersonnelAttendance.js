@@ -9,6 +9,10 @@ const PersonnelAttendance = (props) => {
   const [attendance, setAttendance] = useState(attendanceCheckInit);
 
   useEffect(() => {
+    setAttendance(attendanceCheckInit);
+  }, [attendanceCheckInit]);
+
+  useEffect(() => {
     const attendanceStatus = attendance === true ? "ATTENDANCE" : "ABSENT";
     checkAttendanceMemberInfo({ id, name, attendanceStatus });
   }, [attendance]);
@@ -36,7 +40,10 @@ const PersonnelAttendance = (props) => {
           className={styles.profile_image}
         />
         <div className={styles.text_container}>
-          <div className={styles.text_name}>{overFiveWords(name)}</div>
+          <div className={styles.text_name}>
+            {overFiveWords(name)}
+            {attendance}
+          </div>
         </div>
         <hr />
       </div>
