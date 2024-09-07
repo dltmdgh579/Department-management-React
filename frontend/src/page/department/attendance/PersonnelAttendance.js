@@ -17,6 +17,10 @@ const PersonnelAttendance = (props) => {
     setAttendance(!attendance);
   };
 
+  const overFiveWords = (name) => {
+    return name.length > 5 ? name.substring(0, 5) + ".." : name;
+  };
+
   const overlay = (
     <div className={styles.overlay}>
       <span className={styles.overlay_text}>출석</span>
@@ -32,7 +36,7 @@ const PersonnelAttendance = (props) => {
           className={styles.profile_image}
         />
         <div className={styles.text_container}>
-          <div className={styles.text_name}>{name}</div>
+          <div className={styles.text_name}>{overFiveWords(name)}</div>
         </div>
         <hr />
       </div>
