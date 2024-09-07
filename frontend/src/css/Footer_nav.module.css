@@ -5,6 +5,7 @@
   height: 60px;
   background: white;
   border-top: 1px solid #939393;
+  z-index: 1;
 }
 
 .wrap {
