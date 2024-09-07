@@ -18,6 +18,7 @@ const DepartmentInfo = (props) => {
   const [infoList, setInfoList] = useState([]);
   const [attendanceMemberList, setAttendanceMemberList] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isSumitting, setIsSumitting] = useState(false);
 
   const navigate = useNavigate();
 
@@ -29,6 +30,8 @@ const DepartmentInfo = (props) => {
       );
       return res.data;
     };
+
+    console.log("infoData", infoList);
 
     infoData().then((res) => setInfoList(res));
   }, [selectedDate]);
@@ -53,6 +56,8 @@ const DepartmentInfo = (props) => {
   };
 
   const sendAttendanceMemberList = async () => {
+    if (isSumitting) return;
+    setIsSumitting(true);
     const searchDate = format(selectedDate, "yyyy-MM-dd");
     await axios({
       method: "post",
@@ -112,7 +117,9 @@ const DepartmentInfo = (props) => {
           className={styles.attendance_check}
           onClick={sendAttendanceMemberList}
         >
-          <span className={styles.attendance_check_text}>출석체크</span>
+          <span className={styles.attendance_check_text} disabled={isSumitting}>
+            출석체크
+          </span>
         </div>
       </div>
     </div>
