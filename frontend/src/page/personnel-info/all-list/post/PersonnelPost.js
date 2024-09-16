@@ -12,7 +12,11 @@ const API_ROOT = process.env.REACT_APP_API_ROOT;
 const PersonnelPost = () => {
   const location = useLocation();
   const departmentList = location.state?.departmentList;
-
+  const datePickerWidthStyle = `
+  .custom-datepicker-wrapper {
+    width: 100%;
+  }
+`;
   const navigate = useNavigate();
 
   const [uploadImageUrl, setUploadImageUrl] = useState(
@@ -173,8 +177,9 @@ const PersonnelPost = () => {
           )}
         </div>
       </div>
-      <div>
-        생년월일
+      <div>생년월일</div>
+      <div className={styles.date_picker} style={{ "margin-top": "0px" }}>
+        <style>{datePickerWidthStyle}</style>
         <DatePicker
           showYearDropdown
           scrollableYearDropdown
@@ -186,6 +191,7 @@ const PersonnelPost = () => {
           selected={selectedDate}
           locale={ko}
           onChange={(date) => handleSelectedDate(date)}
+          wrapperClassName="custom-datepicker-wrapper"
         />
       </div>
       <div>연락처</div>
