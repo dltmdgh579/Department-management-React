@@ -1,18 +1,20 @@
 .container {
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
   margin-left: 30px;
-  margin-bottom: 100px;
+  margin-bottom: 90px;
 }
 
 .container > div {
-  font-weight: bolder;
-  font-size: 18px;
+  font-weight: bold;
+  font-size: 1.1rem;
   margin-top: 30px;
 }
 
 .container input {
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1rem;
   color: #bbbfc7;
   width: 300px;
   height: 35px;
@@ -23,11 +25,26 @@
   margin-top: 10px;
 }
 
+.profile {
+  display: flex;
+  align-items: center;
+}
+
 .profile_image {
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   border-radius: 15px;
   background-size: 100% 100%;
+}
+
+.file_input {
+  display: none;
+}
+
+.profile_ment {
+  padding-top: 40px;
+  margin-left: 10px;
+  font-size: 1rem;
 }
 
 .submit {

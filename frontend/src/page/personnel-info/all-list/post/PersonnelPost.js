@@ -101,9 +101,24 @@ const PersonnelPost = () => {
 
   return (
     <div className={styles.container}>
-      <div>
-        <img src={screenUploadImageUrl} className={styles.profile_image}></img>
-        <input type="file" accept="image/*" onChange={onChangeImageUpload} />
+      <div className={styles.profile}>
+        <label htmlFor="imageUpload">
+          <img
+            src={screenUploadImageUrl}
+            className={styles.profile_image}
+          ></img>
+        </label>
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          onChange={onChangeImageUpload}
+          className={styles.file_input}
+        />
+        <span className={styles.profile_ment}>
+          프로필사진을 <br />
+          업로드 해주세요
+        </span>
       </div>
       <div>이름</div>
       <input
