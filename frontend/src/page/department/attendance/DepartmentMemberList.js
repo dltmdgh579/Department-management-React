@@ -18,6 +18,7 @@ const DepartmentInfo = (props) => {
   const [infoList, setInfoList] = useState([]);
   const [attendanceMemberList, setAttendanceMemberList] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [filterToggle, setFilterToggle] = useState(false);
   const [isSumitting, setIsSumitting] = useState(false);
 
   const navigate = useNavigate();
@@ -79,6 +80,29 @@ const DepartmentInfo = (props) => {
     setSelectedDate(date);
   };
 
+  const changefilterToggle = () => {
+    setFilterToggle(!filterToggle);
+  };
+
+  const FilterPlate = () => {
+    return (
+      <div className={styles.filter_plate}>
+        <div className={styles.filter_plate_title}>성별</div>
+        <div className={styles.filter_plate_item}>
+          <button>남자</button>
+          <button>여자</button>
+        </div>
+        <hr />
+        <div className={styles.filter_plate_title}>정렬</div>
+        <div className={styles.filter_plate_item}>
+          <button>출석순</button>
+          <button>나이순</button>
+          <button>이름순</button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
       <NameHeader pageName={"전체 출석 확인"} />
@@ -98,7 +122,11 @@ const DepartmentInfo = (props) => {
               onChange={(date) => handleSelectedDate(date)}
             />
           </div>
-          <div className={styles.filter}></div>
+          <div
+            className={styles.filter}
+            onClick={() => changefilterToggle()}
+          ></div>
+          {filterToggle && <FilterPlate />}
           <div className={styles.search}>
             <input type="text" required />
             <label>이름</label>
