@@ -6,9 +6,14 @@ import NameHeader from "../../../components/NameHeader";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
 import { format } from "date-fns";
+import qs from "qs";
 import PersonnelAttendance from "./PersonnelAttendance";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
+
+axios.defaults.paramsSerializer = (params) => {
+  return qs.stringify(params, { arrayFormat: "repeat" });
+};
 
 const DepartmentInfo = (props) => {
   const location = useLocation();
@@ -20,6 +25,7 @@ const DepartmentInfo = (props) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [filterToggle, setFilterToggle] = useState(false);
   const [isSumitting, setIsSumitting] = useState(false);
+  const [order, setOrder] = useState("ATTENDANCE");
 
   const navigate = useNavigate();
 
@@ -28,6 +34,11 @@ const DepartmentInfo = (props) => {
     const infoData = async () => {
       const res = await axios.get(
         `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
+        {
+          params: {
+            order: order,
+          },
+        },
       );
       return res.data;
     };
