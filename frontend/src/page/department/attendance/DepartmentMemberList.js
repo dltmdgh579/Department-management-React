@@ -8,6 +8,7 @@ import { ko } from "date-fns/locale";
 import { format } from "date-fns";
 import qs from "qs";
 import PersonnelAttendance from "../../../components/department/attendance/PersonnelAttendance";
+import FilterPlate from "../../../components/department/attendance/FilterFlate";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
@@ -21,11 +22,20 @@ const DepartmentInfo = (props) => {
   const departmentName = location.state?.state.currentDepartment.name;
 
   const [infoList, setInfoList] = useState([]);
+  const [displayInfoList, setDisplayInfoList] = useState([]);
   const [attendanceMemberList, setAttendanceMemberList] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [filterToggle, setFilterToggle] = useState(false);
   const [isSumitting, setIsSumitting] = useState(false);
   const [order, setOrder] = useState("ATTENDANCE");
+
+  const [isMan, setIsMan] = useState(false);
+  const [isWoman, setIsWoman] = useState(false);
+  const [isOrderAttendance, setIsOrderAttendance] = useState(false);
+  const [isOrderAge, setIsOrderAge] = useState(false);
+  const [isOrderName, setIsOrderName] = useState(false);
+
+  const [filterToggle, setFilterToggle] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const navigate = useNavigate();
 
@@ -43,7 +53,10 @@ const DepartmentInfo = (props) => {
       return res.data;
     };
 
-    infoData().then((res) => setInfoList(res));
+    infoData().then((res) => {
+      setInfoList(res);
+      setDisplayInfoList(infoList);
+    });
   }, [selectedDate]);
 
   const checkAttendanceMemberInfo = (attendanceMemberInfo) => {
@@ -92,27 +105,36 @@ const DepartmentInfo = (props) => {
   };
 
   const changefilterToggle = () => {
+    if (isProcessing) return;
+    setIsProcessing(true);
     setFilterToggle(!filterToggle);
+    setTimeout(() => {
+      setIsProcessing(false);
+    }, 10);
   };
 
-  const FilterPlate = () => {
-    return (
-      <div className={styles.filter_plate}>
-        <div className={styles.filter_plate_title}>성별</div>
-        <div className={styles.filter_plate_item}>
-          <button>남자</button>
-          <button>여자</button>
-        </div>
-        <hr />
-        <div className={styles.filter_plate_title}>정렬</div>
-        <div className={styles.filter_plate_item}>
-          <button>출석순</button>
-          <button>나이순</button>
-          <button>이름순</button>
-        </div>
-      </div>
-    );
+  const closeFilter = () => {
+    if (isProcessing) return;
+    setIsProcessing(true);
+    setFilterToggle(false);
+    setTimeout(() => {
+      setIsProcessing(false);
+    }, 10);
   };
+
+  useEffect(() => {
+    if (isMan) {
+      setDisplayInfoList(infoList.filter((info) => info.gender === "M"));
+    }
+
+    if (isWoman) {
+      setDisplayInfoList(infoList.filter((info) => info.gender === "W"));
+    }
+
+    if (!isMan && !isWoman) {
+      setDisplayInfoList(infoList);
+    }
+  }, [isMan, isWoman, infoList]);
 
   return (
     <div>
@@ -137,7 +159,21 @@ const DepartmentInfo = (props) => {
             className={styles.filter}
             onClick={() => changefilterToggle()}
           ></div>
-          {filterToggle && <FilterPlate />}
+          {filterToggle && (
+            <FilterPlate
+              isMan={isMan}
+              setIsMan={setIsMan}
+              isWoman={isWoman}
+              setIsWoman={setIsWoman}
+              isOrderAttendance={isOrderAttendance}
+              setIsOrderAttendance={setIsOrderAttendance}
+              isOrderAge={isOrderAge}
+              setIsOrderAge={setIsOrderAge}
+              isOrderName={isOrderName}
+              setIsOrderName={setIsOrderName}
+              onClose={() => closeFilter()}
+            />
+          )}
           <div className={styles.search}>
             <input type="text" required />
             <label>이름</label>
@@ -147,8 +183,8 @@ const DepartmentInfo = (props) => {
         </div>
         <div className={styles.filter_selected_items}></div>
         <div className={styles.personnel_list}>
-          {infoList &&
-            infoList.map((info) => (
+          {displayInfoList &&
+            displayInfoList.map((info) => (
               <PersonnelAttendance
                 key={info.id}
                 info={info}
