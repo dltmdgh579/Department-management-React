@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import styles from "../../../../css/personnel/post/Personnel_post.module.css";
+import styles from "../../../css/personnel/post/Personnel_post.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

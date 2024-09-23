@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PersonnelList from "./PersonnelList";
-import PersonnelListHeader from "./PersonnelListHeader";
+import PersonnelList from "../../components/personnel-info/PersonnelList";
+import PersonnelListHeader from "../../components/personnel-info/PersonnelListHeader";
 import { useLocation } from "react-router-dom";
 import qs from "qs";
-import NameHeader from "../../../components/NameHeader";
+import NameHeader from "../../components/NameHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
-import AbsentInfoList from "./AbsentInfoList";
+import AbsentInfoList from "../../../../components/department/group/absent/AbsentInfoList";
 import { useParams } from "react-router-dom";
 import styles from "../../../../css/department/group/absent/Group_absent_info_list.module.css";
 import { ko } from "date-fns/locale";

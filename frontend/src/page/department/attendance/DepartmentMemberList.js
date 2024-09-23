@@ -7,7 +7,7 @@ import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
 import { format } from "date-fns";
 import qs from "qs";
-import PersonnelAttendance from "./PersonnelAttendance";
+import PersonnelAttendance from "../../../components/department/attendance/PersonnelAttendance";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "../../../../css/personnel/detail/Personnel_detail.module.css";
+import styles from "../../../css/personnel/detail/Personnel_detail.module.css";
 import { useParams } from "react-router-dom";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import GroupInfoList from "./GroupInfoList";
-import GroupInfoHeader from "./GroupInfoHeader";
+import GroupInfoList from "../../../components/department/group/GroupInfoList";
+import GroupInfoHeader from "../../../components/department/group/GroupInfoHeader";
 import { useLocation, useParams } from "react-router-dom";
 import styles from "../../../css/department/group/Group_info_list.module.css";
 import moment from "moment";
-import OtherGroupHeader from "./OtherGroupHeader";
+import OtherGroupHeader from "../../../components/department/group/OtherGroupHeader";
 import NameHeader from "../../../components/NameHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import GroupList from "./GroupList";
+import GroupList from "../../components/department/GroupList";
 import { useLocation } from "react-router-dom";
-import GroupUpdate from "./GroupUpdate";
-import GroupAttendance from "./GroupAttendance";
-import AddGroup from "./AddGroup";
-import ModifyGroup from "./ModifyGroup";
+import GroupUpdate from "../../components/department/GroupUpdate";
+import GroupAttendance from "../../components/department/GroupAttendance";
+import AddGroup from "../../components/department/AddGroup";
+import ModifyGroup from "../../components/department/ModifyGroup";
 import styles from "../../css/department/Department_info.module.css";
-import OtherGroupHeader from "./OtherDepartmentHeader";
+import OtherDepartmentHeader from "../../components/department/OtherDepartmentHeader";
 import NameHeader from "../../components/NameHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
@@ -51,7 +51,7 @@ const DepartmentInfo = (props) => {
   return (
     <div>
       <NameHeader pageName={departmentName} />
-      <OtherGroupHeader state={state} />
+      <OtherDepartmentHeader state={state} />
       <GroupUpdate addFunction={addGroup} modifyFunction={modifyGroup} />
       <div className={styles.content}>
         {isAddGroup ? <AddGroup state={state} /> : null}

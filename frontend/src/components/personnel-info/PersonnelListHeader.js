@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../../../css/personnel/all-list/Personnel_list_header.module.css";
+import styles from "../../css/personnel/all-list/Personnel_list_header.module.css";
 
 const PersonnelListHeader = (props) => {
   const isAddPage = props.add;

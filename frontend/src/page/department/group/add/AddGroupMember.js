@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PersonnelList from "./PersonnelList";
+import PersonnelList from "../../../../components/department/group/add/PersonnelList";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../../../../css/department/group/add/Group_add_member.module.css";
 import moment from "moment";
-import GroupAddPersonnelHeader from "./GroupAddPersonnelHeader";
+import GroupAddPersonnelHeader from "../../../../components/department/group/add/GroupAddPersonnelHeader";
 import NameHeader from "../../../../components/NameHeader";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;

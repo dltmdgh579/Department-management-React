@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../../css/personnel/all-list/Personnel_list.module.css";
+import styles from "../../css/personnel/all-list/Personnel_list.module.css";
 import Personnel from "./Personnel";
 
 const PersonnelList = (props) => {
