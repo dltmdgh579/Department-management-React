@@ -26,7 +26,8 @@ const DepartmentInfo = (props) => {
   const [attendanceMemberList, setAttendanceMemberList] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isSumitting, setIsSumitting] = useState(false);
-  const [order, setOrder] = useState("ATTENDANCE");
+  const [orderFilter, setOrderFilter] = useState("");
+  const [genderFilter, setGenderFilter] = useState("");
 
   const [isMan, setIsMan] = useState(false);
   const [isWoman, setIsWoman] = useState(false);
@@ -46,7 +47,7 @@ const DepartmentInfo = (props) => {
         `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
         {
           params: {
-            order: order,
+            order: orderFilter,
           },
         },
       );
@@ -123,18 +124,136 @@ const DepartmentInfo = (props) => {
   };
 
   useEffect(() => {
-    if (isMan) {
-      setDisplayInfoList(infoList.filter((info) => info.gender === "M"));
+    const searchDate = format(selectedDate, "yyyy-MM-dd");
+
+    if (genderFilter === "M") {
+      const infoData = async () => {
+        const res = await axios.get(
+          `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
+          {
+            params: {
+              gender: genderFilter,
+              order: orderFilter,
+            },
+          },
+        );
+        return res.data;
+      };
+      infoData().then((res) => {
+        setInfoList(res);
+      });
     }
 
-    if (isWoman) {
-      setDisplayInfoList(infoList.filter((info) => info.gender === "W"));
+    if (genderFilter === "W") {
+      const infoData = async () => {
+        const res = await axios.get(
+          `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
+          {
+            params: {
+              gender: genderFilter,
+              order: orderFilter,
+            },
+          },
+        );
+        return res.data;
+      };
+      infoData().then((res) => {
+        setInfoList(res);
+      });
     }
 
-    if (!isMan && !isWoman) {
-      setDisplayInfoList(infoList);
+    if (!genderFilter) {
+      const infoData = async () => {
+        const res = await axios.get(
+          `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
+          {
+            params: {
+              order: orderFilter,
+            },
+          },
+        );
+        return res.data;
+      };
+      infoData().then((res) => {
+        setInfoList(res);
+      });
     }
-  }, [isMan, isWoman, infoList]);
+  }, [genderFilter]);
+
+  useEffect(() => {
+    const searchDate = format(selectedDate, "yyyy-MM-dd");
+
+    if (orderFilter === "ATTENDANCE") {
+      const infoData = async () => {
+        const res = await axios.get(
+          `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
+          {
+            params: {
+              gender: genderFilter,
+              order: orderFilter,
+            },
+          },
+        );
+        return res.data;
+      };
+      infoData().then((res) => {
+        setInfoList(res);
+      });
+    }
+
+    if (orderFilter === "AGE") {
+      const infoData = async () => {
+        const res = await axios.get(
+          `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
+          {
+            params: {
+              gender: genderFilter,
+              order: orderFilter,
+            },
+          },
+        );
+        return res.data;
+      };
+      infoData().then((res) => {
+        setInfoList(res);
+      });
+    }
+
+    if (orderFilter === "NAME") {
+      const infoData = async () => {
+        const res = await axios.get(
+          `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
+          {
+            params: {
+              gender: genderFilter,
+              order: orderFilter,
+            },
+          },
+        );
+        return res.data;
+      };
+      infoData().then((res) => {
+        setInfoList(res);
+      });
+    }
+
+    if (!orderFilter) {
+      const infoData = async () => {
+        const res = await axios.get(
+          `${API_ROOT}/${departmentId}/attendance/${searchDate}`,
+          {
+            params: {
+              gender: genderFilter,
+            },
+          },
+        );
+        return res.data;
+      };
+      infoData().then((res) => {
+        setInfoList(res);
+      });
+    }
+  }, [orderFilter]);
 
   return (
     <div>
@@ -161,16 +280,10 @@ const DepartmentInfo = (props) => {
           ></div>
           {filterToggle && (
             <FilterPlate
-              isMan={isMan}
-              setIsMan={setIsMan}
-              isWoman={isWoman}
-              setIsWoman={setIsWoman}
-              isOrderAttendance={isOrderAttendance}
-              setIsOrderAttendance={setIsOrderAttendance}
-              isOrderAge={isOrderAge}
-              setIsOrderAge={setIsOrderAge}
-              isOrderName={isOrderName}
-              setIsOrderName={setIsOrderName}
+              genderFilter={genderFilter}
+              setGenderFilter={setGenderFilter}
+              orderFilter={orderFilter}
+              setOrderFilter={setOrderFilter}
               onClose={() => closeFilter()}
             />
           )}
@@ -183,8 +296,8 @@ const DepartmentInfo = (props) => {
         </div>
         <div className={styles.filter_selected_items}></div>
         <div className={styles.personnel_list}>
-          {displayInfoList &&
-            displayInfoList.map((info) => (
+          {infoList &&
+            infoList.map((info) => (
               <PersonnelAttendance
                 key={info.id}
                 info={info}

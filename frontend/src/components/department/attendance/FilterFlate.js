@@ -2,16 +2,10 @@ import { useEffect, useRef } from "react";
 import styles from "../../../css/department/attendance/Filter_flate.module.css";
 
 const FilterPlate = ({
-  isMan,
-  setIsMan,
-  isWoman,
-  setIsWoman,
-  isOrderAttendance,
-  setIsOrderAttendance,
-  isOrderAge,
-  setIsOrderAge,
-  isOrderName,
-  setIsOrderName,
+  genderFilter,
+  setGenderFilter,
+  orderFilter,
+  setOrderFilter,
   onClose,
 }) => {
   const plateRef = useRef(null);
@@ -29,31 +23,48 @@ const FilterPlate = ({
   }, [onClose]);
 
   const onclickMan = () => {
-    setIsMan(!isMan);
-
-    if (isWoman) {
-      setIsWoman(false);
+    if (genderFilter === "M") {
+      setGenderFilter("");
+      return;
     }
+
+    setGenderFilter("M");
   };
 
   const onclickWoman = () => {
-    setIsWoman(!isWoman);
-
-    if (isMan) {
-      setIsMan(false);
+    if (genderFilter === "W") {
+      setGenderFilter("");
+      return;
     }
+
+    setGenderFilter("W");
   };
 
   const onclickOrderAttendance = () => {
-    setIsOrderAttendance(!isOrderAttendance);
+    if (orderFilter === "ATTENDANCE") {
+      setOrderFilter("");
+      return;
+    }
+
+    setOrderFilter("ATTENDANCE");
   };
 
   const onclickOrderAge = () => {
-    setIsOrderAge(!isOrderAge);
+    if (orderFilter === "AGE") {
+      setOrderFilter("");
+      return;
+    }
+
+    setOrderFilter("AGE");
   };
 
   const onclickOrderName = () => {
-    setIsOrderName(!isOrderName);
+    if (orderFilter === "NAME") {
+      setOrderFilter("");
+      return;
+    }
+
+    setOrderFilter("NAME");
   };
 
   return (
@@ -62,13 +73,13 @@ const FilterPlate = ({
       <div className={styles.filter_plate_item}>
         <button
           onClick={onclickMan}
-          className={isMan ? styles.filter_check : null}
+          className={genderFilter === "M" ? styles.filter_check : null}
         >
           남자
         </button>
         <button
           onClick={onclickWoman}
-          className={isWoman ? styles.filter_check : null}
+          className={genderFilter === "W" ? styles.filter_check : null}
         >
           여자
         </button>
@@ -78,19 +89,19 @@ const FilterPlate = ({
       <div className={styles.filter_plate_item}>
         <button
           onClick={onclickOrderAttendance}
-          className={isOrderAttendance ? styles.filter_check : null}
+          className={orderFilter === "ATTENDANCE" ? styles.filter_check : null}
         >
           출석순
         </button>
         <button
           onClick={onclickOrderAge}
-          className={isOrderAge ? styles.filter_check : null}
+          className={orderFilter === "AGE" ? styles.filter_check : null}
         >
           나이순
         </button>
         <button
           onClick={onclickOrderName}
-          className={isOrderName ? styles.filter_check : null}
+          className={orderFilter === "NAME" ? styles.filter_check : null}
         >
           이름순
         </button>
