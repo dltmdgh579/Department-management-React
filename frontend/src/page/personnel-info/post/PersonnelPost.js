@@ -1,35 +1,28 @@
-import React, { useState } from "react";
 import axios from "axios";
-import styles from "../../../css/personnel/post/Personnel_post.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
-import DatePicker from "react-datepicker";
+import React, { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import ko from "date-fns/locale/ko";
-import { format } from "date-fns";
+import { useLocation, useNavigate } from "react-router-dom";
+import styles from "../../../css/personnel/post/Personnel_post.module.css";
+import ProfileImageUpload from "../../../components/personnel-info/post/ProfileImageUpload";
+import FormInput from "../../../components/personnel-info/post/FormInput";
+import DepartmentDropdown from "../../../components/personnel-info/post/DepartmentDropdown";
+import CustomDatePicker from "../../../components/personnel-info/post/CustomDatePicker";
 
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
+const DEFAULT_PROFILE_IMAGE = "https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg";
+
 const PersonnelPost = () => {
-  const location = useLocation();
-  const departmentList = location.state?.departmentList;
-  const datePickerWidthStyle = `
-  .custom-datepicker-wrapper {
-    width: 100%;
-  }
-`;
   const navigate = useNavigate();
+  const {
+    state: { departmentList },
+  } = useLocation();
 
-  const [uploadImageUrl, setUploadImageUrl] = useState(
-    "https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg",
-  );
-  const [screenUploadImageUrl, setScreenUploadImageUrl] = useState(
-    "https://d1qll2sj38w7uy.cloudfront.net/member/default/1.jpg",
-  );
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedDepartment, setSelectedDepartment] = useState("소속 구분");
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const [info, setInfo] = useState({
+  const [formData, setFormData] = useState({
+    profileImage: {
+      file: null,
+      preview: DEFAULT_PROFILE_IMAGE,
+    },
     name: "",
     departmentType: "",
     dateOfBirth: "",
@@ -40,44 +33,37 @@ const PersonnelPost = () => {
     family: "",
   });
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const handleInputChange = (name, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleDepartmentType = (departmentType) => {
-    setInfo({
-      ...info,
-      ["departmentType"]: departmentType,
-    });
+  const handleImageUpload = (file, preview) => {
+    setFormData((prev) => ({
+      ...prev,
+      profileImage: { file, preview },
+    }));
   };
 
-  const setPlaceHolder = (departmentType) => {
-    setSelectedDepartment(departmentType);
-    setIsOpen(false);
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const submitData = new FormData();
+    submitData.append("profileImage", formData.profileImage.file || formData.profileImage.preview);
 
-  const handleSelectedDate = (date) => {
-    setSelectedDate(date);
-    setInfo({
-      ...info,
-      ["dateOfBirth"]: format(date, "yyyy-MM-dd"),
-    });
-  };
+    const requestDto = {
+      name: formData.name,
+      departmentType: formData.departmentType,
+      dateOfBirth: formData.dateOfBirth,
+      phone: formData.phone,
+      email: formData.email,
+      workSpace: formData.workSpace,
+      address: formData.address,
+      family: formData.family,
+    };
 
-  const changeValue = (e) => {
-    setInfo({
-      ...info,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const postRequest = async () => {
-    const formData = new FormData();
-    formData.append("profileImage", uploadImageUrl);
-    formData.append(
-      "requestDto",
-      new Blob([JSON.stringify(info)], { type: "application/json" }),
-    );
+    submitData.append("requestDto", new Blob([JSON.stringify(requestDto)], { type: "application/json" }));
 
     await axios({
       method: "post",
@@ -85,149 +71,59 @@ const PersonnelPost = () => {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-      data: formData,
-    }).then((response) => {
-      navigate("/list", { state: departmentList });
-    });
+      data: submitData,
+    })
+      .then((response) => {
+        navigate("/list", { state: departmentList });
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("인원 등록에 실패했습니다. 다시 시도해주세요.");
+      });
   };
 
-  const onChangeImageUpload = (e) => {
-    const uploadFile = e.target.files[0];
-    setUploadImageUrl(uploadFile);
-    setScreenUploadImageUrl(uploadFile);
-    const reader = new FileReader();
-    console.log(uploadFile);
-    reader.readAsDataURL(uploadFile);
-    reader.onloadend = () => {
-      setScreenUploadImageUrl(reader.result);
-    };
-  };
+  const inputFields = [
+    { label: "이름", name: "name", placeholder: "내용을 입력해 주세요." },
+    { label: "연락처", name: "phone", placeholder: "01012345678" },
+    { label: "이메일", name: "email", placeholder: "example@domain.com" },
+    { label: "학교/직장", name: "workSpace", placeholder: "학교/직장 명을 입력해 주세요." },
+    { label: "주소", name: "address", placeholder: "주소를 입력해 주세요." },
+    { label: "가족 관계", name: "family", placeholder: "가족 구분" },
+  ];
 
   return (
-    <div className={styles.container}>
-      <div className={styles.profile}>
-        <label htmlFor="imageUpload">
-          <img
-            src={screenUploadImageUrl}
-            className={styles.profile_image}
-          ></img>
-        </label>
-        <input
-          type="file"
-          id="imageUpload"
-          accept="image/*"
-          onChange={onChangeImageUpload}
-          className={styles.file_input}
+    <form onSubmit={handleSubmit} className={styles.container}>
+      <h1 className={styles.title}>새신자 등록</h1>
+      <ProfileImageUpload currentImage={formData.profileImage.preview} onImageUpload={handleImageUpload} />
+      <div className={styles.formSection}>
+        {inputFields.map((field) => (
+          <FormInput
+            key={field.name}
+            label={field.label}
+            name={field.name}
+            placeholder={field.placeholder}
+            value={formData[field.name]}
+            required={field.name === "name" || field.name === "phone"}
+            onChange={(e) => handleInputChange(field.name, e.target.value)}
+          />
+        ))}
+
+        <DepartmentDropdown
+          value={formData.departmentType}
+          onChange={(value) => handleInputChange("departmentType", value)}
         />
-        <span className={styles.profile_ment}>
-          프로필사진을 <br />
-          업로드 해주세요
-        </span>
-      </div>
-      <div>이름</div>
-      <input
-        placeholder="내용을 입력해 주세요."
-        onChange={changeValue}
-        name="name"
-      ></input>
-      <div>
-        <div>소속</div>
-        <div className={styles.department_dropdown}>
-          <div
-            onClick={toggleDropdown}
-            className={styles.department_dropdown_button}
-          >
-            {selectedDepartment}
-          </div>
-          {isOpen && (
-            <div className={styles.department_type}>
-              <div
-                onClick={() => {
-                  handleDepartmentType("KINDERGARTEN");
-                  setPlaceHolder("영유치부");
-                }}
-              >
-                영유치부
-              </div>
-              <div
-                onClick={() => {
-                  handleDepartmentType("HOLY_KIDS");
-                  setPlaceHolder("홀리키즈");
-                }}
-              >
-                홀리키즈
-              </div>
-              <div
-                onClick={() => {
-                  handleDepartmentType("PAUL_COMMUNITY");
-                  setPlaceHolder("바울공동체 청소년부");
-                }}
-              >
-                바울공동체 청소년부
-              </div>
-              <div
-                onClick={() => {
-                  handleDepartmentType("JOSHUA");
-                  setPlaceHolder("여호수아 청년부");
-                }}
-              >
-                여호수아 청년부
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      <div>생년월일</div>
-      <div className={styles.date_picker} style={{ "margin-top": "0px" }}>
-        <style>{datePickerWidthStyle}</style>
-        <DatePicker
-          showYearDropdown
-          scrollableYearDropdown
-          yearDropdownItemNumber={100}
-          dateFormat="yyyy.MM.dd" // 날짜 형태
-          shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
-          minDate={new Date("1970-01-01")} // minDate 이전 날짜 선택 불가
-          maxDate={new Date()} // maxDate 이후 날짜 선택 불가
-          selected={selectedDate}
-          locale={ko}
-          onChange={(date) => handleSelectedDate(date)}
-          wrapperClassName="custom-datepicker-wrapper"
+
+        <CustomDatePicker
+          label="생년월일"
+          selected={formData.dateOfBirth}
+          onChange={(date) => handleInputChange("dateOfBirth", date)}
         />
       </div>
-      <div>연락처</div>
-      <input
-        placeholder="01012345678"
-        onChange={changeValue}
-        name="phone"
-      ></input>
-      <div>이메일</div>
-      <input
-        placeholder="example@domain.com"
-        onChange={changeValue}
-        name="email"
-      ></input>
-      <div>학교/직장</div>
-      <input
-        placeholder="학교/직장 명을 입력해 주세요."
-        onChange={changeValue}
-        name="workSpace"
-      ></input>
-      <div>주소</div>
-      <input
-        placeholder="주소를 입력해 주세요."
-        onChange={changeValue}
-        name="phone"
-      ></input>
-      <div>가족 관계</div>
-      <input
-        placeholder="가족 구분"
-        onChange={changeValue}
-        name="family"
-      ></input>
-      <div className={styles.submit} onClick={postRequest}>
-        완료
-      </div>
-    </div>
+
+      <button type="submit" className={styles.submit}>
+        등록하기
+      </button>
+    </form>
   );
 };
 

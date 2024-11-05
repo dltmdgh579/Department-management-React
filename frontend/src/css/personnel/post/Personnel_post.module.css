@@ -84,12 +84,372 @@
 }
 
 .submit {
-  text-align: center;
-  padding-top: 6px;
+  width: 100%;
+  height: 45px;
+  margin-top: 2rem;
+  background: linear-gradient(to right, #5c9ced, #4a90e2);
   color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(92, 156, 237, 0.2);
+}
+
+.submit:hover {
+  background: linear-gradient(to right, #4a90e2, #3d7fc8);
+  box-shadow: 0 4px 6px rgba(92, 156, 237, 0.3);
+  transform: translateY(-1px);
+}
+
+.submit:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(92, 156, 237, 0.2);
+}
+
+/* 선택사항: 버튼에 리플 효과를 주고 싶다면 아래 스타일도 추가 */
+.submit::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.submit:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* 기존 스타일에 추가 */
+.datepicker_wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.custom_datepicker {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+}
+
+.datepicker_input {
+  width: 100%;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* react-datepicker 커스텀 스타일 */
+:global(.react-datepicker-wrapper) {
+  width: 100%;
+}
+
+:global(.react-datepicker__input-container) {
+  width: 100%;
+}
+
+:global(.react-datepicker) {
+  font-family: inherit;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+:global(.react-datepicker__header) {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+:global(.react-datepicker__day--selected) {
+  background-color: #007bff;
+  color: white;
+}
+
+:global(.react-datepicker__day:hover) {
+  background-color: #e9ecef;
+}
+
+.inputGroup {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2c3e50;
+  transition: color 0.2s ease;
+}
+
+.required {
+  color: #e74c3c;
+  margin-left: 4px;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #e1e1e1;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+.input:hover {
+  border-color: #cbd5e0;
+}
+
+.input:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+.input::placeholder {
+  color: #a0aec0;
+  font-size: 0.9rem;
+}
+
+/* 에러 상태를 위한 스타일 (선택적) */
+.inputError .input {
+  border-color: #e74c3c;
+}
+
+.inputError .label {
+  color: #e74c3c;
+}
+
+.errorMessage {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.dropdownContainer {
+  position: relative;
+  width: 100%;
+}
+
+.dropdownButton {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  height: 35px;
+}
+
+.dropdownButton:hover {
+  border-color: #cbd5e0;
+}
+
+.dropdownButton:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+.dropdownIcon {
+  width: 10px;
+  height: 10px;
+  transition: transform 0.2s ease;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.dropdownOptions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.dropdownOption {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownOption:hover {
+  background-color: #f7fafc;
+  color: #4a90e2;
+}
+
+.dropdownOption:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.dropdownOption:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* 스크롤바 스타일링 추가 */
+.dropdownOptions::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdownOptions::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.dropdownOptions::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.dropdownOptions::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* DatePicker 스타일링 */
+.datePickerWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.datePickerInput {
   width: 100%;
   height: 35px;
-  border-radius: 5px;
-  background-color: #dbe5f8;
-  margin-bottom: 20px;
+  padding: 0.6rem 0.8rem;
+  padding-right: 2rem;
+  font-size: 0.9rem;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendarIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #718096;
+  pointer-events: none;
+  width: 14px;
+  height: 14px;
+}
+
+.datePickerInput:hover {
+  border-color: #cbd5e0;
+}
+
+.datePickerInput:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+.calendarIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #718096;
+  pointer-events: none;
+}
+
+/* DatePicker 팝업 스타일링 */
+:global(.react-datepicker) {
+  font-family: inherit;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+:global(.react-datepicker__header) {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e1e1e1;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+:global(.react-datepicker__day) {
+  width: 2rem;
+  line-height: 2rem;
+  margin: 0.2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+:global(.react-datepicker__day:hover) {
+  background-color: #e6f0ff;
+}
+
+:global(.react-datepicker__day--selected) {
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+:global(.react-datepicker__day--keyboard-selected) {
+  background-color: rgba(74, 144, 226, 0.2);
+}
+
+:global(.react-datepicker__navigation) {
+  top: 8px;
+}
+
+:global(.react-datepicker__year-dropdown) {
+  background-color: white;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+:global(.react-datepicker__year-option) {
+  padding: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+:global(.react-datepicker__year-option:hover) {
+  background-color: #f7fafc;
+}
+
+:global(.react-datepicker__triangle) {
+  display: none;
 }
